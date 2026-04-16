@@ -105,7 +105,7 @@
     <main id="home-view" class="animate-fade-in pt-20 md:pt-24">
         
         <!-- 2. HERO BANNER -->
-        <section class="relative min-h-[85vh] flex items-center justify-center text-center overflow-hidden">
+        <section class="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center text-center overflow-hidden pt-10">
             <!-- Background Image Placeholder -->
             <div class="absolute inset-0 z-0 bg-slate-800">
                 <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
@@ -117,33 +117,33 @@
             <!-- Content -->
             <div class="container mx-auto px-4 relative z-20">
                 <div class="max-w-4xl mx-auto">
-                    <div class="inline-flex items-center gap-2 bg-sky-400/20 backdrop-blur-md px-5 py-2 rounded-full text-xs md:text-sm font-bold text-sky-200 mb-8 border border-white/20 tracking-widest uppercase">
+                    <div class="inline-flex items-center gap-2 bg-sky-400/20 backdrop-blur-md px-5 py-2 rounded-full text-xs md:text-sm font-bold text-sky-200 mb-6 md:mb-8 border border-white/20 tracking-widest uppercase shadow-sm">
                         Sự kiện y khoa nổi bật 2026
                     </div>
                     
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tighter">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 md:mb-8 leading-tight md:leading-[1.1] tracking-tighter">
                         Hội nghị Khoa học <br>
                         <span class="text-gradient">Điều dưỡng - Kỹ thuật y</span> <br>
                         lần thứ 2
                     </h1>
                     
-                    <div class="flex flex-wrap justify-center items-center gap-6 mb-12 text-white/90">
-                        <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10">
+                    <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-10 text-white/90">
+                        <div class="flex items-center gap-2 bg-white/10 px-4 py-2.5 rounded-xl backdrop-blur-sm border border-white/10 shadow-inner">
                             <i class="far fa-calendar-check text-sky-400"></i>
                             <span class="font-bold text-sm md:text-base">12 / 09 / 2026</span>
                         </div>
-                        <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10">
+                        <div class="flex items-center gap-2 bg-white/10 px-4 py-2.5 rounded-xl backdrop-blur-sm border border-white/10 shadow-inner">
                             <i class="fas fa-map-marker-alt text-red-400"></i>
                             <span class="font-bold text-sm md:text-base">Bệnh viện Đa khoa Hùng Vương</span>
                         </div>
                     </div>
                     
-                    <div class="flex flex-col sm:flex-row gap-5 justify-center">
-                        <button onclick="showView('cme-form')" class="px-10 py-5 bg-white text-sky-900 rounded-full font-black text-lg hover:bg-sky-50 transition shadow-2xl hover:-translate-y-1 transform duration-300 flex items-center justify-center gap-2">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="showView('cme-form')" class="px-8 py-4 bg-white text-sky-900 rounded-full font-black text-base md:text-lg hover:bg-sky-50 transition shadow-2xl hover:-translate-y-1 transform duration-300 flex items-center justify-center gap-2">
                             <span>Đăng ký tham dự</span>
                             <i class="fas fa-arrow-right text-xs opacity-50"></i>
                         </button>
-                        <button onclick="showView('report-form')" class="px-10 py-5 border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 hover:border-white transition-all flex items-center justify-center gap-2">
+                        <button onclick="showView('report-form')" class="px-8 py-4 border-2 border-white/30 text-white rounded-full font-bold text-base md:text-lg hover:bg-white/10 hover:border-white transition-all flex items-center justify-center gap-2">
                             <i class="fas fa-file-upload"></i>
                             <span>Gửi bài báo cáo</span>
                         </button>
@@ -176,8 +176,8 @@
                     </div>
                     <div class="relative group">
                         <div class="absolute -inset-4 bg-sky-200/50 rounded-[2rem] blur-2xl group-hover:bg-sky-300/50 transition-all duration-500"></div>
-                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80" 
-                             alt="Hội trường" class="rounded-[2rem] shadow-2xl w-full h-auto object-cover relative z-10 border-8 border-white aspect-video" onerror="this.style.display='none'" />
+                        <img src="hungvuong1.jpg" 
+                             alt="Bệnh viện Đa khoa Hùng Vương" class="rounded-[2rem] shadow-2xl w-full h-auto object-cover relative z-10 border-8 border-white aspect-video" onerror="this.style.display='none'" />
                     </div>
                 </div>
             </div>
@@ -388,25 +388,35 @@
         </section>
 
         <!-- 7. ĐỊA ĐIỂM -->
-        <section id="location" class="py-20 bg-slate-50">
+        <section id="location" class="py-24 bg-slate-50">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid lg:grid-cols-2 gap-0 items-stretch bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-100">
-                    <div class="p-12 md:p-16 flex flex-col justify-center text-left">
-                        <span class="text-sky-600 font-bold uppercase text-xs tracking-widest mb-2 block">Địa điểm tổ chức</span>
-                        <h3 class="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-8"><br> Bệnh viện Đa khoa Hùng Vương</h3>
-                        <div class="space-y-8">
-                            <div class="flex items-start gap-5">
-                                <div class="bg-sky-100 text-sky-600 p-3 rounded-xl shrink-0"><i class="fas fa-map-marked-alt text-xl"></i></div>
-                                <p class="text-slate-700 font-bold text-lg leading-snug">QL2, Chí Đám, Phú Thọ.</p>
+                <div class="grid lg:grid-cols-5 gap-0 items-stretch bg-white rounded-[2rem] shadow-xl overflow-hidden border border-slate-100 max-w-6xl mx-auto">
+                    <!-- Trái: Khối thông tin -->
+                    <div class="lg:col-span-2 p-10 md:p-14 flex flex-col justify-center text-left bg-white z-10 relative">
+                        <span class="text-sky-600 font-bold uppercase text-xs tracking-widest mb-3 block">Địa điểm tổ chức</span>
+                        <h3 class="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-8 leading-tight">Bệnh viện Đa khoa <br><span class="text-sky-600">Hùng Vương</span></h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-sky-50 text-sky-600 p-3.5 rounded-2xl shrink-0 border border-sky-100"><i class="fas fa-map-marked-alt text-xl"></i></div>
+                                <div>
+                                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Địa chỉ</p>
+                                    <p class="text-slate-800 font-bold text-base leading-snug">QL2, Xã Chí Đám,<br>Huyện Đoan Hùng, Tỉnh Phú Thọ.</p>
+                                </div>
                             </div>
-                            <div class="flex items-start gap-5">
-                                <div class="bg-orange-100 text-orange-600 p-3 rounded-xl shrink-0"><i class="fas fa-bed text-xl"></i></div>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-sky-50 text-sky-600 p-3.5 rounded-2xl shrink-0 border border-sky-100"><i class="fas fa-clock text-xl"></i></div>
+                                <div>
+                                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Thời gian</p>
+                                    <p class="text-slate-800 font-bold text-base leading-snug">Thứ 7, Ngày 12/09/2026</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="h-[450px] lg:h-auto min-h-[500px]">
+                    <!-- Phải: Khối bản đồ -->
+                    <div class="lg:col-span-3 h-[350px] lg:h-auto min-h-[400px] lg:min-h-[450px] relative">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8719.890187063364!2d105.20596267766688!3d21.658953080152838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134a4cff21eed9f%3A0xf45dd96440b01432!2zQuG7h25oIHZp4buHbiDEkGEga2hvYSBIw7luZyBWxrDGoW5n!5e1!3m2!1svi!2s!4v1776224393720!5m2!1svi!2s" 
-                                class="w-full h-full border-0"></iframe>
+                                class="absolute inset-0 w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
