@@ -61,8 +61,8 @@
             <div class="flex justify-between items-center h-20 md:h-24">
                 <!-- Logo BV & Hội nghị -->
                 <div class="flex items-center gap-3 cursor-pointer group" onclick="showView('home')">
-                    <div class="bg-sky-600 text-white p-2.5 rounded-xl shadow-lg group-hover:bg-sky-700 transition-colors">
-                        <i class="fas fa-hospital-user text-2xl md:text-3xl"></i>
+                    <div class="bg-white p-1 rounded-xl shadow-sm border border-slate-100 group-hover:shadow-md transition-shadow shrink-0">
+                        <img src="logo_bvhv.jpg" alt="Logo BVĐK Hùng Vương" class="w-10 h-10 md:w-12 md:h-12 object-contain rounded-lg">
                     </div>
                     <div class="flex flex-col border-l border-slate-200 pl-3">
                         <span class="font-black text-xs md:text-sm text-sky-600 uppercase tracking-widest leading-none">BVĐK Hùng Vương</span>
@@ -183,26 +183,116 @@
             </div>
         </section>
 
-        <!-- 4. BAN TỔ CHỨC & DIỄN GIẢ -->
-        <section id="speakers" class="py-20 bg-white">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-black text-slate-900 mb-16 uppercase tracking-tight">Ban Tổ Chức & Diễn Giả</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-slate-50 p-12 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed">
-                        <i class="fas fa-user-tie text-4xl text-slate-300 mb-4"></i>
-                        <p class="text-slate-400 font-medium italic">Đang cập nhật...</p>
+        <!-- 4. CHỦ ĐỀ & LĨNH VỰC CHUYÊN MÔN -->
+        <section id="topics" class="py-24 bg-white relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-slate-50 z-0"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <span class="text-sky-600 font-bold uppercase text-xs tracking-widest mb-2 block">Nội dung trọng tâm</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">Chủ Đề & Lĩnh Vực Chuyên Môn</h2>
+                    <div class="w-24 h-1.5 bg-sky-600 mx-auto mt-6 rounded-full"></div>
+                </div>
+
+                <!-- 3 Khối Card -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Card 1: Điều dưỡng -->
+                    <div class="bg-purple-50 rounded-[2rem] p-8 border border-purple-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-purple-200 rounded-full blur-3xl -mr-10 -mt-10 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="w-16 h-16 bg-purple-600 text-white rounded-2xl flex items-center justify-center text-3xl mb-8 relative z-10 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fas fa-user-nurse"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-purple-900 mb-6 uppercase tracking-tight relative z-10">Điều Dưỡng & Hộ Sinh</h3>
+                        <ul class="space-y-4 text-slate-700 text-sm md:text-base font-medium relative z-10">
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-purple-500 mt-1 shrink-0"></i> <span>Cập nhật các kết quả nghiên cứu về chăm sóc và an toàn người bệnh.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-purple-500 mt-1 shrink-0"></i> <span>Chia sẻ kinh nghiệm thực tiễn: Kiểm soát nhiễm khuẩn, dinh dưỡng lâm sàng.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-purple-500 mt-1 shrink-0"></i> <span>Thúc đẩy ứng dụng chuyển đổi số, tối ưu hóa công tác quản lý và đào tạo.</span></li>
+                        </ul>
                     </div>
-                    <div class="bg-slate-50 p-12 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed">
-                        <i class="fas fa-user-tie text-4xl text-slate-300 mb-4"></i>
-                        <p class="text-slate-400 font-medium italic">Đang cập nhật...</p>
+
+                    <!-- Card 2: Hình ảnh -->
+                    <div class="bg-amber-50 rounded-[2rem] p-8 border border-amber-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-amber-200 rounded-full blur-3xl -mr-10 -mt-10 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="w-16 h-16 bg-amber-500 text-white rounded-2xl flex items-center justify-center text-3xl mb-8 relative z-10 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fas fa-x-ray"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-amber-900 mb-6 uppercase tracking-tight relative z-10">Kỹ thuật Hình ảnh</h3>
+                        <ul class="space-y-4 text-slate-700 text-sm md:text-base font-medium relative z-10">
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-amber-500 mt-1 shrink-0"></i> <span>Cập nhật kiến thức và công nghệ chuyên sâu: MRI, CT, X-Quang, X-Quang can thiệp.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-amber-500 mt-1 shrink-0"></i> <span>Thúc đẩy ứng dụng chuyển đổi số và tối ưu hóa quản lý kỹ thuật hình ảnh.</span></li>
+                        </ul>
                     </div>
-                    <div class="bg-slate-50 p-12 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed">
-                        <i class="fas fa-user-tie text-4xl text-slate-300 mb-4"></i>
-                        <p class="text-slate-400 font-medium italic">Đang cập nhật...</p>
+
+                    <!-- Card 3: Xét nghiệm -->
+                    <div class="bg-emerald-50 rounded-[2rem] p-8 border border-emerald-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-emerald-200 rounded-full blur-3xl -mr-10 -mt-10 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="w-16 h-16 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-3xl mb-8 relative z-10 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fas fa-vials"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-emerald-900 mb-6 uppercase tracking-tight relative z-10">Kỹ thuật Xét nghiệm</h3>
+                        <ul class="space-y-4 text-slate-700 text-sm md:text-base font-medium relative z-10">
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i> <span>Cập nhật các phương pháp, kỹ thuật phân tích và xét nghiệm hiện đại.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i> <span>Nâng cao năng lực quản lý chất lượng phòng xét nghiệm và an toàn sinh học.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i> <span>Ứng dụng công nghệ số và tự động hóa trong chẩn đoán cận lâm sàng.</span></li>
+                        </ul>
                     </div>
-                    <div class="bg-slate-50 p-12 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed">
-                        <i class="fas fa-user-tie text-4xl text-slate-300 mb-4"></i>
-                        <p class="text-slate-400 font-medium italic">Đang cập nhật...</p>
+                </div>
+
+                <!-- Trục thời gian (Timeline) -->
+                <div class="mt-28 max-w-5xl mx-auto">
+                    <h3 class="text-2xl font-black text-slate-900 mb-16 uppercase tracking-tight text-center">Các Mốc Thời Gian Quan Trọng</h3>
+                    
+                    <div class="relative px-4 md:px-0">
+                        <!-- Đường kẻ dọc -->
+                        <div class="absolute left-7 md:left-1/2 top-0 bottom-0 w-1 bg-slate-200 transform md:-translate-x-1/2 rounded-full"></div>
+                        
+                        <!-- Mốc 1 -->
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12 group">
+                            <div class="w-full md:w-5/12 pl-16 md:pl-0 md:pr-12 md:text-right order-2 md:order-1 mt-2 md:mt-0">
+                                <h4 class="text-lg md:text-xl font-black text-slate-800">Hạn chót đăng ký báo cáo</h4>
+                                <p class="text-sm text-slate-500 mt-1 font-medium">Đăng ký tên bài & nộp tóm tắt (Abstract)</p>
+                            </div>
+                            <div class="absolute left-7 md:left-1/2 w-6 h-6 bg-sky-500 border-4 border-white rounded-full transform -translate-x-1/2 group-hover:scale-150 group-hover:bg-sky-600 transition-all z-10 shadow-lg order-1 md:order-2 mt-2 md:mt-0"></div>
+                            <div class="w-full md:w-5/12 pl-16 md:pl-12 order-3 md:order-3">
+                                <div class="inline-block bg-sky-100 text-sky-700 font-black px-5 py-2.5 rounded-xl text-sm md:text-base shadow-sm tracking-wider">15 / 07 / 2026</div>
+                            </div>
+                        </div>
+
+                        <!-- Mốc 2 -->
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12 group">
+                            <div class="w-full md:w-5/12 pl-16 md:pl-0 md:pr-12 md:text-right order-2 md:order-1 mt-2 md:mt-0">
+                                <div class="inline-block bg-amber-100 text-amber-700 font-black px-5 py-2.5 rounded-xl text-sm md:text-base shadow-sm tracking-wider md:float-right">30 / 07 / 2026</div>
+                            </div>
+                            <div class="absolute left-7 md:left-1/2 w-6 h-6 bg-amber-500 border-4 border-white rounded-full transform -translate-x-1/2 group-hover:scale-150 group-hover:bg-amber-600 transition-all z-10 shadow-lg order-1 md:order-2 mt-2 md:mt-0"></div>
+                            <div class="w-full md:w-5/12 pl-16 md:pl-12 order-3 md:order-3 mt-2 md:mt-0 text-left">
+                                <h4 class="text-lg md:text-xl font-black text-slate-800">Thông báo kết quả duyệt bài</h4>
+                                <p class="text-sm text-slate-500 mt-1 font-medium">Danh sách các bài được chọn để trình bày tại Hội nghị</p>
+                            </div>
+                        </div>
+
+                        <!-- Mốc 3 -->
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12 group">
+                            <div class="w-full md:w-5/12 pl-16 md:pl-0 md:pr-12 md:text-right order-2 md:order-1 mt-2 md:mt-0">
+                                <h4 class="text-lg md:text-xl font-black text-slate-800">Hạn chót nộp File trình chiếu</h4>
+                                <p class="text-sm text-slate-500 mt-1 font-medium">Nộp slide PowerPoint báo cáo hoàn chỉnh</p>
+                            </div>
+                            <div class="absolute left-7 md:left-1/2 w-6 h-6 bg-purple-500 border-4 border-white rounded-full transform -translate-x-1/2 group-hover:scale-150 group-hover:bg-purple-600 transition-all z-10 shadow-lg order-1 md:order-2 mt-2 md:mt-0"></div>
+                            <div class="w-full md:w-5/12 pl-16 md:pl-12 order-3 md:order-3">
+                                <div class="inline-block bg-purple-100 text-purple-700 font-black px-5 py-2.5 rounded-xl text-sm md:text-base shadow-sm tracking-wider">15 / 08 / 2026</div>
+                            </div>
+                        </div>
+
+                        <!-- Mốc 4 -->
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+                            <div class="w-full md:w-5/12 pl-16 md:pl-0 md:pr-12 md:text-right order-2 md:order-1 mt-2 md:mt-0">
+                                <div class="inline-block bg-emerald-100 text-emerald-700 font-black px-5 py-2.5 rounded-xl text-sm md:text-base shadow-sm tracking-wider md:float-right">30 / 08 / 2026</div>
+                            </div>
+                            <div class="absolute left-7 md:left-1/2 w-8 h-8 bg-emerald-500 border-4 border-white rounded-full transform -translate-x-1/2 group-hover:scale-125 group-hover:bg-emerald-600 transition-all z-10 shadow-lg order-1 md:order-2 mt-1 md:mt-0 flex items-center justify-center text-white"><i class="fas fa-flag-checkered text-[10px]"></i></div>
+                            <div class="w-full md:w-5/12 pl-16 md:pl-12 order-3 md:order-3 mt-2 md:mt-0 text-left">
+                                <h4 class="text-lg md:text-xl font-black text-slate-800">Đóng cổng Đăng ký tham dự</h4>
+                                <p class="text-sm text-slate-500 mt-1 font-medium">Chốt danh sách đại biểu tham dự và nhận CME</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -213,41 +303,51 @@
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-3xl font-black text-slate-900 mb-8 uppercase tracking-tight">Chương Trình Khoa Học</h2>
                 
-                <!-- BỘ LỌC CHUYÊN ĐỀ -->
+                <!-- BỘ LỌC CHUYÊN ĐỀ (Đã thêm Xét nghiệm) -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-10">
-                    <div class="flex flex-wrap justify-center bg-white p-2 rounded-3xl shadow border border-slate-200 max-w-4xl mx-auto gap-1">
-                        <button id="prog-tab-all" onclick="switchProgTab('all')" class="prog-tab-btn px-6 py-2.5 rounded-2xl font-bold text-sm bg-sky-600 text-white shadow-md transition-all">Tất cả</button>
-                        <button id="prog-tab-overview" onclick="switchProgTab('overview')" class="prog-tab-btn px-6 py-2.5 rounded-2xl font-bold text-sm text-slate-500 hover:text-sky-600 transition-all">Tổng quan</button>
-                        <button id="prog-tab-nurse" onclick="switchProgTab('nurse')" class="prog-tab-btn px-6 py-2.5 rounded-2xl font-bold text-sm text-slate-500 hover:text-sky-600 transition-all">Chuyên đề Điều dưỡng</button>
-                        <button id="prog-tab-imaging" onclick="switchProgTab('imaging')" class="prog-tab-btn px-6 py-2.5 rounded-2xl font-bold text-sm text-slate-500 hover:text-sky-600 transition-all">Chuyên đề Kỹ thuật Hình ảnh y học</button>
+                    <div class="flex flex-wrap justify-center bg-white p-2 rounded-3xl shadow border border-slate-200 max-w-5xl mx-auto gap-1">
+                        <button id="prog-tab-all" onclick="switchProgTab('all')" class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm bg-sky-600 text-white shadow-md transition-all">Tất cả</button>
+                        <button id="prog-tab-overview" onclick="switchProgTab('overview')" class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Tổng quan</button>
+                        <button id="prog-tab-nurse" onclick="switchProgTab('nurse')" class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Điều dưỡng</button>
+                        <button id="prog-tab-imaging" onclick="switchProgTab('imaging')" class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Hình ảnh Y học</button>
+                        <button id="prog-tab-lab" onclick="switchProgTab('lab')" class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Xét nghiệm Y học</button>
                     </div>
                 </div>
 
                 <!-- KHỐI NỘI DUNG TỔNG QUAN -->
-                <div id="prog-overview" class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-12 md:p-16 text-center mb-6">
+                <div id="prog-overview" class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center mb-6">
                     <div class="inline-flex bg-sky-100 text-sky-600 p-4 rounded-2xl mb-4">
                         <i class="fas fa-globe text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Phiên Tổng quan</h3>
-                    <p class="text-slate-400 font-medium italic">Đang cập nhật...</p>
+                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
                 </div>
 
                 <!-- KHỐI NỘI DUNG ĐIỀU DƯỠNG -->
-                <div id="prog-nurse" class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-12 md:p-16 text-center mb-6">
+                <div id="prog-nurse" class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center mb-6">
                     <div class="inline-flex bg-purple-100 text-purple-600 p-4 rounded-2xl mb-4">
                         <i class="fas fa-user-nurse text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Chuyên đề Điều dưỡng</h3>
-                    <p class="text-slate-400 font-medium italic">Đang cập nhật...</p>
+                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
                 </div>
 
                 <!-- KHỐI NỘI DUNG KỸ THUẬT HÌNH ẢNH -->
-                <div id="prog-imaging" class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-12 md:p-16 text-center">
+                <div id="prog-imaging" class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center mb-6">
                     <div class="inline-flex bg-amber-100 text-amber-600 p-4 rounded-2xl mb-4">
                         <i class="fas fa-x-ray text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Chuyên đề Kỹ thuật Hình ảnh y học</h3>
-                    <p class="text-slate-400 font-medium italic">Đang cập nhật...</p>
+                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
+                </div>
+
+                <!-- KHỐI NỘI DUNG KỸ THUẬT XÉT NGHIỆM -->
+                <div id="prog-lab" class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center">
+                    <div class="inline-flex bg-emerald-100 text-emerald-600 p-4 rounded-2xl mb-4">
+                        <i class="fas fa-vials text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Chuyên đề Kỹ thuật Xét nghiệm y học</h3>
+                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
                 </div>
 
             </div>
@@ -409,10 +509,10 @@
                             </div>
 
                             <div>
-                                <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Mặt ảnh bằng chuyên môn cao nhất *</label>
+                                <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Ảnh hoặc File PDF bằng chuyên môn cao nhất *</label>
                                 <label class="w-full h-32 bg-slate-50 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-purple-400 hover:bg-purple-50 transition group">
                                     <i class="fas fa-cloud-upload-alt text-2xl mb-2 group-hover:scale-110 transition-transform text-purple-400"></i>
-                                    <span id="labelCmeBangCap" class="text-[10px] font-bold uppercase opacity-80">Nhấn để tải ảnh / PDF lên</span>
+                                    <span id="labelCmeBangCap" class="text-[10px] font-bold uppercase opacity-80 text-center px-4">Nhấn để tải ảnh / PDF lên</span>
                                     <input type="file" id="cme_anhBangCap" accept="image/*,.pdf" class="hidden" required onchange="document.getElementById('labelCmeBangCap').innerText = this.files[0] ? this.files[0].name : 'Nhấn để tải ảnh / PDF lên'">
                                 </label>
                             </div>
@@ -466,7 +566,7 @@
                                         </div>
                                         <div>
                                             <p class="text-[11px] text-slate-500 font-bold uppercase mb-1">Số tài khoản</p>
-                                            <p class="text-purple-600 font-black text-2xl tracking-tight">118000048167</p>
+                                            <p class="text-purple-600 font-black text-2xl tracking-tight break-all">118000048167</p>
                                         </div>
                                         <div>
                                             <p class="text-[11px] text-slate-500 font-bold uppercase mb-2">Cú pháp chuyển khoản</p>
@@ -484,7 +584,7 @@
                                     <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Ảnh chụp thông tin giao dịch thành công *</label>
                                     <label class="w-full h-24 bg-white border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-purple-400 hover:bg-purple-50 transition">
                                         <i class="fas fa-image text-xl mb-1 text-purple-400"></i>
-                                        <span id="labelCmeBienLai" class="text-[10px] font-bold uppercase opacity-80">Tải ảnh biên lai</span>
+                                        <span id="labelCmeBienLai" class="text-[10px] font-bold uppercase opacity-80 text-center px-4">Tải ảnh biên lai</span>
                                         <input type="file" id="cme_anhBienLai" accept="image/*" class="hidden" required onchange="document.getElementById('labelCmeBienLai').innerText = this.files[0] ? this.files[0].name : 'Tải ảnh biên lai'">
                                     </label>
                                 </div>
@@ -519,7 +619,7 @@
             </div>
 
             <div class="text-center mb-16">
-                <h1 class="text-4xl font-black text-slate-900 uppercase tracking-tighter">Đăng Ký Báo Cáo</h1>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter">Đăng Ký Báo Cáo</h1>
                 <div class="w-16 h-1.5 bg-purple-600 mx-auto mt-4 rounded-full"></div>
             </div>
 
@@ -567,10 +667,10 @@
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-black text-slate-500 mb-2 uppercase">Ảnh bằng chuyên môn *</label>
+                        <label class="block text-[10px] font-black text-slate-500 mb-2 uppercase">Ảnh hoặc File PDF bằng chuyên môn *</label>
                         <label class="w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:bg-slate-100 transition group">
                             <i class="fas fa-id-card text-2xl mb-2 group-hover:scale-110 transition-transform text-purple-500"></i>
-                            <span id="labelBcBangCap" class="text-[9px] font-black uppercase opacity-60">Tải lên ảnh / PDF bằng</span>
+                            <span id="labelBcBangCap" class="text-[9px] font-black uppercase opacity-60 text-center px-4">Tải lên ảnh / PDF bằng</span>
                             <input type="file" id="bc_anhBangCap" accept="image/*,.pdf" class="hidden" required onchange="document.getElementById('labelBcBangCap').innerText = this.files[0] ? this.files[0].name : 'Tải lên ảnh / PDF bằng'">
                         </label>
                     </div>
@@ -610,14 +710,14 @@
                         <label class="block text-[10px] font-black text-slate-500 mb-2 uppercase">Tóm tắt (Abstract) / Toàn văn *</label>
                         <label class="w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-purple-300 hover:bg-purple-50 transition group">
                             <i class="fas fa-file-pdf text-2xl mb-2 group-hover:-translate-y-1 transition-transform text-purple-500"></i>
-                            <span id="labelBcFile" class="text-[9px] font-black uppercase opacity-60">Nhấp để chọn tệp tin (PDF/WORD/PPT)</span>
+                            <span id="labelBcFile" class="text-[9px] font-black uppercase opacity-60 text-center px-4">Nhấp để chọn tệp tin (PDF/WORD/PPT)</span>
                             <input type="file" id="bc_fileBaoCao" accept=".pdf,.doc,.docx,.ppt,.pptx" class="hidden" required onchange="document.getElementById('labelBcFile').innerText = this.files[0] ? this.files[0].name : 'Nhấp để chọn tệp tin (PDF/WORD/PPT)'">
                         </label>
                     </div>
 
                     <div class="flex items-start gap-4 py-6 px-6 bg-purple-50 rounded-2xl">
-                        <input type="checkbox" id="bc_dongY" class="w-6 h-6 mt-0.5 border-gray-300 text-purple-600 focus:ring-purple-500 cursor-pointer rounded-lg">
-                        <label for="bc_dongY" class="text-sm font-bold text-purple-800 cursor-pointer leading-tight">Tôi đồng ý chia sẻ bài báo cáo định dạng PDF sau khi kết thúc Hội nghị (không bắt buộc)</label>
+                        <input type="checkbox" id="bc_dongY" class="w-6 h-6 mt-0.5 border-gray-300 text-purple-600 focus:ring-purple-500 cursor-pointer rounded-lg shrink-0">
+                        <label for="bc_dongY" class="text-xs md:text-sm font-bold text-purple-800 cursor-pointer leading-tight">Tôi đồng ý chia sẻ bài báo cáo định dạng PDF sau khi kết thúc Hội nghị (không bắt buộc)</label>
                     </div>
                 </div>
 
@@ -630,15 +730,15 @@
     </main>
 
     <!-- ==========================================
-         9. FOOTER CHUNG
+         9. FOOTER CHUNG (CẬP NHẬT LIÊN HỆ TỪ THÔNG BÁO SỐ 1)
     =========================================== -->
     <footer id="contact" class="bg-slate-900 text-slate-300 py-20 border-t-4 border-sky-600 mt-20">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-12 lg:gap-20 text-left">
             <!-- Cột 1: Logo & Slogan -->
             <div class="space-y-6">
                 <div class="flex items-center gap-4 text-white">
-                    <div class="bg-sky-600/20 p-3 rounded-2xl text-sky-400">
-                        <i class="fas fa-hospital-alt text-3xl"></i>
+                    <div class="bg-white p-1.5 rounded-2xl shadow-sm shrink-0">
+                        <img src="logo_bvhv.jpg" alt="Logo BVĐK Hùng Vương" class="w-12 h-12 object-contain rounded-xl">
                     </div>
                     <span class="font-black text-xl lg:text-2xl uppercase tracking-tighter leading-tight">Bệnh viện Đa khoa <br><span class="text-sky-400">Hùng Vương</span></span>
                 </div>
@@ -653,20 +753,39 @@
                     Liên hệ Ban tổ chức
                     <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-sky-500 rounded-full"></span>
                 </h4>
-                <ul class="space-y-5 text-sm font-medium">
-                    <li class="flex items-center gap-4 group">
-                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-sky-400 group-hover:bg-sky-600 group-hover:text-white transition-colors shrink-0 shadow-inner">
-                            <i class="fas fa-phone-alt"></i> 
+                
+                <div class="space-y-6 pt-2">
+                    <!-- Liên hệ 1 -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-sky-400 shrink-0 shadow-inner mt-1">
+                            <i class="fas fa-headset"></i> 
                         </div>
-                        <span class="group-hover:text-white transition-colors">0210 383 1xxx (P. Điều dưỡng)</span>
-                    </li>
-                    <li class="flex items-center gap-4 group">
-                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-sky-400 group-hover:bg-sky-600 group-hover:text-white transition-colors shrink-0 shadow-inner">
+                        <div>
+                            <p class="font-bold text-white text-sm">Điều dưỡng</p>
+                            <p class="text-xs text-slate-400 mb-1">ĐD.CKI Trần Thị Minh Phương - 0982 899 296</p>
+                            <p class="text-xs text-slate-400">CNĐD Lê Thị Thu - 0941 525 115</p>
+                        </div>
+                    </div>
+
+                    <!-- Liên hệ 2 -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-sky-400 shrink-0 shadow-inner mt-1">
+                            <i class="fas fa-headset"></i> 
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Kỹ thuật Y</p>
+                            <p class="text-xs text-slate-400">CN Nguyễn Thành Lâm - 0941 695 115</p>
+                        </div>
+                    </div>
+
+                    <!-- Liên hệ 3 (Email Chung) -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-sky-400 shrink-0 shadow-inner">
                             <i class="fas fa-envelope"></i> 
                         </div>
-                        <a href="mailto:phongdieuduongbvhv@gmail.com" class="group-hover:text-sky-400 transition-colors">phongdieuduongbvhv@gmail.com</a>
-                    </li>
-                </ul>
+                        <a href="mailto:phongdieuduongbvhv@gmail.com" class="text-sm font-medium hover:text-sky-400 transition-colors break-all">phongdieuduongbvhv@gmail.com</a>
+                    </div>
+                </div>
             </div>
 
             <!-- Cột 3: Mạng xã hội & Copyright -->
