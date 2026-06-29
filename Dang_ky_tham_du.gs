@@ -325,8 +325,16 @@ function hangThongTin(nhan, giaTri) {
   if (giaTri === undefined || giaTri === null || String(giaTri).trim() === "") return "";
   return '<tr>' +
     '<td style="padding:8px 12px;border:1px solid #e5e7eb;background:#f8fafc;font-weight:600;color:#334155;width:40%;">' + nhan + '</td>' +
-    '<td style="padding:8px 12px;border:1px solid #e5e7eb;color:#0f172a;">' + escapeHtml(String(giaTri)) + '</td>' +
+    '<td style="padding:8px 12px;border:1px solid #e5e7eb;color:#0f172a;">' + escapeHtml(dinhDangGiaTri(giaTri)) + '</td>' +
     '</tr>';
+}
+
+// Định dạng giá trị: nếu là Date (ví dụ Ngày sinh đọc lại từ Sheet) -> dd/MM/yyyy
+function dinhDangGiaTri(giaTri) {
+  if (Object.prototype.toString.call(giaTri) === "[object Date]" && !isNaN(giaTri)) {
+    return Utilities.formatDate(giaTri, Session.getScriptTimeZone() || "Asia/Ho_Chi_Minh", "dd/MM/yyyy");
+  }
+  return String(giaTri);
 }
 
 // Khung mail HTML dùng chung
