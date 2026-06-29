@@ -655,7 +655,39 @@
                 <div class="p-8 md:p-12">
                     <form id="formDangKyCME" class="space-y-10">
 
-                        <div class="bg-purple-50 border border-purple-100 p-5 rounded-2xl flex items-start gap-4">
+                        <!-- Chọn hình thức tham dự -->
+                        <div class="space-y-3">
+                            <label class="block text-[11px] font-bold text-slate-500 mb-1 uppercase">Hình thức tham dự
+                                *</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label id="cme-opt-co"
+                                    class="flex items-start gap-3 p-4 rounded-2xl border-2 border-purple-600 bg-purple-50 cursor-pointer transition">
+                                    <input type="radio" name="cme_hinhThuc" value="co_cme" checked
+                                        onchange="toggleCMEType('co_cme')"
+                                        class="mt-1 w-5 h-5 text-purple-600 focus:ring-purple-500 shrink-0">
+                                    <span>
+                                        <span class="block font-bold text-slate-800 text-sm">Tham dự — Có cấp CME</span>
+                                        <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Lệ phí
+                                            200.000đ. Cần bằng cấp, địa chỉ nhận & biên lai.</span>
+                                    </span>
+                                </label>
+                                <label id="cme-opt-khong"
+                                    class="flex items-start gap-3 p-4 rounded-2xl border-2 border-gray-200 bg-slate-50 cursor-pointer transition">
+                                    <input type="radio" name="cme_hinhThuc" value="khong_cme"
+                                        onchange="toggleCMEType('khong_cme')"
+                                        class="mt-1 w-5 h-5 text-purple-600 focus:ring-purple-500 shrink-0">
+                                    <span>
+                                        <span class="block font-bold text-slate-800 text-sm">Tham dự — Không cấp
+                                            CME</span>
+                                        <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Miễn phí. Không
+                                            cần bằng cấp, địa chỉ & biên lai.</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="cme-fee-note"
+                            class="bg-purple-50 border border-purple-100 p-5 rounded-2xl flex items-start gap-4">
                             <div class="bg-purple-200 text-purple-700 p-2 rounded-full shrink-0"><i
                                     class="fas fa-info-circle"></i></div>
                             <div>
@@ -730,7 +762,7 @@
                                 </div>
                             </div>
 
-                            <div>
+                            <div id="cme-block-bangcap">
                                 <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Bằng tốt nghiệp
                                     chuyên môn cao nhất hoặc Chứng chỉ hành nghề *</label>
                                 <label
@@ -747,7 +779,7 @@
                         </div>
 
                         <!-- 2. Nơi nhận CME (Bản cứng) -->
-                        <div class="space-y-6">
+                        <div id="cme-section-noinhan" class="space-y-6">
                             <h2
                                 class="text-lg font-black text-slate-900 border-b border-slate-100 pb-2 uppercase tracking-wide">
                                 2. Nơi nhận CME (Bản cứng)</h2>
@@ -789,7 +821,7 @@
                         </div>
 
                         <!-- 4. Thanh toán -->
-                        <div class="space-y-6">
+                        <div id="cme-section-thanhtoan" class="space-y-6">
                             <h2
                                 class="text-lg font-black text-slate-900 border-b border-slate-100 pb-2 uppercase tracking-wide">
                                 4. Thông tin Thanh toán</h2>
@@ -1224,6 +1256,53 @@
             }
         }
 
+        // ----------------------------------------
+        // CHỌN HÌNH THỨC THAM DỰ (Có / Không cấp CME)
+        // ----------------------------------------
+        function toggleCMEType(type) {
+            const isCME = (type !== 'khong_cme');
+
+            const feeNote = document.getElementById('cme-fee-note');
+            const blockBangCap = document.getElementById('cme-block-bangcap');
+            const sectionNoiNhan = document.getElementById('cme-section-noinhan');
+            const sectionThanhToan = document.getElementById('cme-section-thanhtoan');
+
+            const inpBangCap = document.getElementById('cme_anhBangCap');
+            const inpDiaChi = document.getElementById('cme_diaChi');
+            const inpBienLai = document.getElementById('cme_anhBienLai');
+
+            // Ẩn/hiện các khối chỉ dành cho cấp CME
+            [feeNote, blockBangCap, sectionNoiNhan, sectionThanhToan].forEach(el => {
+                if (el) el.classList.toggle('hidden', !isCME);
+            });
+
+            // Bật/tắt bắt buộc (tránh trình duyệt chặn submit do ô đang ẩn vẫn required)
+            inpBangCap.required = isCME;
+            inpDiaChi.required = isCME;
+            inpBienLai.required = isCME;
+
+            // Khi chuyển sang "không cấp CME": xóa dữ liệu đã nhập ở các ô bị ẩn
+            if (!isCME) {
+                inpBangCap.value = '';
+                inpDiaChi.value = '';
+                inpBienLai.value = '';
+                document.getElementById('labelCmeBangCap').innerText = 'Nhấn để tải ảnh / PDF lên';
+                document.getElementById('labelCmeBienLai').innerText = 'Tải ảnh biên lai';
+            }
+
+            // Cập nhật style 2 thẻ lựa chọn
+            const optCo = document.getElementById('cme-opt-co');
+            const optKhong = document.getElementById('cme-opt-khong');
+            const active = ['border-purple-600', 'bg-purple-50'];
+            const inactive = ['border-gray-200', 'bg-slate-50'];
+            if (optCo && optKhong) {
+                optCo.classList.remove(...active, ...inactive);
+                optKhong.classList.remove(...active, ...inactive);
+                optCo.classList.add(...(isCME ? active : inactive));
+                optKhong.classList.add(...(isCME ? inactive : active));
+            }
+        }
+
         // ==========================================
         // KẾT NỐI GOOGLE APPS SCRIPT
         // ==========================================
@@ -1287,6 +1366,8 @@
                 const loadingToast = showToast("Đang xử lý dữ liệu và tải file, vui lòng không tắt trang...", "info");
 
                 try {
+                    const capCME = document.querySelector('input[name="cme_hinhThuc"]:checked').value === 'khong_cme' ? 'Không' : 'Có';
+
                     const payload = {
                         formType: "Tham_du",
                         hocVi: document.getElementById('cme_hocVi').value,
@@ -1295,13 +1376,15 @@
                         ngaySinh: `${document.getElementById('cme_ngay').value}/${document.getElementById('cme_thang').value}/${document.getElementById('cme_nam').value}`,
                         tinhThanh: "", // Gửi chuỗi rỗng để không làm lệch cột trên Sheet
                         phuongXa: "", // Gửi chuỗi rỗng để không làm lệch cột trên Sheet
-                        diaChi: document.getElementById('cme_diaChi').value,
+                        diaChi: capCME === 'Có' ? document.getElementById('cme_diaChi').value : "",
                         soDienThoai: document.getElementById('cme_soDienThoai').value,
-                        email: document.getElementById('cme_email').value
+                        email: document.getElementById('cme_email').value,
+                        capCME: capCME
                     };
 
-                    const inputBangCap = document.getElementById('cme_anhBangCap').files[0];
-                    const inputBienLai = document.getElementById('cme_anhBienLai').files[0];
+                    // Chỉ đính kèm file khi có cấp CME (không cấp thì gửi rỗng)
+                    const inputBangCap = capCME === 'Có' ? document.getElementById('cme_anhBangCap').files[0] : null;
+                    const inputBienLai = capCME === 'Có' ? document.getElementById('cme_anhBienLai').files[0] : null;
 
                     if (inputBangCap) {
                         payload.fileBangCap = { base64: await getBase64(inputBangCap), name: inputBangCap.name, mimeType: inputBangCap.type };
@@ -1319,6 +1402,7 @@
                         formCME.reset();
                         document.getElementById('labelCmeBangCap').innerText = 'Nhấn để tải ảnh / PDF lên';
                         document.getElementById('labelCmeBienLai').innerText = 'Tải ảnh biên lai';
+                        toggleCMEType('co_cme'); // Khôi phục hiển thị mặc định
                         setTimeout(() => showView('home'), 2000);
                     } else {
                         showToast("Có lỗi xảy ra: " + data.message, "error");
