@@ -181,6 +181,42 @@
                         </div>
                     </div>
 
+                    <!-- Đếm ngược tới ngày khai mạc -->
+                    <div id="countdown" class="mb-10">
+                        <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-sky-200/70 mb-4">
+                            Khai mạc sau</p>
+                        <div class="flex justify-center gap-3 md:gap-4">
+                            <div
+                                class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[92px]">
+                                <span id="cd-days"
+                                    class="block text-2xl md:text-4xl font-black text-white tabular-nums leading-none">--</span>
+                                <span
+                                    class="block text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-sky-200/70 mt-2">Ngày</span>
+                            </div>
+                            <div
+                                class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[92px]">
+                                <span id="cd-hours"
+                                    class="block text-2xl md:text-4xl font-black text-white tabular-nums leading-none">--</span>
+                                <span
+                                    class="block text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-sky-200/70 mt-2">Giờ</span>
+                            </div>
+                            <div
+                                class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[92px]">
+                                <span id="cd-mins"
+                                    class="block text-2xl md:text-4xl font-black text-white tabular-nums leading-none">--</span>
+                                <span
+                                    class="block text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-sky-200/70 mt-2">Phút</span>
+                            </div>
+                            <div
+                                class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[92px]">
+                                <span id="cd-secs"
+                                    class="block text-2xl md:text-4xl font-black text-sky-300 tabular-nums leading-none">--</span>
+                                <span
+                                    class="block text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-sky-200/70 mt-2">Giây</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <button onclick="showView('cme-form')"
                             class="px-8 py-4 bg-white text-sky-900 rounded-full font-black text-base md:text-lg hover:bg-sky-50 transition shadow-2xl hover:-translate-y-1 transform duration-300 flex items-center justify-center gap-2">
@@ -1223,6 +1259,31 @@
         if (btn) btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
         });
+
+        // ----------------------------------------
+        // ĐẾM NGƯỢC TỚI NGÀY KHAI MẠC
+        // ----------------------------------------
+        const CONFERENCE_DATE = new Date('2026-09-12T08:00:00+07:00').getTime();
+
+        function updateCountdown() {
+            const diff = CONFERENCE_DATE - Date.now();
+            const pad = n => String(Math.max(0, n)).padStart(2, '0');
+
+            if (diff <= 0) {
+                ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'].forEach(id => {
+                    document.getElementById(id).innerText = '00';
+                });
+                return;
+            }
+
+            document.getElementById('cd-days').innerText = pad(Math.floor(diff / 86400000));
+            document.getElementById('cd-hours').innerText = pad(Math.floor((diff % 86400000) / 3600000));
+            document.getElementById('cd-mins').innerText = pad(Math.floor((diff % 3600000) / 60000));
+            document.getElementById('cd-secs').innerText = pad(Math.floor((diff % 60000) / 1000));
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
         // ----------------------------------------
         // LỌC THEO CHUYÊN ĐỀ
