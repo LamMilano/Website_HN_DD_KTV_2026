@@ -1512,7 +1512,8 @@
                 ? `<div><p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Chủ tọa</p>
                        <ul class="list-none">${progPersonList(part.chairs, c)}</ul></div>` : '';
             const secretary = part.secretary && part.secretary.length
-                ? `<div><p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Thư ký</p>
+                ? `<div class="${part.chairs && part.chairs.length ? 'border-t border-slate-200 pt-6' : ''}">
+                       <p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Thư ký</p>
                        <ul class="list-none">${progPersonList(part.secretary, c)}</ul></div>` : '';
 
             return `<div class="${isFirst ? '' : 'border-t border-slate-200'}">
@@ -1526,7 +1527,7 @@
                                 ${progChip(part.time, 'far fa-clock', c.chip)}
                             </div>
                         </div>
-                        ${(chairs || secretary) ? `<div class="bg-slate-50 border-b border-slate-200 px-6 md:px-10 py-6 grid md:grid-cols-2 gap-6">${chairs}${secretary}</div>` : ''}
+                        ${(chairs || secretary) ? `<div class="bg-slate-50 border-b border-slate-200 px-6 md:px-10 py-6 flex flex-col gap-6">${chairs}${secretary}</div>` : ''}
                         <div class="divide-y divide-slate-100">${part.items.map(i => progItemRow(i, c)).join('')}</div>
                     </div>`;
         }
