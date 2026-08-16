@@ -489,7 +489,11 @@
         <!-- 5. CHƯƠNG TRÌNH KHOA HỌC -->
         <section id="program" class="py-20 bg-slate-50">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-black text-slate-900 mb-8 uppercase tracking-tight">Chương Trình Khoa Học</h2>
+                <h2 class="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tight">Chương Trình Khoa Học</h2>
+                <p class="text-slate-600 font-bold text-sm md:text-base">Thứ 7, ngày 12 / 09 / 2026 &mdash; Bệnh viện đa
+                    khoa Hùng Vương</p>
+                <p class="text-slate-400 text-xs md:text-sm italic mt-1 mb-8">Chương trình có thể thay đổi, Ban tổ chức
+                    sẽ cập nhật khi có điều chỉnh.</p>
 
                 <!-- BỘ LỌC CHUYÊN ĐỀ (Đã thêm Xét nghiệm) -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-10">
@@ -516,56 +520,8 @@
                     </div>
                 </div>
 
-                <!-- KHỐI NỘI DUNG TỔNG QUAN -->
-                <div id="prog-overview"
-                    class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center mb-6">
-                    <div class="inline-flex bg-sky-100 text-sky-600 p-4 rounded-2xl mb-4">
-                        <i class="fas fa-globe text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Phiên Tổng quan</h3>
-                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
-                </div>
-
-                <!-- KHỐI NỘI DUNG ĐIỀU DƯỠNG -->
-                <div id="prog-nurse"
-                    class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center mb-6">
-                    <div class="inline-flex bg-purple-100 text-purple-600 p-4 rounded-2xl mb-4">
-                        <i class="fas fa-user-nurse text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Chuyên đề Điều dưỡng</h3>
-                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
-                </div>
-
-                <!-- KHỐI NỘI DUNG KỸ THUẬT HÌNH ẢNH -->
-                <div id="prog-imaging"
-                    class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center mb-6">
-                    <div class="inline-flex bg-amber-100 text-amber-600 p-4 rounded-2xl mb-4">
-                        <i class="fas fa-x-ray text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Chuyên đề Kỹ thuật Hình ảnh y học</h3>
-                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
-                </div>
-
-                <!-- KHỐI NỘI DUNG KỸ THUẬT XÉT NGHIỆM -->
-                <div id="prog-lab"
-                    class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center mb-6">
-                    <div class="inline-flex bg-emerald-100 text-emerald-600 p-4 rounded-2xl mb-4">
-                        <i class="fas fa-vials text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Chuyên đề Kỹ thuật Xét nghiệm y học</h3>
-                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
-                </div>
-
-                <!-- KHỐI NỘI DUNG NỘI SOI TIÊU HÓA CAN THIỆP -->
-                <div id="prog-endoscopy"
-                    class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto p-10 md:p-16 text-center">
-                    <div class="inline-flex bg-rose-100 text-rose-600 p-4 rounded-2xl mb-4">
-                        <i class="fas fa-stethoscope text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2 uppercase">Chuyên đề Điều dưỡng trong Nội soi Tiêu
-                        hóa can thiệp</h3>
-                    <p class="text-slate-400 font-medium italic">Đang cập nhật danh sách bài báo cáo...</p>
-                </div>
+                <!-- CÁC KHỐI PHIÊN ĐƯỢC SINH TỰ ĐỘNG TỪ PROGRAM_DATA (xem cuối file) -->
+                <div id="prog-container" class="text-left"></div>
 
             </div>
         </section>
@@ -1323,6 +1279,274 @@
                 }
             }
         }
+
+        // ----------------------------------------
+        // DỮ LIỆU CHƯƠNG TRÌNH HỘI NGHỊ
+        // Nguồn: Timeline.docx (BTC). Sửa nội dung chương trình ngay tại đây.
+        // type: 'talk' (mặc định) | 'break' (dải ngang: teabreak, thảo luận, tài trợ, tiệc)
+        // ----------------------------------------
+        const PROGRAM_DATA = [
+            {
+                id: 'overview', color: 'sky', icon: 'fas fa-globe',
+                parts: [
+                    {
+                        title: 'Phiên Khai mạc',
+                        session: 'Buổi sáng', room: 'Hội trường tầng 3 nhà T', time: '7h00 – 9h10',
+                        items: [
+                            { time: '7h00-8h30', title: 'Đón tiếp đại biểu, ổn định tổ chức', speaker: 'Ban tổ chức' },
+                            { time: '8h30-8h35', title: 'Video giới thiệu bệnh viện, hoạt động điều dưỡng', speaker: 'Ban tổ chức' },
+                            { time: '8h35-8h40', title: 'Tuyên bố lý do, giới thiệu đại biểu', speaker: 'Ban tổ chức' },
+                            { time: '8h40-8h45', title: 'Phát biểu khai mạc Hội nghị', speaker: 'Ban giám đốc' },
+                            { time: '8h45-8h50', title: 'Phát biểu chúc mừng Hội nghị', speaker: 'Hội đồng thành viên' },
+                            { time: '8h50-9h10', title: 'Tặng hoa chúc mừng', speaker: 'Hội đồng thành viên, các đơn vị tham dự' }
+                        ]
+                    },
+                    {
+                        title: 'Phiên Tổng quan',
+                        theme: 'Xu hướng phát triển và đổi mới trong điều dưỡng hiện đại',
+                        session: 'Buổi sáng', room: 'Hội trường tầng 3 nhà T', time: '9h10 – 11h30',
+                        chairs: [
+                            { name: 'BSCKII. Đặng Thanh Hải', role: 'Giám đốc bệnh viện' },
+                            { name: 'TS. Nguyễn Văn Giang', role: 'GV trường Đại học Y dược, Đại học Thái Nguyên' },
+                            { name: 'TS. Vũ Đình Sơn', role: 'Phó Trưởng khoa dược trường Cao đẳng Vĩnh Phúc' },
+                            { name: 'Ths. Nguyễn Thị Phương', role: 'Trưởng phòng điều dưỡng BVĐK Hà Đông' },
+                            { name: 'Ths. Phạm Ngọc Vinh', role: 'Trưởng phòng điều dưỡng BVĐK tỉnh Phú Thọ' }
+                        ],
+                        secretary: [{ name: 'ĐDCKI. Bùi Thị Hiền', role: 'Bệnh viện đa khoa Hùng Vương' }],
+                        items: [
+                            { time: '9h10-9h20', title: 'Bài báo cáo quốc tế', speaker: 'Hiệp hội điều dưỡng Hoa Kỳ' },
+                            { time: '9h20-9h40', title: 'Bài báo cáo quốc tế', speaker: 'Hiệp hội điều dưỡng Hoa Kỳ' },
+                            { time: '9h40-10h00', title: 'Vận dụng học thuyết điều dưỡng, nghiên cứu khoa học và công nghệ số trong nâng cao chất lượng chăm sóc người bệnh', speaker: 'TS. Vũ Đình Sơn', org: 'Phó Trưởng khoa dược trường Cao đẳng Vĩnh Phúc' },
+                            { time: '10h00-10h10', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '10h10-10h30', title: 'Chuyển đổi số trong công tác điều dưỡng: hiệu quả và kinh nghiệm triển khai tại BVĐK Hà Đông', speaker: 'Ths. Nguyễn Thị Phương', org: 'Bệnh viện đa khoa Hà Đông' },
+                            { time: '10h30-10h50', title: 'Gánh nặng chăm sóc của người chăm sóc chính cho người bệnh Ung thư điều trị tại Bệnh viện TW Thái Nguyên và một số yếu tố liên quan', speaker: 'ĐDCKII. Phan Thị Loan', org: 'Trưởng phòng điều dưỡng Bệnh viện TW Thái Nguyên' },
+                            { time: '10h50-11h05', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '11h05-11h15', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '11h15-11h30', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '11h30', title: 'Lunch party', type: 'break', icon: 'fas fa-utensils' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'lab', color: 'emerald', icon: 'fas fa-vials',
+                parts: [
+                    {
+                        title: 'Phiên 1: Xét nghiệm',
+                        theme: 'Cập nhật chất lượng và kỹ thuật xét nghiệm hiện đại',
+                        session: 'Buổi sáng', room: 'Hội trường tầng 2 nhà S', time: '9h10 – 12h00',
+                        chairs: [
+                            { name: 'BSCKI. Lương Minh Tuấn', role: 'Phó giám đốc bệnh viện' },
+                            { name: 'PGS.TS. Dương Hồng Quân', role: 'Giảng viên Trường Đại học Y tế Công cộng' },
+                            { name: 'Ths. Ninh Văn Quyết', role: 'Bộ môn Bệnh học - Trường Đại học Y dược, Đại học Quốc gia Hà Nội; Giảng viên thỉnh giảng bộ môn Giải phẫu bệnh lâm sàng - Trường Đại học Y Hà Nội' },
+                            { name: 'Ths. Nguyễn Thị Phương' }
+                        ],
+                        secretary: [{ name: 'CN. Nguyễn Mỹ Linh', role: 'KTV khoa Xét nghiệm BVĐK Hùng Vương' }],
+                        items: [
+                            { time: '9h10-9h25', title: 'Đánh giá độ chụm, độ đúng của xét nghiệm HbA1C được định lượng trên thiết bị ADAMS HA-8380V tại Phòng khám đa khoa Lê Hoàn', speaker: 'Ths. Nguyễn Trọng Đại', org: 'Phòng khám đa khoa Lê Hoàn' },
+                            { time: '9h25-9h40', title: 'Áp dụng thang Six Sigma trong đánh giá chất lượng xét nghiệm hóa sinh tại Bệnh viện đa khoa Hùng Vương', speaker: 'CN. Nguyễn Quang Trường', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '9h40-9h50', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '9h50-10h05', title: 'Giới thiệu về phòng xét nghiệm, quá trình triển khai ISO 15189:2022 và hướng đến nâng cao chất lượng xét nghiệm tại Bệnh viện Đa khoa Đức Minh', speaker: 'KTV. Lương Kim Huyền', org: 'Bệnh viện đa khoa Đức Minh' },
+                            { time: '10h05-10h20', title: 'Đánh giá hiệu năng phân tích của thuốc thử định lượng Procalcitonin DiaSys trên hệ thống Beckman Coulter AU5800', speaker: 'Nguyễn Văn Trương', org: 'Công ty TNHH Giải pháp thiết bị y tế Việt Nam' },
+                            { time: '10h20-10h35', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '10h35-10h45', title: 'Khảo sát đặc điểm nồng độ HBcrAg huyết thanh trên bệnh nhân viêm gan B mạn tính', speaker: 'Ths. Nguyễn Hoàn Tùng', org: 'Bệnh viện đa khoa Hùng Vương - Gia Lai' },
+                            { time: '10h45-11h00', title: 'NIPT - Giải pháp sàng lọc trước sinh không xâm lấn', speaker: 'TS. Lưu Phúc Lợi', org: 'Cố vấn chuyên môn Invivolab; Trưởng phòng Nghiên cứu khoa học và Lão hóa, Bệnh viện Thống Nhất' },
+                            { time: '11h00-11h15', title: 'Giá trị của kỹ thuật Realtime PCR đa mồi trong xác định căn nguyên gây nhiễm trùng lây truyền qua đường tình dục tại Bệnh viện đa khoa Hùng Vương, tỉnh Phú Thọ', speaker: 'CN. Trần Thị Khanh', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '11h15-11h30', title: 'Đột biến BRAF V600E trong ung thư tuyến giáp: Giá trị lâm sàng và ứng dụng trong chẩn đoán phân tử', speaker: 'PGS.TS. Dương Hồng Quân', org: 'Trường Đại học Y tế Công cộng' },
+                            { time: '11h30-11h45', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '11h45-12h00', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '12h00', title: 'Lunch party', type: 'break', icon: 'fas fa-utensils' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'nurse', color: 'purple', icon: 'fas fa-user-nurse',
+                parts: [
+                    {
+                        title: 'Phiên 2: Điều dưỡng',
+                        theme: 'Đổi mới thực hành điều dưỡng – Nâng cao chất lượng chăm sóc người bệnh',
+                        session: 'Buổi chiều', room: 'Hội trường tầng 3 nhà T', time: '13h30 – 17h15',
+                        chairs: [
+                            { name: 'BSCKII. Đặng Thanh Hải', role: 'Giám đốc bệnh viện' },
+                            { name: 'TS. Nguyễn Văn Giang', role: 'GV trường Đại học Y dược, Đại học Thái Nguyên' },
+                            { name: 'TS. Vũ Đình Sơn', role: 'Phó Trưởng khoa dược trường Cao đẳng Vĩnh Phúc' },
+                            { name: 'ĐDCKII. Phan Thị Loan', role: 'Trưởng phòng điều dưỡng Bệnh viện TW Thái Nguyên' },
+                            { name: 'Ths. Nguyễn Thị Phương', role: 'Trưởng phòng điều dưỡng BVĐK Hà Đông' },
+                            { name: 'Ths. Phạm Ngọc Vinh', role: 'Trưởng phòng điều dưỡng BVĐK tỉnh Phú Thọ' }
+                        ],
+                        secretary: [{ name: 'ĐDCKI. Bùi Thị Hiền', role: 'Bệnh viện đa khoa Hùng Vương' }],
+                        items: [
+                            { time: '13h30-13h45', title: 'Đứt Catheter tĩnh mạch ngoại vi do vô tình cắt bằng kéo: Bài học từ 2 ca bệnh và tầm quan trọng của phản ứng lâm sàng tức thì', speaker: 'CNĐD. Vũ Xuân Phúc', org: 'Bệnh viện đa khoa Bắc Ninh số 2' },
+                            { time: '13h45-14h00', title: 'Chăm sóc người bệnh sau phẫu thuật thay khớp háng tại Bệnh viện đa khoa Hà Đông', speaker: 'Ths. Nguyễn Thị Hiền', org: 'Bệnh viện đa khoa Hà Đông' },
+                            { time: '14h00-14h15', title: 'Đánh giá kiến thức về phòng ngừa lây bệnh viêm gan B ở người bệnh đến khám tại Phòng khám 360 Lê Hoàn năm 2026', speaker: 'CNĐD. Phạm Thị Lan', org: 'Phòng khám 360 Lê Hoàn' },
+                            { time: '14h15-14h30', title: 'Thực trạng kiến thức và thực hành của điều dưỡng về kiểm soát tiếng ồn và ánh sáng trong chăm sóc trẻ sơ sinh tại Bệnh viện TW Thái Nguyên', speaker: 'CNĐD. Nguyễn Thị Liên', org: 'Bệnh viện TW Thái Nguyên' },
+                            { time: '14h30-14h45', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '14h45-15h00', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '15h00-15h15', title: 'Thực trạng dinh dưỡng và một số yếu tố liên quan ở trẻ dưới 5 tuổi tại Quỳ Châu, Nghệ An', speaker: 'ĐDCKI. Lương Thị Ngọc Ánh', org: 'TTYT Quỳ Châu - Nghệ An' },
+                            { time: '15h15-15h30', title: 'Thực trạng kiến thức, thái độ của điều dưỡng trong quản lý đau ở người bệnh Ung thư và hiệu quả can thiệp đào tạo tại Viện Y học hạt nhân và Ung bướu – Bệnh viện Bạch Mai', speaker: 'Ths. Phan Thị Thu Huệ', org: 'Viện Y học hạt nhân và Ung bướu, Bệnh viện Bạch Mai' },
+                            { time: '15h30-15h45', title: 'Thực trạng chất lượng hoàn thiện các biểu mẫu trên hồ sơ bệnh án điện tử tại Bệnh viện Hùng Vương Gia Lai', speaker: 'CN. Đặng Ngọc Hà', org: 'Bệnh viện Hùng Vương Gia Lai' },
+                            { time: '15h45-16h00', title: 'Cải tiến và số hóa phiếu theo dõi tại Bệnh viện đa khoa Bắc Ninh số 2', speaker: 'CNĐD. Nguyễn Văn Dũng', org: 'Trưởng phòng điều dưỡng Bệnh viện đa khoa Bắc Ninh số 2' },
+                            { time: '16h00-16h15', title: 'Thực trạng kiến thức và thực hành về an toàn người bệnh của điều dưỡng, hộ sinh và một số yếu tố liên quan tại Bệnh viện đa khoa Hùng Vương năm 2025', speaker: 'ĐDCKI. Bùi Thị Hiền', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '16h15-16h45', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '16h45-17h00', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '17h00-17h15', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '17h15', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'imaging', color: 'amber', icon: 'fas fa-x-ray',
+                parts: [
+                    {
+                        title: 'Phiên 3: Chẩn đoán hình ảnh',
+                        theme: 'Đổi mới kỹ thuật và công nghệ trong chẩn đoán hình ảnh hiện đại',
+                        session: 'Buổi chiều', room: 'Hội trường tầng 2 nhà S', time: '13h30 – 17h15',
+                        chairs: [
+                            { name: 'BSCKI. Lương Minh Tuấn', role: 'Phó giám đốc bệnh viện' },
+                            { name: 'CN. Bùi Văn Đoài' },
+                            { name: 'CN. Nguyễn Văn Điệp' }
+                        ],
+                        secretary: [{ name: 'CN. Triệu Thạch Thảo' }],
+                        items: [
+                            { time: '13h30-13h45', title: 'Thoát mạch thuốc cản quang: Bằng chứng y văn và bài học thực tiễn', speaker: 'CN. Bùi Thị Mai', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '13h45-14h00', title: 'Tối ưu hóa các thông số thu nhận và tái tạo ảnh trên CT Photon-counting trong phân tích đánh giá mảng xơ vữa động mạch vành', speaker: 'CN. Đặng Hoàng Tuyến', org: 'Bệnh viện Đa khoa Quốc tế SIS Cần Thơ' },
+                            { time: '14h00-14h15', title: 'Ứng dụng kỹ thuật lấy huyết khối động mạch não bằng dụng cụ cơ học có sự trợ giúp của phần mềm RAPID AI trong điều trị đột quỵ nhồi máu não tại Bệnh viện đa khoa tỉnh Quảng Ninh', speaker: 'CN. Phan Văn Thường', org: 'Bệnh viện đa khoa tỉnh Quảng Ninh' },
+                            { time: '14h15-14h30', title: 'Đo thể tích gan tiền phẫu thuật cắt gan lớn trên workstation', speaker: 'CN. Lê Thanh Huyện', org: 'Bệnh viện Đa khoa Hà Đông' },
+                            { time: '14h30-14h45', title: 'Xác định góc chụp X-quang inlet và outlet tối ưu dựa trên hình ảnh cắt lớp vi tính vùng chậu tại Bệnh viện đa khoa Hùng Vương năm 2025', speaker: 'CN. Kiểu Tiến Thủy', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '14h45-15h15', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '15h15-15h30', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '15h30-15h45', title: 'Kỹ thuật hòa ảnh MRI giữa T2W_3D_DRIVE và TOF_3D đánh giá chèn ép mạch máu - thần kinh trong đau thần kinh tam thoa', speaker: 'CN. Lê Lệnh Tiến', org: 'Phòng khám Đa khoa 360 Lê Hoàn' },
+                            { time: '15h45-16h00', title: 'Đánh giá hiệu quả cải thiện chất lượng hình ảnh của công nghệ Deep Resolve trên máy cộng hưởng từ 0.55 Tesla ở bệnh nhân chấn thương khớp gối tại Bệnh viện đa khoa tỉnh Quảng Ninh', speaker: 'CN. Đoàn Văn Vịnh', org: 'Bệnh viện đa khoa tỉnh Quảng Ninh' },
+                            { time: '16h00-16h15', title: 'Cộng hưởng từ tiền liệt tuyến: Chìa khóa nâng cao chẩn đoán ung thư', speaker: 'CN. Nguyễn Hồng Thắm', org: 'Bệnh viện Hùng Vương Gia Lai' },
+                            { time: '16h15-16h30', title: 'Đánh giá độ phóng đại và hiệu chỉnh kích thước chỏm xương đùi trên hình ảnh X-quang', speaker: 'CN. Nguyễn Văn Hiếu', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '16h30-16h45', title: 'Lựa chọn các loại vật tư trong can thiệp cấp cứu mạch thần kinh', speaker: 'CN. Trần Anh Dũng', org: 'Bệnh viện đa khoa tỉnh Hà Giang' },
+                            { time: '16h45-17h00', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '17h00-17h15', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '17h15', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'endoscopy', color: 'rose', icon: 'fas fa-stethoscope',
+                parts: [
+                    {
+                        title: 'Phiên 4: Nội soi tiêu hóa',
+                        theme: 'Cập nhật tiến bộ kỹ thuật trong nội soi tiêu hóa và chăm sóc người bệnh',
+                        session: 'Buổi chiều', room: 'Hội trường tầng 3 nhà B', time: '13h30 – 17h15',
+                        chairs: [
+                            { name: 'BSCKII. Nguyễn Văn Ngọc', role: 'Phó giám đốc bệnh viện' },
+                            { name: 'ĐDCKI. Lê Trọng Luân', role: 'Bệnh viện Việt Đức' },
+                            { name: 'Ths. Đào Viết Quân', role: 'Bệnh viện Đại học Y Hà Nội' },
+                            { name: 'CN. Hoàng Minh Vương', role: 'Bệnh viện Bạch Mai' }
+                        ],
+                        secretary: [{ name: 'ĐDCKI. Nguyễn Thị Huyền', role: 'Bệnh viện đa khoa Hùng Vương' }],
+                        items: [
+                            { time: '13h30-13h45', title: 'Ứng dụng kỹ thuật Endo Loop trong môi trường nước hỗ trợ cắt polyp đại trực tràng có cuống: Kinh nghiệm bước đầu tại Bệnh viện Hùng Vương Phú Thọ', speaker: 'CN. Vi Ngọc Tùng', org: 'Bệnh viện Hùng Vương Phú Thọ' },
+                            { time: '13h45-14h00', title: 'Đánh giá sự cố y khoa trong nội soi tiêu hóa bằng sơ đồ xương cá (Fishbone Diagram)', speaker: 'Ths. Đào Viết Quân', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '14h00-14h15', title: 'Dị vật đường tiêu hóa tại Trung tâm Nội soi và hiệu quả sau gắp', speaker: 'Ths. Trần Đình Thảo', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '14h15-14h30', title: 'Cập nhật các khuyến cáo mới liên quan tới đào tạo điều dưỡng nội soi trên thế giới và hướng ứng dụng tại Việt Nam', speaker: 'Ths. Đỗ Thị Kim Thu', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '14h30-14h45', title: 'Thực trạng lo âu của người bệnh trước phẫu thuật nội soi cắt polyp đường tiêu hóa tại Trung tâm Nội soi - Bệnh viện Đại học Y Hà Nội năm 2026', speaker: 'CN. Nguyễn Văn Hoàn', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '14h45-15h15', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '15h15-15h30', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '15h30-15h45', title: 'Vai trò của điều dưỡng trong kỹ thuật tiêm keo Histoacryl búi giãn tĩnh mạch phình vị', speaker: 'CN. Hoàng Minh Vương', org: 'Bệnh viện Bạch Mai' },
+                            { time: '15h45-16h00', title: 'Vai trò điều dưỡng trong xử trí tai biến ở bệnh nhân can thiệp ERCP', speaker: 'CN. Hoàng Minh Cường', org: 'Bệnh viện Bạch Mai' },
+                            { time: '16h00-16h15', title: 'Ứng dụng hệ thống điện tử trong chuẩn hóa quy trình theo dõi người bệnh chuẩn bị trước nội soi đại tràng', speaker: 'Ths. Vũ Xuân Hoạch', org: 'Bệnh viện Phenika' },
+                            { time: '16h15-16h30', title: 'Vai trò của điều dưỡng trong công tác chuẩn bị dụng cụ và trợ giúp nội soi cắt bã thức ăn', speaker: 'CN. Trần Văn Tới', org: 'Bệnh viện Bãi Cháy Quảng Ninh' },
+                            { time: '16h30-17h00', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '17h00-17h15', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '17h15', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // Bảng màu theo từng chuyên đề (viết đủ tên class để Tailwind nhận diện)
+        const PROG_THEME = {
+            sky: { head: 'bg-sky-50', headBorder: 'border-sky-100', iconBox: 'bg-sky-100 text-sky-600', theme: 'text-sky-700', chip: 'bg-sky-100 text-sky-800', time: 'text-sky-600', band: 'bg-sky-50', bandText: 'text-sky-700' },
+            emerald: { head: 'bg-emerald-50', headBorder: 'border-emerald-100', iconBox: 'bg-emerald-100 text-emerald-600', theme: 'text-emerald-700', chip: 'bg-emerald-100 text-emerald-800', time: 'text-emerald-600', band: 'bg-emerald-50', bandText: 'text-emerald-700' },
+            purple: { head: 'bg-purple-50', headBorder: 'border-purple-100', iconBox: 'bg-purple-100 text-purple-600', theme: 'text-purple-700', chip: 'bg-purple-100 text-purple-800', time: 'text-purple-600', band: 'bg-purple-50', bandText: 'text-purple-700' },
+            amber: { head: 'bg-amber-50', headBorder: 'border-amber-100', iconBox: 'bg-amber-100 text-amber-600', theme: 'text-amber-700', chip: 'bg-amber-100 text-amber-800', time: 'text-amber-600', band: 'bg-amber-50', bandText: 'text-amber-700' },
+            rose: { head: 'bg-rose-50', headBorder: 'border-rose-100', iconBox: 'bg-rose-100 text-rose-600', theme: 'text-rose-700', chip: 'bg-rose-100 text-rose-800', time: 'text-rose-600', band: 'bg-rose-50', bandText: 'text-rose-700' }
+        };
+
+        function progEsc(str) {
+            return String(str == null ? '' : str)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function progChip(text, icon, cls) {
+            return `<span class="inline-flex items-center gap-1.5 ${cls} px-3.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold">
+                        ${icon ? `<i class="${icon}"></i>` : ''}${progEsc(text)}</span>`;
+        }
+
+        function progPersonList(people, c) {
+            return people.map(p => `<li class="mb-2.5 last:mb-0">
+                        <span class="block font-bold text-slate-800 text-sm">${progEsc(p.name)}</span>
+                        ${p.role ? `<span class="block text-xs text-slate-500 leading-snug">${progEsc(p.role)}</span>` : ''}
+                    </li>`).join('');
+        }
+
+        function progItemRow(item, c) {
+            if (item.type === 'break') {
+                return `<div class="flex flex-col md:flex-row md:items-center gap-0.5 md:gap-6 px-6 md:px-10 py-3 ${c.band}">
+                            <div class="md:w-32 shrink-0 font-black text-xs ${c.time} tracking-tight">${progEsc(item.time)}</div>
+                            <div class="font-black uppercase text-xs md:text-sm tracking-widest ${c.bandText}">
+                                ${item.icon ? `<i class="${item.icon} mr-2"></i>` : ''}${progEsc(item.title)}</div>
+                        </div>`;
+            }
+            return `<div class="flex flex-col md:flex-row gap-1 md:gap-6 px-6 md:px-10 py-4 hover:bg-slate-50 transition-colors">
+                        <div class="md:w-32 shrink-0 font-black text-sm ${c.time} tracking-tight">${progEsc(item.time)}</div>
+                        <div class="min-w-0">
+                            <p class="font-bold text-slate-800 leading-snug">${progEsc(item.title)}</p>
+                            ${item.speaker ? `<p class="text-sm text-slate-500 mt-1.5 leading-snug">
+                                <i class="fas fa-user-doctor text-slate-300 mr-1.5"></i><span class="font-semibold text-slate-600">${progEsc(item.speaker)}</span>${item.org ? ` <span class="text-slate-400">&mdash; ${progEsc(item.org)}</span>` : ''}</p>` : ''}
+                        </div>
+                    </div>`;
+        }
+
+        function progPartBlock(part, c, icon, isFirst) {
+            const chairs = part.chairs && part.chairs.length
+                ? `<div><p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Chủ tọa</p>
+                       <ul class="list-none">${progPersonList(part.chairs, c)}</ul></div>` : '';
+            const secretary = part.secretary && part.secretary.length
+                ? `<div><p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Thư ký</p>
+                       <ul class="list-none">${progPersonList(part.secretary, c)}</ul></div>` : '';
+
+            return `<div class="${isFirst ? '' : 'border-t border-slate-200'}">
+                        <div class="${c.head} border-b ${c.headBorder} px-6 md:px-10 py-8">
+                            <div class="inline-flex ${c.iconBox} p-3.5 rounded-2xl mb-3"><i class="${icon} text-2xl"></i></div>
+                            <h3 class="text-lg md:text-2xl font-black text-slate-900 uppercase tracking-tight">${progEsc(part.title)}</h3>
+                            ${part.theme ? `<p class="${c.theme} font-semibold italic mt-1.5 text-sm md:text-base leading-snug">&ldquo;${progEsc(part.theme)}&rdquo;</p>` : ''}
+                            <div class="flex flex-wrap gap-2 mt-5">
+                                ${progChip(part.session, 'far fa-sun', c.chip)}
+                                ${progChip(part.room, 'fas fa-location-dot', c.chip)}
+                                ${progChip(part.time, 'far fa-clock', c.chip)}
+                            </div>
+                        </div>
+                        ${(chairs || secretary) ? `<div class="bg-slate-50 border-b border-slate-200 px-6 md:px-10 py-6 grid md:grid-cols-2 gap-6">${chairs}${secretary}</div>` : ''}
+                        <div class="divide-y divide-slate-100">${part.items.map(i => progItemRow(i, c)).join('')}</div>
+                    </div>`;
+        }
+
+        function renderProgram() {
+            const container = document.getElementById('prog-container');
+            if (!container) return;
+
+            container.innerHTML = PROGRAM_DATA.map(sess => {
+                const c = PROG_THEME[sess.color];
+                const parts = sess.parts.map((p, idx) => progPartBlock(p, c, sess.icon, idx === 0)).join('');
+                return `<div id="prog-${sess.id}"
+                             class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto mb-6">
+                            ${parts}
+                        </div>`;
+            }).join('');
+        }
+
+        renderProgram();
 
         // ----------------------------------------
         // CHUYỂN ĐỔI VIEW (SPA)
