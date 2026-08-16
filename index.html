@@ -1483,7 +1483,7 @@
         }
 
         function progPersonList(people, c) {
-            return people.map(p => `<li class="mb-2.5 last:mb-0">
+            return people.map(p => `<li>
                         <span class="block font-bold text-slate-800 text-sm">${progEsc(p.name)}</span>
                         ${p.role ? `<span class="block text-xs text-slate-500 leading-snug">${progEsc(p.role)}</span>` : ''}
                     </li>`).join('');
@@ -1510,11 +1510,11 @@
         function progPartBlock(part, c, icon, isFirst) {
             const chairs = part.chairs && part.chairs.length
                 ? `<div><p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Chủ tọa</p>
-                       <ul class="list-none">${progPersonList(part.chairs, c)}</ul></div>` : '';
+                       <ul class="list-none grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">${progPersonList(part.chairs, c)}</ul></div>` : '';
             const secretary = part.secretary && part.secretary.length
                 ? `<div class="${part.chairs && part.chairs.length ? 'border-t border-slate-200 pt-6' : ''}">
                        <p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Thư ký</p>
-                       <ul class="list-none">${progPersonList(part.secretary, c)}</ul></div>` : '';
+                       <ul class="list-none grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">${progPersonList(part.secretary, c)}</ul></div>` : '';
 
             return `<div class="${isFirst ? '' : 'border-t border-slate-200'}">
                         <div class="${c.head} border-b ${c.headBorder} px-6 md:px-10 py-8">
