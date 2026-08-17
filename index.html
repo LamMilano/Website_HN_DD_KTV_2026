@@ -851,11 +851,57 @@
                             </div>
                         </div>
 
-                        <!-- 4. Thanh toán -->
+                        <!-- 4. Đăng ký suất ăn -->
+                        <div id="cme-section-suatan" class="space-y-4">
+                            <h2
+                                class="text-lg font-black text-slate-900 border-b border-slate-100 pb-2 uppercase tracking-wide">
+                                4. Đăng ký suất ăn <span class="text-slate-400">(miễn phí)</span> *</h2>
+                            <p class="text-[11px] text-slate-500 font-medium italic">Vui lòng tick ít nhất 1 lựa chọn để
+                                Ban Tổ chức chuẩn bị đủ số lượng suất.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label id="suatan-opt-com"
+                                    class="flex items-start gap-3 p-4 rounded-2xl border-2 border-gray-200 bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" id="cme_comTrua" onchange="toggleSuatAn('com')"
+                                        class="mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500 shrink-0">
+                                    <span>
+                                        <span class="block font-bold text-slate-800 text-sm"><i
+                                                class="fas fa-utensils text-purple-500 mr-1.5"></i>Cơm trưa (Lunch
+                                            party)</span>
+                                        <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Thứ Bảy,
+                                            12/09/2026 · 11h30 – 12h00</span>
+                                    </span>
+                                </label>
+                                <label id="suatan-opt-tiec"
+                                    class="flex items-start gap-3 p-4 rounded-2xl border-2 border-gray-200 bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" id="cme_tiecToi" onchange="toggleSuatAn('tiec')"
+                                        class="mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500 shrink-0">
+                                    <span>
+                                        <span class="block font-bold text-slate-800 text-sm"><i
+                                                class="fas fa-champagne-glasses text-purple-500 mr-1.5"></i>Tiệc tối
+                                            (Gala dinner)</span>
+                                        <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Thứ Bảy,
+                                            12/09/2026 · từ 17h15</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <label id="suatan-opt-khong"
+                                class="flex items-start gap-3 p-4 rounded-2xl border-2 border-gray-200 bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" id="cme_khongSuatAn" onchange="toggleSuatAn('khong')"
+                                    class="mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500 shrink-0">
+                                <span>
+                                    <span class="block font-bold text-slate-800 text-sm"><i
+                                            class="fas fa-ban text-slate-400 mr-1.5"></i>Không đăng ký suất ăn nào</span>
+                                    <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Tôi không dùng cơm
+                                        trưa và tiệc tối cùng Hội nghị.</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- 5. Thanh toán -->
                         <div id="cme-section-thanhtoan" class="space-y-6">
                             <h2
                                 class="text-lg font-black text-slate-900 border-b border-slate-100 pb-2 uppercase tracking-wide">
-                                4. Thông tin Thanh toán</h2>
+                                5. Thông tin Thanh toán</h2>
                             <div class="bg-slate-50 border border-gray-200 rounded-2xl p-6 md:p-8">
                                 <div
                                     class="flex flex-col md:flex-row gap-8 items-center md:items-start justify-between">
@@ -1627,6 +1673,41 @@
             }
         }
 
+        // ----------------------------------------
+        // ĐĂNG KÝ SUẤT ĂN (Cơm trưa / Tiệc tối / Không đăng ký)
+        // ----------------------------------------
+        function toggleSuatAn(nguon) {
+            const com = document.getElementById('cme_comTrua');
+            const tiec = document.getElementById('cme_tiecToi');
+            const khong = document.getElementById('cme_khongSuatAn');
+            if (!com || !tiec || !khong) return;
+
+            // "Không đăng ký" loại trừ 2 bữa ăn và ngược lại
+            if (nguon === 'khong' && khong.checked) {
+                com.checked = false;
+                tiec.checked = false;
+            } else if ((nguon === 'com' || nguon === 'tiec') && (com.checked || tiec.checked)) {
+                khong.checked = false;
+            }
+
+            // Cập nhật style 3 thẻ lựa chọn
+            const active = ['border-purple-600', 'bg-purple-50'];
+            const inactive = ['border-gray-200', 'bg-slate-50'];
+            [['suatan-opt-com', com], ['suatan-opt-tiec', tiec], ['suatan-opt-khong', khong]]
+                .forEach(([id, inp]) => {
+                    const the = document.getElementById(id);
+                    if (!the) return;
+                    the.classList.remove(...active, ...inactive);
+                    the.classList.add(...(inp.checked ? active : inactive));
+                });
+
+            // Bắt buộc tick ít nhất 1 ô: mượn thông báo hợp lệ của trình duyệt
+            const chuaChon = !com.checked && !tiec.checked && !khong.checked;
+            com.setCustomValidity(chuaChon ? 'Vui lòng chọn ít nhất 1 lựa chọn suất ăn.' : '');
+        }
+
+        toggleSuatAn(); // Nạp trạng thái ban đầu (chưa tick -> chặn submit)
+
         // ==========================================
         // KẾT NỐI GOOGLE APPS SCRIPT
         // ==========================================
@@ -1703,7 +1784,9 @@
                         diaChi: capCME === 'Có' ? document.getElementById('cme_diaChi').value : "",
                         soDienThoai: document.getElementById('cme_soDienThoai').value,
                         email: document.getElementById('cme_email').value,
-                        capCME: capCME
+                        capCME: capCME,
+                        comTrua: document.getElementById('cme_comTrua').checked ? 'Có' : 'Không',
+                        tiecToi: document.getElementById('cme_tiecToi').checked ? 'Có' : 'Không'
                     };
 
                     // Chỉ đính kèm file khi có cấp CME (không cấp thì gửi rỗng)
@@ -1727,6 +1810,7 @@
                         document.getElementById('labelCmeBangCap').innerText = 'Nhấn để tải ảnh / PDF lên';
                         document.getElementById('labelCmeBienLai').innerText = 'Tải ảnh biên lai';
                         toggleCMEType('co_cme'); // Khôi phục hiển thị mặc định
+                        toggleSuatAn();          // Trả 3 thẻ suất ăn về trạng thái chưa chọn
                         setTimeout(() => showView('home'), 2000);
                     } else {
                         showToast("Có lỗi xảy ra: " + data.message, "error");

@@ -21,12 +21,13 @@ var CONFIG = {
 // statusCol = cột ghi trạng thái mail. fields = vị trí cột để ĐỌC LẠI dữ liệu khi Gửi lại mail.
 var SCHEMA = {
   "Tham_du": {
-    statusCol: 14, // cột N
+    statusCol: 16, // cột P
     headerTrangThai: "Trạng thái mail",
     fields: {
       hocVi: 2, hoTen: 3, gioiTinh: 4, ngaySinh: 5,
       tinhThanh: 7, phuongXa: 8, diaChi: 9,
-      soDienThoai: 10, email: 11, capCME: 13
+      soDienThoai: 10, email: 11, capCME: 13,
+      comTrua: 14, tiecToi: 15
     }
   },
   "Bao_cao": {
@@ -80,12 +81,14 @@ function doPost(e) {
 
     // Ghi dữ liệu
     if (data.formType === "Tham_du") {
+      damBaoCotSuatAn(sheet); // Tự chèn 2 cột suất ăn nếu Sheet còn ở bố cục cũ
       var urlBangCap = uploadFile(data.fileBangCap);
       var urlBienLai = uploadFile(data.fileBienLai);
       sheet.appendRow([
         new Date(), data.hocVi, data.hoTen, data.gioiTinh, data.ngaySinh,
         urlBangCap, data.tinhThanh, data.phuongXa, data.diaChi,
-        data.soDienThoai, data.email, urlBienLai, data.capCME
+        data.soDienThoai, data.email, urlBienLai, data.capCME,
+        data.comTrua, data.tiecToi
       ]);
     } else if (data.formType === "Bao_cao") {
       var urlBangCapBC = uploadFile(data.fileBangCap);
@@ -121,6 +124,8 @@ function onOpen() {
     .addSeparator()
     .addItem('🔁 Gửi lại mail CHƯA gửi / LỖI (tab hiện tại)', 'guiLaiMailChuaGuiHoacLoi')
     .addItem('🔁 Gửi lại mail cho (các) dòng đang chọn', 'guiLaiMailDangChon')
+    .addSeparator()
+    .addItem('🍽 Chuẩn bị cột đăng ký suất ăn (tab Tham_du)', 'chuanBiSheet')
     .addToUi();
 }
 
@@ -247,6 +252,54 @@ function capNhatHeaderTrangThai(sheet, ten) {
   }
 }
 
+// ---------------------------------------------------------------------
+//  TỰ CHUẨN HOÁ CỘT CHO TAB Tham_du (2 cột đăng ký suất ăn)
+//  Chạy được nhiều lần - chỉ thực sự tác động ở lần đầu tiên.
+// ---------------------------------------------------------------------
+function damBaoCotSuatAn(sheet) {
+  var header = sheet.getRange(1, 1, 1, 16).getValues()[0]; // đọc tiêu đề A..P
+
+  // Đã có cột mới -> không làm gì nữa
+  if (String(header[13]).indexOf("Cơm trưa") > -1) return;
+
+  // Còn bố cục cũ -> chèn 2 cột, Sheets tự dồn cột Trạng thái mail từ N sang P
+  if (laBoCucCu(sheet, header)) {
+    sheet.insertColumnsBefore(14, 2);
+    console.log("Đã chèn 2 cột suất ăn vào tab Tham_du; Trạng thái mail chuyển sang cột P.");
+  }
+
+  sheet.getRange(1, 14).setValue("Cơm trưa").setFontWeight("bold");
+  sheet.getRange(1, 15).setValue("Tiệc tối").setFontWeight("bold");
+}
+
+// Nhận diện Sheet còn ở bố cục cũ (cột N đang là cột Trạng thái mail)
+function laBoCucCu(sheet, header) {
+  if (String(header[13]).indexOf("Trạng thái") > -1) return true;
+
+  // Phòng trường hợp thiếu dòng tiêu đề: dò dấu hiệu trạng thái mail trong cột N
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 2) return false;
+  var cotN = sheet.getRange(2, 14, lastRow - 1, 1).getValues();
+  for (var i = 0; i < cotN.length; i++) {
+    var v = String(cotN[i][0]);
+    if (v.indexOf("✅") > -1 || v.indexOf("❌") > -1) return true;
+  }
+  return false;
+}
+
+// Chạy tay 1 lần (menu hoặc editor) nếu muốn thấy cột xuất hiện ngay,
+// thay vì chờ tới lượt đăng ký đầu tiên.
+function chuanBiSheet() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Tham_du");
+  if (!sheet) {
+    console.error("Không tìm thấy tab [Tham_du].");
+    return;
+  }
+  damBaoCotSuatAn(sheet);
+  capNhatHeaderTrangThai(sheet, "Tham_du");
+  console.log("Tab [Tham_du] đã sẵn sàng: N = Cơm trưa, O = Tiệc tối, P = Trạng thái mail.");
+}
+
 function thongBaoSaiTab() {
   SpreadsheetApp.getUi().alert(
     "Vui lòng mở đúng tab [Tham_du] hoặc [Bao_cao] rồi thực hiện lại."
@@ -277,7 +330,9 @@ function guiMail(loai, data) {
         hangThongTin("Địa chỉ", data.diaChi) +
         hangThongTin("Số điện thoại", data.soDienThoai) +
         hangThongTin("Email", email) +
-        hangThongTin("Cấp CME", data.capCME);
+        hangThongTin("Cấp CME", data.capCME) +
+        hangThongTin("Đăng ký cơm trưa", data.comTrua) +
+        hangThongTin("Đăng ký tiệc tối", data.tiecToi);
       htmlBody = mauMail(
         "Xác nhận ĐĂNG KÝ THAM DỰ", hoVaTen,
         "Ban Tổ chức xin trân trọng <b>xác nhận đã nhận được đăng ký tham dự</b> của Quý đại biểu. Thông tin đăng ký của Quý vị như sau:",
@@ -397,7 +452,8 @@ function testGuiMail() {
   var duLieuThu = {
     hocVi: "CN.", hoTen: "Nguyễn Văn A (THỬ)", gioiTinh: "Nam", ngaySinh: "01/01/1990",
     tinhThanh: "Phú Thọ", phuongXa: "Phường X", diaChi: "123 Đường Y",
-    soDienThoai: "0900000000", email: "nguyenlam.bvhv@gmail.com", capCME: "Có"
+    soDienThoai: "0900000000", email: "nguyenlam.bvhv@gmail.com", capCME: "Có",
+    comTrua: "Có", tiecToi: "Không"
   };
   var kq = guiMail("Tham_du", duLieuThu);
   console.log("Kết quả gửi mail THỬ: " + JSON.stringify(kq));
