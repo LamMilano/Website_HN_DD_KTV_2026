@@ -495,15 +495,12 @@
                 <p class="text-slate-400 text-xs md:text-sm italic mt-1 mb-8">Chương trình có thể thay đổi, Ban tổ chức
                     sẽ cập nhật khi có điều chỉnh.</p>
 
-                <!-- BỘ LỌC CHUYÊN ĐỀ (Đã thêm Xét nghiệm) -->
+                <!-- BỘ LỌC CHUYÊN ĐỀ (mỗi lần chỉ hiển thị 1 phiên) -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-10">
                     <div
                         class="flex flex-wrap justify-center bg-white p-2 rounded-3xl shadow border border-slate-200 max-w-5xl mx-auto gap-1">
-                        <button id="prog-tab-all" onclick="switchProgTab('all')"
-                            class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm bg-sky-600 text-white shadow-md transition-all">Tất
-                            cả</button>
                         <button id="prog-tab-overview" onclick="switchProgTab('overview')"
-                            class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Tổng
+                            class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm bg-sky-600 text-white shadow-md transition-all">Tổng
                             quan</button>
                         <button id="prog-tab-nurse" onclick="switchProgTab('nurse')"
                             class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Điều
@@ -621,40 +618,78 @@
         </section>
 
         <!-- 8. TÀI TRỢ -->
-        <section class="py-20 bg-white">
+        <section class="py-20 bg-white overflow-hidden">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-2xl font-black text-slate-800 mb-20 uppercase tracking-[0.2em]">Đối Tác & Nhà Tài Trợ
+                <h2 class="text-2xl font-black text-slate-800 mb-4 uppercase tracking-[0.2em]">Đối Tác &amp; Nhà Tài Trợ
                 </h2>
+                <p class="text-slate-500 text-sm max-w-2xl mx-auto mb-16 leading-relaxed">Hội nghị trân trọng cảm ơn sự
+                    đồng hành của các đơn vị đã góp phần vào thành công của chương trình.</p>
 
+                <!-- Nhà tài trợ Vàng -->
                 <div class="mb-16">
-                    <p class="text-amber-500 font-bold uppercase text-xs tracking-[0.3em] mb-8">--- Nhà tài trợ Vàng ---
-                    </p>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div class="flex items-center justify-center gap-4 mb-8">
+                        <span class="h-px w-10 bg-gradient-to-r from-transparent to-amber-300"></span>
+                        <p class="text-amber-500 font-bold uppercase text-xs tracking-[0.3em]">Nhà tài trợ Vàng</p>
+                        <span class="h-px w-10 bg-gradient-to-l from-transparent to-amber-300"></span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
                         <div
-                            class="h-32 bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center italic text-slate-300 font-bold">
-                            Đang cập nhật</div>
+                            class="h-36 md:h-40 px-8 bg-white border border-amber-200 ring-1 ring-amber-100 rounded-3xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+                            <img src="sponsors/philips.png" alt="Philips" loading="lazy"
+                                class="max-h-16 md:max-h-20 max-w-full object-contain">
+                        </div>
                         <div
-                            class="h-32 bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center italic text-slate-300 font-bold">
-                            Đang cập nhật</div>
-                        <div
-                            class="h-32 bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center italic text-slate-300 font-bold hidden md:flex">
-                            Đang cập nhật</div>
+                            class="h-36 md:h-40 px-8 bg-white border border-amber-200 ring-1 ring-amber-100 rounded-3xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+                            <img src="sponsors/neusoft.png" alt="Neusoft Medical Systems" loading="lazy"
+                                class="max-h-14 md:max-h-16 max-w-full object-contain">
+                        </div>
                     </div>
                 </div>
 
+                <!-- Nhà tài trợ Đồng -->
+                <div class="mb-16">
+                    <div class="flex items-center justify-center gap-4 mb-8">
+                        <span class="h-px w-10 bg-gradient-to-r from-transparent to-orange-300"></span>
+                        <p class="text-orange-400 font-bold uppercase text-xs tracking-[0.3em]">Nhà tài trợ Đồng</p>
+                        <span class="h-px w-10 bg-gradient-to-l from-transparent to-orange-300"></span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-6 max-w-4xl mx-auto">
+                        <div
+                            class="h-28 md:h-32 px-4 md:px-6 bg-white border border-slate-200 rounded-3xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+                            <img src="sponsors/boston-pharma.png" alt="Boston Pharma" loading="lazy"
+                                class="max-h-[5rem] md:max-h-24 max-w-full object-contain">
+                        </div>
+                        <div
+                            class="h-28 md:h-32 px-4 md:px-6 bg-white border border-slate-200 rounded-3xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+                            <img src="sponsors/minh-quyet.png" alt="Minh Quyết Medical" loading="lazy"
+                                class="max-h-[4.5rem] md:max-h-24 max-w-full object-contain">
+                        </div>
+                        <div
+                            class="h-28 md:h-32 px-4 md:px-6 bg-white border border-slate-200 rounded-3xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center justify-center col-span-2 md:col-span-1">
+                            <img src="sponsors/abbott.png" alt="Abbott" loading="lazy"
+                                class="max-h-[4.5rem] md:max-h-24 max-w-full object-contain">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Đơn vị đồng tài trợ -->
                 <div>
-                    <p class="text-slate-400 font-bold uppercase text-xs tracking-[0.3em] mb-8">--- Nhà tài trợ Bạc ---
-                    </p>
-                    <div class="grid grid-cols-3 md:grid-cols-5 gap-6 max-w-5xl mx-auto opacity-70">
+                    <div class="flex items-center justify-center gap-4 mb-8">
+                        <span class="h-px w-10 bg-gradient-to-r from-transparent to-slate-300"></span>
+                        <p class="text-slate-400 font-bold uppercase text-xs tracking-[0.3em]">Đơn vị đồng tài trợ</p>
+                        <span class="h-px w-10 bg-gradient-to-l from-transparent to-slate-300"></span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-5 md:gap-6 max-w-xl mx-auto">
                         <div
-                            class="h-24 bg-slate-50 border border-dashed border-slate-200 rounded-2xl flex items-center justify-center text-[10px] text-slate-300 font-bold italic">
-                            Đang cập nhật</div>
+                            class="h-24 md:h-28 px-4 md:px-5 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300 flex items-center justify-center">
+                            <img src="sponsors/song-hong.png" alt="Sông Hồng Technical &amp; Service" loading="lazy"
+                                class="max-h-16 md:max-h-[4.5rem] max-w-full object-contain">
+                        </div>
                         <div
-                            class="h-24 bg-slate-50 border border-dashed border-slate-200 rounded-2xl flex items-center justify-center text-[10px] text-slate-300 font-bold italic">
-                            Đang cập nhật</div>
-                        <div
-                            class="h-24 bg-slate-50 border border-dashed border-slate-200 rounded-2xl flex items-center justify-center text-[10px] text-slate-300 font-bold italic">
-                            Đang cập nhật</div>
+                            class="h-24 md:h-28 px-4 md:px-5 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300 flex items-center justify-center">
+                            <img src="sponsors/pharmedic.png" alt="Pharmedic" loading="lazy"
+                                class="max-h-16 md:max-h-[4.5rem] max-w-full object-contain">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -868,7 +903,7 @@
                                                 class="fas fa-utensils text-purple-500 mr-1.5"></i>Cơm trưa (Lunch
                                             party)</span>
                                         <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Thứ Bảy,
-                                            12/09/2026 · 11h30 – 12h00</span>
+                                            12/09/2026 · từ 12h00</span>
                                     </span>
                                 </label>
                                 <label id="suatan-opt-tiec"
@@ -880,7 +915,7 @@
                                                 class="fas fa-champagne-glasses text-purple-500 mr-1.5"></i>Tiệc tối
                                             (Gala dinner)</span>
                                         <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Thứ Bảy,
-                                            12/09/2026 · từ 17h15</span>
+                                            12/09/2026 · từ 17h00</span>
                                     </span>
                                 </label>
                             </div>
@@ -1307,22 +1342,15 @@
                 activeTab.classList.remove('text-slate-500');
             }
 
-            // Show/hide content
-            if (type === 'all') {
-                contents.forEach(c => {
-                    c.classList.remove('hidden');
-                    c.classList.add('block');
-                });
-            } else {
-                contents.forEach(c => {
-                    c.classList.add('hidden');
-                    c.classList.remove('block');
-                });
-                const activeContent = document.getElementById('prog-' + type);
-                if (activeContent) {
-                    activeContent.classList.remove('hidden');
-                    activeContent.classList.add('block');
-                }
+            // Show/hide content: chỉ hiển thị đúng phiên được chọn
+            contents.forEach(c => {
+                c.classList.add('hidden');
+                c.classList.remove('block');
+            });
+            const activeContent = document.getElementById('prog-' + type);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+                activeContent.classList.add('block');
             }
         }
 
@@ -1343,33 +1371,32 @@
                             { time: '8h30-8h35', title: 'Video giới thiệu bệnh viện, hoạt động điều dưỡng', speaker: 'Ban tổ chức' },
                             { time: '8h35-8h40', title: 'Tuyên bố lý do, giới thiệu đại biểu', speaker: 'Ban tổ chức' },
                             { time: '8h40-8h45', title: 'Phát biểu khai mạc Hội nghị', speaker: 'Ban giám đốc' },
-                            { time: '8h45-8h50', title: 'Phát biểu chúc mừng Hội nghị', speaker: 'Hội đồng thành viên' },
-                            { time: '8h50-9h10', title: 'Tặng hoa chúc mừng', speaker: 'Hội đồng thành viên, các đơn vị tham dự' }
+                            { time: '8h45-8h50', title: 'Phát biểu chúc mừng Hội nghị', speaker: 'Lãnh đạo' },
+                            { time: '8h50-9h10', title: 'Tặng hoa chúc mừng', speaker: 'Lãnh đạo, đại diện các đơn vị' }
                         ]
                     },
                     {
                         title: 'Phiên Tổng quan',
                         theme: 'Xu hướng phát triển và đổi mới trong điều dưỡng hiện đại',
-                        session: 'Buổi sáng', room: 'Hội trường tầng 3 nhà T', time: '9h10 – 11h30',
+                        session: 'Buổi sáng', room: 'Hội trường tầng 3 nhà T', time: '9h10 – 12h00',
                         chairs: [
                             { name: 'BSCKII. Đặng Thanh Hải', role: 'Giám đốc bệnh viện' },
                             { name: 'TS. Nguyễn Văn Giang', role: 'GV trường Đại học Y dược, Đại học Thái Nguyên' },
                             { name: 'TS. Vũ Đình Sơn', role: 'Phó Trưởng khoa dược trường Cao đẳng Vĩnh Phúc' },
-                            { name: 'Ths. Nguyễn Thị Phương', role: 'Trưởng phòng điều dưỡng BVĐK Hà Đông' },
                             { name: 'Ths. Phạm Ngọc Vinh', role: 'Trưởng phòng điều dưỡng BVĐK tỉnh Phú Thọ' }
                         ],
                         secretary: [{ name: 'ĐDCKI. Bùi Thị Hiền', role: 'Bệnh viện đa khoa Hùng Vương' }],
                         items: [
-                            { time: '9h10-9h20', title: 'Bài báo cáo quốc tế', speaker: 'Hiệp hội điều dưỡng Hoa Kỳ' },
-                            { time: '9h20-9h40', title: 'Bài báo cáo quốc tế', speaker: 'Hiệp hội điều dưỡng Hoa Kỳ' },
-                            { time: '9h40-10h00', title: 'Vận dụng học thuyết điều dưỡng, nghiên cứu khoa học và công nghệ số trong nâng cao chất lượng chăm sóc người bệnh', speaker: 'TS. Vũ Đình Sơn', org: 'Phó Trưởng khoa dược trường Cao đẳng Vĩnh Phúc' },
-                            { time: '10h00-10h10', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
-                            { time: '10h10-10h30', title: 'Chuyển đổi số trong công tác điều dưỡng: hiệu quả và kinh nghiệm triển khai tại BVĐK Hà Đông', speaker: 'Ths. Nguyễn Thị Phương', org: 'Bệnh viện đa khoa Hà Đông' },
-                            { time: '10h30-10h50', title: 'Gánh nặng chăm sóc của người chăm sóc chính cho người bệnh Ung thư điều trị tại Bệnh viện TW Thái Nguyên và một số yếu tố liên quan', speaker: 'ĐDCKII. Phan Thị Loan', org: 'Trưởng phòng điều dưỡng Bệnh viện TW Thái Nguyên' },
-                            { time: '10h50-11h05', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
-                            { time: '11h05-11h15', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
-                            { time: '11h15-11h30', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
-                            { time: '11h30', title: 'Lunch party', type: 'break', icon: 'fas fa-utensils' }
+                            { time: '9h10-9h30', title: 'Competency based learning (Học dựa trên năng lực)', speaker: 'Vanessa Teed, MSN, RN, CEN, CGNC' },
+                            { time: '9h30-9h50', title: 'Ventilator assisted Pneumonia (Viêm phổi do thở máy hỗ trợ)', speaker: 'Dr. Carlos Luna, BSN, CCRN' },
+                            { time: '9h50-10h10', title: 'Vận dụng học thuyết điều dưỡng, nghiên cứu khoa học và công nghệ số trong nâng cao chất lượng chăm sóc người bệnh', speaker: 'TS. Vũ Đình Sơn', org: 'Phó Trưởng khoa dược trường Cao đẳng Vĩnh Phúc' },
+                            { time: '10h10-10h25', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '10h25-10h45', title: 'Chuyển đổi số trong công tác điều dưỡng: hiệu quả và kinh nghiệm triển khai tại BVĐK Hà Đông', speaker: 'Ths. Nguyễn Thị Phương', org: 'Bệnh viện đa khoa Hà Đông' },
+                            { time: '10h45-11h05', title: 'Gánh nặng chăm sóc của người chăm sóc chính cho người bệnh Ung thư điều trị tại Bệnh viện TW Thái Nguyên và một số yếu tố liên quan', speaker: 'ĐDCKII. Phan Thị Loan', org: 'Trưởng phòng điều dưỡng Bệnh viện TW Thái Nguyên' },
+                            { time: '11h05-11h30', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '11h30-11h45', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '11h45-12h00', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '12h00', title: 'Lunch party', type: 'break', icon: 'fas fa-utensils' }
                         ]
                     }
                 ]
@@ -1383,23 +1410,23 @@
                         session: 'Buổi sáng', room: 'Hội trường tầng 2 nhà S', time: '9h10 – 12h00',
                         chairs: [
                             { name: 'BSCKI. Lương Minh Tuấn', role: 'Phó giám đốc bệnh viện' },
-                            { name: 'PGS.TS. Dương Hồng Quân', role: 'Giảng viên Trường Đại học Y tế Công cộng' },
-                            { name: 'Ths. Ninh Văn Quyết', role: 'Bộ môn Bệnh học - Trường Đại học Y dược, Đại học Quốc gia Hà Nội; Giảng viên thỉnh giảng bộ môn Giải phẫu bệnh lâm sàng - Trường Đại học Y Hà Nội' }
+                            { name: 'PGS.TS. Dương Hồng Quân', role: 'Trung tâm xét nghiệm, Trường Đại học Y tế Công cộng' },
+                            { name: 'Ths. Ninh Văn Quyết', role: 'Bộ môn Bệnh học - Trường Đại học Y dược, Đại học Quốc gia Hà Nội; Giảng viên thỉnh giảng bộ môn Giải phẫu bệnh lâm sàng - Trường Đại học Y Hà Nội' },
+                            { name: 'Ths. Nguyễn Thị Thu Liên', role: 'Trưởng phòng điều dưỡng - QLCL Bệnh viện Sản Nhi Phú Thọ' }
                         ],
                         secretary: [{ name: 'CN. Nguyễn Mỹ Linh', role: 'KTV khoa Xét nghiệm BVĐK Hùng Vương' }],
                         items: [
                             { time: '9h10-9h25', title: 'Đánh giá độ chụm, độ đúng của xét nghiệm HbA1C được định lượng trên thiết bị ADAMS HA-8380V tại Phòng khám đa khoa Lê Hoàn', speaker: 'Ths. Nguyễn Trọng Đại', org: 'Phòng khám đa khoa Lê Hoàn' },
                             { time: '9h25-9h40', title: 'Áp dụng thang Six Sigma trong đánh giá chất lượng xét nghiệm hóa sinh tại Bệnh viện đa khoa Hùng Vương', speaker: 'CN. Nguyễn Quang Trường', org: 'Bệnh viện đa khoa Hùng Vương' },
-                            { time: '9h40-9h50', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
-                            { time: '9h50-10h05', title: 'Giới thiệu về phòng xét nghiệm, quá trình triển khai ISO 15189:2022 và hướng đến nâng cao chất lượng xét nghiệm tại Bệnh viện Đa khoa Đức Minh', speaker: 'KTV. Lương Kim Huyền', org: 'Bệnh viện đa khoa Đức Minh' },
-                            { time: '10h05-10h20', title: 'Đánh giá hiệu năng phân tích của thuốc thử định lượng Procalcitonin DiaSys trên hệ thống Beckman Coulter AU5800', speaker: 'Nguyễn Văn Trương', org: 'Công ty TNHH Giải pháp thiết bị y tế Việt Nam' },
-                            { time: '10h20-10h35', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
-                            { time: '10h35-10h45', title: 'Khảo sát đặc điểm nồng độ HBcrAg huyết thanh trên bệnh nhân viêm gan B mạn tính', speaker: 'Ths. Nguyễn Hoàn Tùng', org: 'Bệnh viện đa khoa Hùng Vương - Gia Lai' },
-                            { time: '10h45-11h00', title: 'NIPT - Giải pháp sàng lọc trước sinh không xâm lấn', speaker: 'TS. Lưu Phúc Lợi', org: 'Cố vấn chuyên môn Invivolab; Trưởng phòng Nghiên cứu khoa học và Lão hóa, Bệnh viện Thống Nhất' },
-                            { time: '11h00-11h15', title: 'Giá trị của kỹ thuật Realtime PCR đa mồi trong xác định căn nguyên gây nhiễm trùng lây truyền qua đường tình dục tại Bệnh viện đa khoa Hùng Vương, tỉnh Phú Thọ', speaker: 'CN. Trần Thị Khanh', org: 'Bệnh viện đa khoa Hùng Vương' },
-                            { time: '11h15-11h30', title: 'Đột biến BRAF V600E trong ung thư tuyến giáp: Giá trị lâm sàng và ứng dụng trong chẩn đoán phân tử', speaker: 'PGS.TS. Dương Hồng Quân', org: 'Trường Đại học Y tế Công cộng' },
-                            { time: '11h30-11h45', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
-                            { time: '11h45-12h00', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '9h40-9h55', title: 'Giới thiệu về phòng xét nghiệm, quá trình triển khai ISO 15189:2022 và hướng đến nâng cao chất lượng xét nghiệm tại Bệnh viện Đa khoa Đức Minh', speaker: 'CN. Lương Kim Huyền', org: 'Bệnh viện đa khoa Đức Minh' },
+                            { time: '9h55-10h10', title: 'Đánh giá hiệu năng phân tích của thuốc thử định lượng Procalcitonin DiaSys trên hệ thống Beckman Coulter AU5800', speaker: 'Nguyễn Văn Trương', org: 'Công ty TNHH Giải pháp thiết bị y tế Việt Nam' },
+                            { time: '10h10-10h25', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '10h25-10h40', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '10h40-10h55', title: 'Khảo sát đặc điểm nồng độ HBcrAg huyết thanh trên bệnh nhân viêm gan B mạn tính', speaker: 'Ths. Nguyễn Hoàng Tùng', org: 'Bệnh viện Hùng Vương Gia Lai' },
+                            { time: '10h55-11h10', title: 'NIPT - Giải pháp sàng lọc trước sinh không xâm lấn', speaker: 'TS. Lưu Phúc Lợi', org: 'Cố vấn chuyên môn Invivolab; Trưởng phòng Nghiên cứu khoa học và Lão hóa, Bệnh viện Thống Nhất' },
+                            { time: '11h10-11h25', title: 'Giá trị của kỹ thuật Realtime PCR đa mồi trong xác định căn nguyên gây nhiễm trùng lây truyền qua đường tình dục tại Bệnh viện đa khoa Hùng Vương, tỉnh Phú Thọ', speaker: 'CN. Trần Thị Khanh', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '11h25-11h40', title: 'Đột biến BRAF V600E trong ung thư tuyến giáp: Giá trị lâm sàng và ứng dụng trong chẩn đoán phân tử', speaker: 'PGS.TS. Dương Hồng Quân', org: 'Trường Đại học Y tế Công cộng' },
+                            { time: '11h40-12h00', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
                             { time: '12h00', title: 'Lunch party', type: 'break', icon: 'fas fa-utensils' }
                         ]
                     }
@@ -1410,11 +1437,10 @@
                 parts: [
                     {
                         title: 'Phiên 2: Điều dưỡng',
-                        theme: 'Đổi mới thực hành điều dưỡng – Nâng cao chất lượng chăm sóc người bệnh',
-                        session: 'Buổi chiều', room: 'Hội trường tầng 3 nhà T', time: '13h30 – 17h15',
+                        theme: 'Đổi mới và phát triển điều dưỡng: Từ nâng cao năng lực đến chuyển đổi số và an toàn người bệnh',
+                        session: 'Buổi chiều', room: 'Hội trường tầng 3 nhà T', time: '13h00 – 16h45',
                         chairs: [
                             { name: 'BSCKII. Đặng Thanh Hải', role: 'Giám đốc bệnh viện' },
-                            { name: 'TS. Nguyễn Văn Giang', role: 'GV trường Đại học Y dược, Đại học Thái Nguyên' },
                             { name: 'TS. Vũ Đình Sơn', role: 'Phó Trưởng khoa dược trường Cao đẳng Vĩnh Phúc' },
                             { name: 'ĐDCKII. Phan Thị Loan', role: 'Trưởng phòng điều dưỡng Bệnh viện TW Thái Nguyên' },
                             { name: 'Ths. Nguyễn Thị Phương', role: 'Trưởng phòng điều dưỡng BVĐK Hà Đông' },
@@ -1422,21 +1448,21 @@
                         ],
                         secretary: [{ name: 'ĐDCKI. Bùi Thị Hiền', role: 'Bệnh viện đa khoa Hùng Vương' }],
                         items: [
-                            { time: '13h30-13h45', title: 'Đứt Catheter tĩnh mạch ngoại vi do vô tình cắt bằng kéo: Bài học từ 2 ca bệnh và tầm quan trọng của phản ứng lâm sàng tức thì', speaker: 'CNĐD. Vũ Xuân Phúc', org: 'Bệnh viện đa khoa Bắc Ninh số 2' },
-                            { time: '13h45-14h00', title: 'Chăm sóc người bệnh sau phẫu thuật thay khớp háng tại Bệnh viện đa khoa Hà Đông', speaker: 'Ths. Nguyễn Thị Hiền', org: 'Bệnh viện đa khoa Hà Đông' },
-                            { time: '14h00-14h15', title: 'Đánh giá kiến thức về phòng ngừa lây bệnh viêm gan B ở người bệnh đến khám tại Phòng khám 360 Lê Hoàn năm 2026', speaker: 'CNĐD. Phạm Thị Lan', org: 'Phòng khám 360 Lê Hoàn' },
-                            { time: '14h15-14h30', title: 'Thực trạng kiến thức và thực hành của điều dưỡng về kiểm soát tiếng ồn và ánh sáng trong chăm sóc trẻ sơ sinh tại Bệnh viện TW Thái Nguyên', speaker: 'CNĐD. Nguyễn Thị Liên', org: 'Bệnh viện TW Thái Nguyên' },
-                            { time: '14h30-14h45', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '13h00-13h15', title: 'Đứt Catheter tĩnh mạch ngoại vi do vô tình cắt bằng kéo: Bài học từ 2 ca bệnh và tầm quan trọng của phản ứng lâm sàng tức thì', speaker: 'CNĐD. Vũ Xuân Phúc', org: 'Bệnh viện đa khoa Bắc Ninh số 2' },
+                            { time: '13h15-13h30', title: 'Chăm sóc người bệnh sau phẫu thuật thay khớp háng tại Bệnh viện đa khoa Hà Đông', speaker: 'Ths. Nguyễn Thị Hiền', org: 'Bệnh viện đa khoa Hà Đông' },
+                            { time: '13h30-13h45', title: 'Nhận xét hiệu quả của kỹ thuật Buttonhole đối với AVF của bệnh nhân lọc máu chu kỳ tại Bệnh viện đa khoa Hùng Vương năm 2025', speaker: 'CNĐD. Nguyễn Thị Hạnh', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '13h45-14h00', title: 'Thực trạng kiến thức và thực hành của điều dưỡng về kiểm soát tiếng ồn và ánh sáng trong chăm sóc trẻ sơ sinh tại Bệnh viện TW Thái Nguyên', speaker: 'CNĐD. Nguyễn Thị Liên', org: 'Bệnh viện TW Thái Nguyên' },
+                            { time: '14h00-14h15', title: 'Khó khăn chi trả và nhu cầu kết nối nguồn lực hỗ trợ của người bệnh tại Bệnh viện TW Thái Nguyên năm 2026', speaker: 'ĐDCKI. Nguyễn Thị Việt', org: 'Phòng Công tác xã hội, Bệnh viện TW Thái Nguyên' },
+                            { time: '14h15-14h30', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '14h30-14h45', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
                             { time: '14h45-15h00', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
-                            { time: '15h00-15h15', title: 'Thực trạng dinh dưỡng và một số yếu tố liên quan ở trẻ dưới 5 tuổi tại Quỳ Châu, Nghệ An', speaker: 'ĐDCKI. Lương Thị Ngọc Ánh', org: 'TTYT Quỳ Châu - Nghệ An' },
+                            { time: '15h00-15h15', title: 'Thực trạng bạo hành nơi làm việc với nhân viên y tế và một số yếu tố liên quan tại Bệnh viện đa khoa Bắc Ninh số 2 năm 2026', speaker: 'CNĐD. Nguyễn Thị Diệu Linh', org: 'Bệnh viện đa khoa Bắc Ninh số 2' },
                             { time: '15h15-15h30', title: 'Thực trạng kiến thức, thái độ của điều dưỡng trong quản lý đau ở người bệnh Ung thư và hiệu quả can thiệp đào tạo tại Viện Y học hạt nhân và Ung bướu – Bệnh viện Bạch Mai', speaker: 'Ths. Phan Thị Thu Huệ', org: 'Viện Y học hạt nhân và Ung bướu, Bệnh viện Bạch Mai' },
                             { time: '15h30-15h45', title: 'Thực trạng chất lượng hoàn thiện các biểu mẫu trên hồ sơ bệnh án điện tử tại Bệnh viện Hùng Vương Gia Lai', speaker: 'CN. Đặng Ngọc Hà', org: 'Bệnh viện Hùng Vương Gia Lai' },
                             { time: '15h45-16h00', title: 'Cải tiến và số hóa phiếu theo dõi tại Bệnh viện đa khoa Bắc Ninh số 2', speaker: 'CNĐD. Nguyễn Văn Dũng', org: 'Trưởng phòng điều dưỡng Bệnh viện đa khoa Bắc Ninh số 2' },
                             { time: '16h00-16h15', title: 'Thực trạng kiến thức và thực hành về an toàn người bệnh của điều dưỡng, hộ sinh và một số yếu tố liên quan tại Bệnh viện đa khoa Hùng Vương năm 2025', speaker: 'ĐDCKI. Bùi Thị Hiền', org: 'Bệnh viện đa khoa Hùng Vương' },
                             { time: '16h15-16h45', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
-                            { time: '16h45-17h00', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
-                            { time: '17h00-17h15', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
-                            { time: '17h15', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
+                            { time: '17h00', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
                         ]
                     }
                 ]
@@ -1447,29 +1473,32 @@
                     {
                         title: 'Phiên 3: Chẩn đoán hình ảnh',
                         theme: 'Đổi mới kỹ thuật và công nghệ trong chẩn đoán hình ảnh hiện đại',
-                        session: 'Buổi chiều', room: 'Hội trường tầng 2 nhà S', time: '13h30 – 17h15',
+                        session: 'Buổi chiều', room: 'Hội trường tầng 2 nhà S', time: '13h00 – 17h00',
                         chairs: [
                             { name: 'BSCKI. Lương Minh Tuấn', role: 'Phó giám đốc bệnh viện' },
+                            { name: 'TS. Nguyễn Văn Giang', role: 'Giảng viên trường Đại học Y dược, Đại học Thái Nguyên' },
+                            { name: 'BSCKI. Ngô Văn Quý', role: 'Bệnh viện đa khoa Hùng Vương' },
                             { name: 'CN. Bùi Văn Đoài', role: 'Bệnh viện Đại học Y Hà Nội' },
                             { name: 'CN. Phạm Văn Điệp', role: 'Bệnh viện Đại học Y Hà Nội' }
                         ],
                         secretary: [{ name: 'CN. Triệu Thạch Thảo', role: 'Bệnh viện đa khoa Hùng Vương' }],
                         items: [
-                            { time: '13h30-13h45', title: 'Thoát mạch thuốc cản quang: Bằng chứng y văn và bài học thực tiễn', speaker: 'CN. Bùi Thị Mai', org: 'Bệnh viện Đại học Y Hà Nội' },
-                            { time: '13h45-14h00', title: 'Tối ưu hóa các thông số thu nhận và tái tạo ảnh trên CT Photon-counting trong phân tích đánh giá mảng xơ vữa động mạch vành', speaker: 'CN. Đặng Hoàng Tuyến', org: 'Bệnh viện Đa khoa Quốc tế SIS Cần Thơ' },
-                            { time: '14h00-14h15', title: 'Ứng dụng kỹ thuật lấy huyết khối động mạch não bằng dụng cụ cơ học có sự trợ giúp của phần mềm RAPID AI trong điều trị đột quỵ nhồi máu não tại Bệnh viện đa khoa tỉnh Quảng Ninh', speaker: 'CN. Phan Văn Thường', org: 'Bệnh viện đa khoa tỉnh Quảng Ninh' },
-                            { time: '14h15-14h30', title: 'Đo thể tích gan tiền phẫu thuật cắt gan lớn trên workstation', speaker: 'CN. Lê Thanh Huyện', org: 'Bệnh viện Đa khoa Hà Đông' },
-                            { time: '14h30-14h45', title: 'Xác định góc chụp X-quang inlet và outlet tối ưu dựa trên hình ảnh cắt lớp vi tính vùng chậu tại Bệnh viện đa khoa Hùng Vương năm 2025', speaker: 'CN. Kiều Tiến Thủy', org: 'Bệnh viện đa khoa Hùng Vương' },
-                            { time: '14h45-15h15', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
-                            { time: '15h15-15h30', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
-                            { time: '15h30-15h45', title: 'Kỹ thuật hòa ảnh MRI giữa T2W_3D_DRIVE và TOF_3D đánh giá chèn ép mạch máu - thần kinh trong đau thần kinh tam thoa', speaker: 'CN. Lê Lệnh Tiến', org: 'Phòng khám Đa khoa 360 Lê Hoàn' },
-                            { time: '15h45-16h00', title: 'Đánh giá hiệu quả cải thiện chất lượng hình ảnh của công nghệ Deep Resolve trên máy cộng hưởng từ 0.55 Tesla ở bệnh nhân chấn thương khớp gối tại Bệnh viện đa khoa tỉnh Quảng Ninh', speaker: 'CN. Đoàn Văn Vịnh', org: 'Bệnh viện đa khoa tỉnh Quảng Ninh' },
-                            { time: '16h00-16h15', title: 'Cộng hưởng từ tiền liệt tuyến: Chìa khóa nâng cao chẩn đoán ung thư', speaker: 'CN. Nguyễn Hồng Thắm', org: 'Bệnh viện Hùng Vương Gia Lai' },
-                            { time: '16h15-16h30', title: 'Đánh giá độ phóng đại và hiệu chỉnh kích thước chỏm xương đùi trên hình ảnh X-quang', speaker: 'CN. Nguyễn Văn Hiếu', org: 'Bệnh viện đa khoa Hùng Vương' },
-                            { time: '16h30-16h45', title: 'Lựa chọn các loại vật tư trong can thiệp cấp cứu mạch thần kinh', speaker: 'CN. Trần Anh Dũng', org: 'Bệnh viện đa khoa tỉnh Hà Giang' },
-                            { time: '16h45-17h00', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
-                            { time: '17h00-17h15', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
-                            { time: '17h15', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
+                            { time: '13h00-13h15', title: 'Thoát mạch thuốc cản quang: Bằng chứng y văn và bài học thực tiễn', speaker: 'CN. Bùi Thị Mai', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '13h15-13h30', title: 'Nghiên cứu đánh giá độ phóng đại và hiệu chỉnh kích thước chỏm xương đùi trên hình ảnh X-quang', speaker: 'CN. Nguyễn Văn Hiếu', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '13h30-13h45', title: 'Nghiên cứu đánh giá hiệu quả cải thiện chất lượng hình ảnh của công nghệ Deep Resolve trên máy cộng hưởng từ 0.55 Tesla ở bệnh nhân chấn thương khớp gối tại Bệnh viện đa khoa tỉnh Quảng Ninh', speaker: 'CN. Đoàn Văn Vịnh', org: 'Bệnh viện đa khoa tỉnh Quảng Ninh' },
+                            { time: '13h45-14h00', title: 'Nghiên cứu kỹ thuật hòa ảnh MRI giữa T2W_3D_DRIVE và TOF_3D đánh giá chèn ép mạch máu - thần kinh trong đau thần kinh tam thoa', speaker: 'CN. Lê Lệnh Tiến', org: 'Phòng khám Đa khoa 360 Lê Hoàn' },
+                            { time: '14h00-14h15', title: 'Cộng hưởng từ tiền liệt tuyến: Chìa khóa nâng cao chẩn đoán ung thư', speaker: 'CN. Nguyễn Hồng Thắm', org: 'Bệnh viện Hùng Vương Gia Lai' },
+                            { time: '14h15-14h35', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '14h35-14h50', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
+                            { time: '14h50-15h05', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '15h05-15h20', title: 'Tối ưu hóa các thông số thu nhận và tái tạo ảnh trên CT Photon-counting trong phân tích đánh giá mảng xơ vữa động mạch vành', speaker: 'CN. Đặng Hoàng Tuyến', org: 'Bệnh viện Đa khoa Quốc tế SIS Cần Thơ' },
+                            { time: '15h20-15h35', title: 'Đo thể tích gan tiền phẫu thuật cắt gan lớn trên workstation', speaker: 'CN. Lê Thanh Huyện', org: 'Bệnh viện Đa khoa Hà Đông' },
+                            { time: '15h35-15h50', title: 'Nghiên cứu xác định góc chụp X-quang inlet và outlet tối ưu dựa trên hình ảnh cắt lớp vi tính vùng chậu tại Bệnh viện đa khoa Hùng Vương năm 2025', speaker: 'CN. Kiều Tiến Thủy', org: 'Bệnh viện đa khoa Hùng Vương' },
+                            { time: '15h50-16h05', title: 'Ứng dụng kỹ thuật lấy huyết khối động mạch não bằng dụng cụ cơ học có sự trợ giúp của phần mềm RAPID AI trong điều trị đột quỵ nhồi máu não tại Bệnh viện đa khoa tỉnh Quảng Ninh', speaker: 'CN. Phan Văn Thường', org: 'Bệnh viện đa khoa tỉnh Quảng Ninh' },
+                            { time: '16h05-16h20', title: 'Lựa chọn các loại vật tư trong can thiệp cấp cứu mạch thần kinh', speaker: 'CN. Trần Anh Dũng', org: 'Bệnh viện đa khoa tỉnh Hà Giang' },
+                            { time: '16h20-16h35', title: 'Nghiên cứu liều chiếu xạ và một số yếu tố liên quan trên bệnh nhân chụp và can thiệp mạch vành dưới hệ thống DSA AZURION 5C20 tại Bệnh viện Hùng Vương Gia Lai', speaker: 'CN. Trần Đình Trọng', org: 'Bệnh viện Hùng Vương Gia Lai' },
+                            { time: '16h35-17h00', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '17h00', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
                         ]
                     }
                 ]
@@ -1480,29 +1509,30 @@
                     {
                         title: 'Phiên 4: Nội soi tiêu hóa',
                         theme: 'Cập nhật tiến bộ kỹ thuật trong nội soi tiêu hóa và chăm sóc người bệnh',
-                        session: 'Buổi chiều', room: 'Hội trường tầng 3 nhà B', time: '13h30 – 17h15',
+                        session: 'Buổi chiều', room: 'Hội trường tầng 3 nhà B', time: '13h00 – 16h45',
                         chairs: [
                             { name: 'BSCKII. Nguyễn Văn Ngọc', role: 'Phó giám đốc bệnh viện' },
+                            { name: 'ThsBS. Lò Thị Bích Thùy', role: 'Bệnh viện đa khoa Hùng Vương' },
                             { name: 'ĐDCKI. Lê Trọng Luân', role: 'Bệnh viện Việt Đức' },
                             { name: 'Ths. Đào Viết Quân', role: 'Bệnh viện Đại học Y Hà Nội' },
                             { name: 'CN. Hoàng Minh Vương', role: 'Bệnh viện Bạch Mai' }
                         ],
                         secretary: [{ name: 'ĐDCKI. Nguyễn Thị Huyền', role: 'Bệnh viện đa khoa Hùng Vương' }],
                         items: [
-                            { time: '13h30-13h45', title: 'Ứng dụng kỹ thuật Endo Loop trong môi trường nước hỗ trợ cắt polyp đại trực tràng có cuống: Kinh nghiệm bước đầu tại Bệnh viện Hùng Vương Phú Thọ', speaker: 'CN. Vi Ngọc Tùng', org: 'Bệnh viện Hùng Vương Phú Thọ' },
-                            { time: '13h45-14h00', title: 'Đánh giá sự cố y khoa trong nội soi tiêu hóa bằng sơ đồ xương cá (Fishbone Diagram)', speaker: 'Ths. Đào Viết Quân', org: 'Bệnh viện Đại học Y Hà Nội' },
-                            { time: '14h00-14h15', title: 'Dị vật đường tiêu hóa tại Trung tâm Nội soi và hiệu quả sau gắp', speaker: 'Ths. Trần Đình Thảo', org: 'Bệnh viện Đại học Y Hà Nội' },
-                            { time: '14h15-14h30', title: 'Cập nhật các khuyến cáo mới liên quan tới đào tạo điều dưỡng nội soi trên thế giới và hướng ứng dụng tại Việt Nam', speaker: 'Ths. Đỗ Thị Kim Thu', org: 'Bệnh viện Đại học Y Hà Nội' },
-                            { time: '14h30-14h45', title: 'Thực trạng lo âu của người bệnh trước phẫu thuật nội soi cắt polyp đường tiêu hóa tại Trung tâm Nội soi - Bệnh viện Đại học Y Hà Nội năm 2026', speaker: 'CN. Nguyễn Văn Hoàn', org: 'Bệnh viện Đại học Y Hà Nội' },
-                            { time: '14h45-15h15', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
-                            { time: '15h15-15h30', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
-                            { time: '15h30-15h45', title: 'Vai trò của điều dưỡng trong kỹ thuật tiêm keo Histoacryl búi giãn tĩnh mạch phình vị', speaker: 'CN. Hoàng Minh Vương', org: 'Bệnh viện Bạch Mai' },
-                            { time: '15h45-16h00', title: 'Vai trò điều dưỡng trong xử trí tai biến ở bệnh nhân can thiệp ERCP', speaker: 'CN. Hoàng Minh Cường', org: 'Bệnh viện Bạch Mai' },
-                            { time: '16h00-16h15', title: 'Ứng dụng hệ thống điện tử trong chuẩn hóa quy trình theo dõi người bệnh chuẩn bị trước nội soi đại tràng', speaker: 'Ths. Vũ Xuân Hoạch', org: 'Bệnh viện Phenika' },
-                            { time: '16h15-16h30', title: 'Vai trò của điều dưỡng trong công tác chuẩn bị dụng cụ và trợ giúp nội soi cắt bã thức ăn', speaker: 'CN. Trần Văn Tới', org: 'Bệnh viện Bãi Cháy Quảng Ninh' },
-                            { time: '16h30-17h00', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
-                            { time: '17h00-17h15', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
-                            { time: '17h15', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
+                            { time: '13h00-13h15', title: 'Ứng dụng kỹ thuật Endo Loop trong môi trường nước hỗ trợ cắt polyp đại trực tràng có cuống: Kinh nghiệm tại Bệnh viện Hùng Vương Phú Thọ', speaker: 'CN. Vi Ngọc Tùng', org: 'Bệnh viện Hùng Vương Phú Thọ' },
+                            { time: '13h15-13h30', title: 'Đánh giá sự cố y khoa trong nội soi tiêu hóa bằng sơ đồ xương cá (Fishbone Diagram)', speaker: 'Ths. Đào Viết Quân', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '13h30-13h45', title: 'Dị vật đường tiêu hóa tại Trung tâm Nội soi và hiệu quả sau gắp', speaker: 'Ths. Trần Đình Thảo', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '13h45-14h00', title: 'Cập nhật các khuyến cáo mới liên quan tới đào tạo điều dưỡng nội soi trên thế giới và hướng ứng dụng tại Việt Nam', speaker: 'Ths. Đỗ Thị Kim Thu', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '14h00-14h15', title: 'Thực trạng lo âu của người bệnh trước phẫu thuật nội soi cắt polyp đường tiêu hóa tại Trung tâm Nội soi - Bệnh viện Đại học Y Hà Nội năm 2026', speaker: 'CN. Nguyễn Văn Hoàn', org: 'Bệnh viện Đại học Y Hà Nội' },
+                            { time: '14h15-14h45', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '14h45-15h00', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
+                            { time: '15h00-15h15', title: 'Vai trò của điều dưỡng trong kỹ thuật tiêm keo Histoacryl búi giãn tĩnh mạch phình vị', speaker: 'CN. Hoàng Minh Vương', org: 'Bệnh viện Bạch Mai' },
+                            { time: '15h15-15h30', title: 'Vai trò điều dưỡng trong xử trí tai biến ở bệnh nhân can thiệp ERCP', speaker: 'CN. Hoàng Minh Cường', org: 'Bệnh viện Bạch Mai' },
+                            { time: '15h30-15h45', title: 'Ứng dụng hệ thống điện tử trong chuẩn hóa quy trình theo dõi người bệnh chuẩn bị trước nội soi đại tràng', speaker: 'Ths. Vũ Xuân Hoạch', org: 'Bệnh viện Đại học Phenikaa' },
+                            { time: '15h45-16h00', title: 'Vai trò của điều dưỡng trong công tác chuẩn bị dụng cụ và trợ giúp nội soi cắt bã thức ăn', speaker: 'CN. Trần Văn Tới', org: 'Bệnh viện Bãi Cháy Quảng Ninh' },
+                            { time: '16h00-16h15', title: 'Những hư hỏng thường gặp của dàn nội soi tiêu hóa và cách khắc phục', speaker: 'KS. Đào Văn Cường', org: 'Hãng Olympus' },
+                            { time: '16h15-16h45', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
+                            { time: '17h00', title: 'Gala dinner', type: 'break', icon: 'fas fa-champagne-glasses' }
                         ]
                     }
                 ]
@@ -1593,6 +1623,7 @@
         }
 
         renderProgram();
+        switchProgTab('overview');
 
         // ----------------------------------------
         // CHUYỂN ĐỔI VIEW (SPA)
