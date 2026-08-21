@@ -543,10 +543,10 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="sec-tag"><i class="dia"></i>Tham gia cùng chúng tôi</div>
 
-                <div class="mt-6 grid lg:grid-cols-2 gap-6 items-start">
+                <div class="mt-6 grid lg:grid-cols-2 gap-6">
 
                     <!-- Tấm sáng: đăng ký tham dự -->
-                    <div class="surface rounded-shell p-8 md:p-10">
+                    <div class="surface rounded-shell p-8 md:p-10 flex flex-col">
                         <h3 class="text-[22px] font-extrabold tracking-[-0.03em]">Đăng ký tham dự</h3>
                         <div class="mt-4 text-[38px] font-extrabold tracking-[-0.045em] leading-none tabular-nums text-grad">
                             200.000 <span class="text-[16px] font-bold text-ink-3">VNĐ · lệ phí CME</span>
@@ -566,7 +566,7 @@
                             </div>
                         </div>
                         <button onclick="showView('cme-form')"
-                            class="btn-primary mt-7 w-full py-4 text-[15px] flex items-center justify-center gap-2.5 group">
+                            class="btn-primary mt-auto pt-4 w-full py-4 text-[15px] flex items-center justify-center gap-2.5 group">
                             Điền phiếu đăng ký
                             <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </button>
@@ -574,9 +574,9 @@
 
                     <!-- Tấm navy: gửi bài báo cáo -->
                     <div
-                        class="surface-navy rounded-shell shadow-pop relative overflow-hidden text-white p-8 md:p-10 lg:mt-7">
+                        class="surface-navy rounded-shell shadow-pop relative overflow-hidden text-white p-8 md:p-10 flex flex-col">
                         <div class="diag-bands diag-bands-dark"></div>
-                        <div class="relative">
+                        <div class="relative flex flex-col flex-1">
                             <div class="flex items-center justify-between gap-4 flex-wrap">
                                 <h3 class="text-[22px] font-extrabold tracking-[-0.03em]">Gửi bài báo cáo</h3>
                                 <span
@@ -601,7 +601,7 @@
                                 </div>
                             </div>
                             <div
-                                class="mt-7 w-full py-4 text-[14.5px] font-semibold rounded-card flex items-center justify-center gap-2.5 text-white/60 border border-white/[0.18] bg-white/[0.06]">
+                                class="mt-auto pt-7 w-full py-4 text-[14.5px] font-semibold rounded-card flex items-center justify-center gap-2.5 text-white/60 border border-white/[0.18] bg-white/[0.06]">
                                 <i class="fas fa-lock text-xs"></i> Không còn nhận bài
                             </div>
                             <p class="mt-4 text-[13px] leading-relaxed text-white/60">Cần trao đổi thêm về bài đã gửi,
