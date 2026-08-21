@@ -268,7 +268,8 @@
   .sec-title {
     font-weight: 800;
     letter-spacing: -0.035em;
-    line-height: 1.1;
+    /* Tiếng Việt có dấu chồng hai tầng: cần khoảng dòng rộng hơn tiếng Anh */
+    line-height: 1.18;
     color: var(--ink);
   }
 
