@@ -21,28 +21,15 @@
          LUU Y: sau khi sua/them class Tailwind trong file nay, phai chay lai "npm run build:css" -->
     <link rel="stylesheet" href="tailwind.css">
 
-    <!-- Google Fonts: Inter (variable 300-900) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap"
+    <!-- Google Fonts: Be Vietnam Pro — bộ chữ vẽ riêng cho tiếng Việt,
+         dùng chung với trang đào tạo AI nội bộ của bệnh viện -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
         /* Cân bằng số chữ giữa các dòng, tránh rơi 1 từ xuống dòng cuối */
         .balance-text {
             text-wrap: balance;
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, #bae6fd, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-overlay {
-            background: radial-gradient(circle at center, rgba(7, 89, 133, 0.85) 0%, rgba(2, 44, 80, 0.95) 100%);
         }
 
         .animate-fade-in {
@@ -76,7 +63,11 @@
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="app-canvas text-ink antialiased">
+
+    <!-- Dải chéo 45° lấy từ ba vệt chéo trong logo bệnh viện. Cố định theo
+         khung nhìn nên nền không bao giờ bị bệt khi cuộn. -->
+    <div class="diag-bands fixed z-0"></div>
 
     <!-- Khu vực hiển thị thông báo (Toast) -->
     <div id="toast-container" class="fixed bottom-5 right-5 z-[9999] flex flex-col gap-2"></div>
@@ -84,68 +75,69 @@
     <!-- ==========================================
          1. NAVIGATION (THANH ĐIỀU HƯỚNG)
     =========================================== -->
-    <header id="navbar"
-        class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-100 transition-all duration-300">
+    <!-- ==========================================
+         1. THANH ĐIỀU HƯỚNG
+         Trong suốt khi nằm trên hero navy, chuyển sang tấm trắng
+         khi cuộn xuống hoặc khi đang ở màn hình biểu mẫu.
+    =========================================== -->
+    <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 md:h-24">
-                <!-- Logo BV & Hội nghị -->
+
+                <!-- Logo bệnh viện & tên hội nghị -->
                 <div class="flex items-center gap-3 cursor-pointer group" onclick="showView('home')">
-                    <div
-                        class="bg-white p-1 rounded-xl shadow-sm border border-slate-100 group-hover:shadow-md transition-shadow shrink-0">
+                    <div class="bg-white p-1 rounded-field shadow-tile shrink-0">
                         <img src="logo_bvhv.jpg" alt="Logo BVĐK Hùng Vương" width="177" height="192"
-                            decoding="async" class="w-10 h-10 md:w-12 md:h-12 object-contain rounded-lg">
+                            decoding="async" class="w-10 h-10 md:w-11 md:h-11 object-contain rounded-[6px]">
                     </div>
-                    <div class="flex flex-col border-l border-slate-200 pl-3">
-                        <span
-                            class="font-black text-xs md:text-sm text-sky-600 uppercase tracking-widest leading-none">Bệnh
-                            viện đa khoa Hùng Vương</span>
-                        <h2 class="font-bold text-sm md:text-lg text-slate-800 leading-tight mt-1">Hội nghị Khoa học
-                            Điều dưỡng - Kỹ thuật y</h2>
-                        <span class="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-tighter">Lần thứ
-                            II - 2026</span>
+                    <div class="flex flex-col">
+                        <span class="nav-ink-2 text-[10px] md:text-[11px] font-semibold tracking-wide leading-none">Bệnh
+                            viện Đa khoa Hùng Vương</span>
+                        <h2 class="nav-ink font-extrabold text-[13px] md:text-[15px] tracking-[-0.02em] leading-tight mt-1">
+                            Hội nghị Khoa học Điều dưỡng – Kỹ thuật y</h2>
+                        <span class="nav-ink-2 text-[10px] md:text-[11px] font-semibold tracking-wide mt-0.5">Lần thứ II
+                            · 2026</span>
                     </div>
                 </div>
 
-                <!-- Desktop Menu -->
-                <nav
-                    class="hidden lg:flex items-center gap-10 font-bold text-sm text-slate-600 uppercase tracking-wide">
+                <!-- Menu máy tính -->
+                <nav class="hidden lg:flex items-center gap-8 font-semibold text-[13.5px]">
                     <a href="javascript:void(0)" onclick="showView('home', 'about')"
-                        class="hover:text-sky-600 transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-sky-600 hover:after:w-full after:transition-all">Giới
-                        thiệu</a>
+                        class="nav-link">Giới thiệu</a>
                     <a href="javascript:void(0)" onclick="showView('home', 'program')"
-                        class="hover:text-sky-600 transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-sky-600 hover:after:w-full after:transition-all">Chương
-                        trình</a>
+                        class="nav-link">Chương trình</a>
                     <a href="javascript:void(0)" onclick="showView('home', 'registration')"
-                        class="hover:text-sky-600 transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-sky-600 hover:after:w-full after:transition-all">Đăng
-                        ký</a>
+                        class="nav-link">Đăng ký</a>
                     <a href="javascript:void(0)" onclick="showView('home', 'contact')"
-                        class="hover:text-sky-600 transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-sky-600 hover:after:w-full after:transition-all">Liên
-                        hệ</a>
+                        class="nav-link">Liên hệ</a>
+                    <button onclick="showView('cme-form')"
+                        class="btn-primary px-5 py-2.5 text-[13.5px]">Đăng ký tham dự</button>
                 </nav>
 
-                <!-- Mobile Menu Button -->
+                <!-- Nút menu điện thoại -->
                 <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-800 p-2 focus:outline-none bg-slate-100 rounded-lg">
-                        <i class="fas fa-bars text-2xl"></i>
+                    <button id="mobile-menu-btn" aria-label="Mở menu"
+                        class="nav-ink p-2.5 rounded-field border border-current/20">
+                        <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu Panel -->
+        <!-- Bảng menu điện thoại -->
         <div id="mobile-menu"
-            class="hidden lg:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full animate-fade-in">
-            <div class="px-6 py-4 space-y-1">
+            class="hidden lg:hidden surface rounded-none border-t border-line-soft absolute w-full animate-fade-in">
+            <div class="px-6 py-3">
                 <a href="javascript:void(0)" onclick="showView('home', 'about')"
-                    class="block py-4 text-base font-bold text-slate-700 border-b border-slate-50 uppercase">Giới
-                    thiệu</a>
+                    class="block py-3.5 text-[15px] font-bold text-ink-2 border-b border-line-soft">Giới thiệu</a>
                 <a href="javascript:void(0)" onclick="showView('home', 'program')"
-                    class="block py-4 text-base font-bold text-slate-700 border-b border-slate-50 uppercase">Chương
-                    trình</a>
+                    class="block py-3.5 text-[15px] font-bold text-ink-2 border-b border-line-soft">Chương trình</a>
                 <a href="javascript:void(0)" onclick="showView('home', 'registration')"
-                    class="block py-4 text-base font-bold text-sky-600 border-b border-slate-50 uppercase">Đăng ký</a>
+                    class="block py-3.5 text-[15px] font-bold text-ink-2 border-b border-line-soft">Đăng ký</a>
                 <a href="javascript:void(0)" onclick="showView('home', 'contact')"
-                    class="block py-4 text-base font-bold text-slate-700 uppercase">Liên hệ</a>
+                    class="block py-3.5 text-[15px] font-bold text-ink-2">Liên hệ</a>
+                <button onclick="showView('cme-form')" class="btn-primary w-full py-3.5 my-4 text-[15px]">Đăng ký tham
+                    dự</button>
             </div>
         </div>
     </header>
@@ -153,581 +145,600 @@
     <!-- ==========================================
          VIEW 1: TRANG CHỦ (LANDING PAGE)
     =========================================== -->
-    <main id="home-view" class="animate-fade-in pt-20 md:pt-24">
+    <main id="home-view" class="animate-fade-in relative z-10">
 
-        <!-- 2. HERO BANNER -->
-        <section
-            class="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center text-center overflow-hidden pt-10">
-            <!-- Background Image Placeholder -->
-            <div class="absolute inset-0 z-0 bg-slate-800">
-                <picture>
-                    <source srcset="hungvuong1.webp" type="image/webp">
-                    <img src="hungvuong1.jpg" width="1280" height="720" fetchpriority="high" decoding="async"
-                        class="w-full h-full object-cover object-center opacity-40 transition-transform duration-700"
-                        alt="Bệnh viện Đa khoa Hùng Vương" onerror="this.style.display='none'" />
-                </picture>
-            </div>
-            <!-- Overlay -->
-            <div class="absolute inset-0 z-10 hero-overlay"></div>
+        <!-- ==========================================
+             2. HERO — nền navy sâu, quầng sáng lệch tâm, dải chéo 45°.
+             Ảnh bệnh viện đặt trong khung khối thoi lấy từ hình logo.
+        =========================================== -->
+        <section class="relative isolate overflow-hidden text-white surface-navy">
+            <div class="diag-bands diag-bands-dark"></div>
 
-            <!-- Content -->
-            <div class="container mx-auto px-4 relative z-20">
-                <div class="max-w-4xl mx-auto">
-                    <div
-                        class="inline-flex items-center gap-2 bg-sky-400/20 backdrop-blur-md px-5 py-2 rounded-full text-xs md:text-sm font-bold text-sky-200 mb-6 md:mb-8 border border-white/20 tracking-widest uppercase shadow-sm">
-                        Sự kiện y khoa nổi bật 2026
-                    </div>
-
-                    <h1
-                        class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 md:mb-8 leading-tight md:leading-[1.1] tracking-tighter">
-                        Hội nghị Khoa học <br>
-                        <span class="text-gradient">Điều dưỡng - Kỹ thuật y</span> <br>
-                        lần thứ 2
-                    </h1>
-
-                    <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-10 text-white/90">
-                        <div
-                            class="flex items-center gap-2 bg-white/10 px-4 py-2.5 rounded-xl backdrop-blur-sm border border-white/10 shadow-inner">
-                            <i class="far fa-calendar-check text-sky-400"></i>
-                            <span class="font-bold text-sm md:text-base">Thứ 7 - 12 / 09 / 2026</span>
-                        </div>
-                        <div
-                            class="flex items-center gap-2 bg-white/10 px-4 py-2.5 rounded-xl backdrop-blur-sm border border-white/10 shadow-inner">
-                            <i class="fas fa-map-marker-alt text-red-400"></i>
-                            <span class="font-bold text-sm md:text-base">Bệnh viện Đa khoa Hùng Vương</span>
-                        </div>
-                    </div>
-
-                    <!-- Đếm ngược tới ngày khai mạc -->
-                    <div id="countdown" class="mb-10">
-                        <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-sky-200/70 mb-4">
-                            Khai mạc sau</p>
-                        <div class="flex justify-center gap-3 md:gap-4">
-                            <div
-                                class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[92px]">
-                                <span id="cd-days"
-                                    class="block text-2xl md:text-4xl font-black text-white tabular-nums leading-none">--</span>
-                                <span
-                                    class="block text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-sky-200/70 mt-2">Ngày</span>
-                            </div>
-                            <div
-                                class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[92px]">
-                                <span id="cd-hours"
-                                    class="block text-2xl md:text-4xl font-black text-white tabular-nums leading-none">--</span>
-                                <span
-                                    class="block text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-sky-200/70 mt-2">Giờ</span>
-                            </div>
-                            <div
-                                class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[92px]">
-                                <span id="cd-mins"
-                                    class="block text-2xl md:text-4xl font-black text-white tabular-nums leading-none">--</span>
-                                <span
-                                    class="block text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-sky-200/70 mt-2">Phút</span>
-                            </div>
-                            <div
-                                class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[92px]">
-                                <span id="cd-secs"
-                                    class="block text-2xl md:text-4xl font-black text-sky-300 tabular-nums leading-none">--</span>
-                                <span
-                                    class="block text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-sky-200/70 mt-2">Giây</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="showView('cme-form')"
-                            class="px-8 py-4 bg-white text-sky-900 rounded-full font-black text-base md:text-lg hover:bg-sky-50 transition shadow-2xl hover:-translate-y-1 transform duration-300 flex items-center justify-center gap-2">
-                            <span>Đăng ký tham dự</span>
-                            <i class="fas fa-arrow-right text-xs opacity-50"></i>
-                        </button>
-                        <button onclick="showView('report-form')"
-                            class="px-8 py-4 border-2 border-white/30 text-white rounded-full font-bold text-base md:text-lg hover:bg-white/10 hover:border-white transition-all flex items-center justify-center gap-2">
-                            <i class="fas fa-file-upload"></i>
-                            <span>Gửi bài báo cáo</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Wave Bottom -->
-            <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
-                <svg class="relative block w-full h-[60px] md:h-[100px]" viewBox="0 0 1200 120"
-                    preserveAspectRatio="none">
-                    <path
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C-1,95.8,11.5,88.4,26.8,81.4,124.6,35.1,208.6,77.3,321.39,56.44Z"
-                        fill="#f8fafc"></path>
-                </svg>
-            </div>
-        </section>
-
-        <!-- 3. GIỚI THIỆU -->
-        <section id="about" class="py-20 bg-slate-50 relative">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="text-left">
-                        <span class="text-sky-600 font-bold uppercase text-xs tracking-widest mb-2 block">Thư ngỏ & Mục
-                            tiêu</span>
-                        <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-8 tracking-tight">Cập nhật chuyên
-                            môn & Đổi mới sáng tạo</h2>
-                        <div class="w-20 h-2 bg-sky-600 rounded-full mb-10"></div>
-                        <div class="space-y-6 text-slate-600 text-lg leading-relaxed text-justify">
-                            <p>Bệnh viện Đa khoa Hùng Vương trân trọng chào đón quý đồng nghiệp đến với <strong>Hội nghị
-                                    khoa học Điều dưỡng, Hộ sinh, Kỹ thuật y lần thứ II</strong>. Hướng tới kỷ niệm 16
-                                năm thành lập, sự kiện tự hào là điểm hẹn học thuật uy tín, nơi quy tụ các chuyên gia y
-                                tế hàng đầu trên toàn quốc.</p>
-                            <p
-                                class="font-medium text-slate-800 border-l-4 border-sky-600 pl-6 bg-white py-6 shadow-sm rounded-r-2xl">
-                                Với chủ đề <strong>"Công nghệ dẫn bước – Y đức dẫn đường"</strong> hội nghị năm nay tập
-                                trung vào những đột phá trong thực hành lâm sàng, từ việc ứng dụng chuyển đổi số và trí
-                                tuệ nhân tạo (AI) đến chuẩn hóa quy trình, tất cả nhằm hướng tới mục tiêu cung cấp dịch
-                                vụ chăm sóc người bệnh an toàn, toàn diện và nhân văn.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="relative group">
-                        <div
-                            class="absolute -inset-4 bg-sky-200/50 rounded-[2rem] blur-2xl group-hover:bg-sky-300/50 transition-all duration-500">
-                        </div>
-                        <picture>
-                            <source srcset="hungvuong1.webp" type="image/webp">
-                            <img src="hungvuong1.jpg" alt="Bệnh viện Đa khoa Hùng Vương" width="1280" height="720"
-                                loading="lazy" decoding="async"
-                                class="rounded-[2rem] shadow-2xl w-full h-auto object-cover relative z-10 border-8 border-white aspect-video"
-                                onerror="this.style.display='none'" />
-                        </picture>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. CHỦ ĐỀ & LĨNH VỰC CHUYÊN MÔN -->
-        <section id="topics" class="py-24 bg-white relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1/2 bg-slate-50 z-0"></div>
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16">
-                    <span class="text-sky-600 font-bold uppercase text-xs tracking-widest mb-2 block">Nội dung trọng
-                        tâm</span>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">Chủ
-                        Đề & Lĩnh Vực Chuyên Môn</h2>
-                    <div class="w-24 h-1.5 bg-sky-600 mx-auto mt-6 rounded-full"></div>
-                </div>
+                <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 lg:gap-14 items-center pt-28 md:pt-36 pb-12">
 
-                <!-- 4 Khối Card -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    <!-- Card 1: Điều dưỡng -->
-                    <div
-                        class="bg-purple-50 rounded-[2rem] p-8 border border-purple-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
-                        <div
-                            class="absolute top-0 right-0 w-40 h-40 bg-purple-200 rounded-full blur-3xl -mr-10 -mt-10 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <div>
+                        <span
+                            class="inline-flex items-center gap-2.5 rounded-full pl-3 pr-4 py-1.5 text-[12.5px] font-bold text-gold-light bg-gradient-to-b from-white/16 to-white/[0.06] border border-gold/45">
+                            <i class="dia dia-gold"></i>Lần thứ II · 2026
+                        </span>
+
+                        <h1 class="mt-5 text-[34px] sm:text-5xl lg:text-[58px] font-extrabold tracking-[-0.038em] leading-[1.04]">
+                            Hội nghị Khoa học
+                            <span class="block text-grad-light">Điều dưỡng – Kỹ thuật y</span>
+                        </h1>
+
+                        <p class="mt-5 inline-flex items-center gap-3 text-[16px] md:text-[17px] font-medium text-white/80">
+                            <i class="dia dia-light"></i>Công nghệ dẫn bước · Y đức dẫn đường
+                        </p>
+
+                        <div class="mt-7 flex flex-wrap gap-2.5">
+                            <span
+                                class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-field text-[13.5px] font-semibold bg-gradient-to-b from-white/14 to-white/[0.05] border border-white/[0.16]">
+                                <i class="dia dia-light"></i>Thứ bảy · 12 / 09 / 2026
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-field text-[13.5px] font-semibold bg-gradient-to-b from-white/14 to-white/[0.05] border border-white/[0.16]">
+                                <i class="dia dia-light"></i>BVĐK Hùng Vương, Phú Thọ
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-field text-[13.5px] font-semibold bg-gradient-to-b from-white/14 to-white/[0.05] border border-white/[0.16]">
+                                <i class="dia dia-gold"></i>Cấp chứng nhận CME
+                            </span>
                         </div>
-                        <div
-                            class="w-16 h-16 bg-purple-600 text-white rounded-2xl flex items-center justify-center text-3xl mb-8 relative z-10 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fas fa-user-nurse"></i>
+
+                        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                            <button onclick="showView('cme-form')"
+                                class="btn-primary px-7 py-4 text-[15px] flex items-center justify-center gap-2.5 group">
+                                Đăng ký tham dự
+                                <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <button onclick="showView('report-form')"
+                                class="btn-on-dark px-6 py-4 text-[15px] flex items-center justify-center gap-2.5">
+                                <i class="fas fa-file-upload text-sm"></i> Gửi bài báo cáo
+                            </button>
                         </div>
-                        <h3 class="text-2xl font-black text-purple-900 mb-6 uppercase tracking-tight relative z-10">Điều
-                            Dưỡng & Hộ Sinh</h3>
-                        <ul class="space-y-4 text-slate-700 text-sm md:text-base font-medium relative z-10">
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-purple-500 mt-1 shrink-0"></i> <span>Cập nhật các
-                                    kết quả nghiên cứu về chăm sóc và an toàn người bệnh.</span></li>
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-purple-500 mt-1 shrink-0"></i> <span>Chia sẻ kinh
-                                    nghiệm thực tiễn: Kiểm soát nhiễm khuẩn, dinh dưỡng lâm sàng.</span></li>
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-purple-500 mt-1 shrink-0"></i> <span>Thúc đẩy ứng
-                                    dụng chuyển đổi số, tối ưu hóa công tác quản lý và đào tạo.</span></li>
-                        </ul>
                     </div>
 
-                    <!-- Card 2: Hình ảnh -->
-                    <div
-                        class="bg-amber-50 rounded-[2rem] p-8 border border-amber-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
-                        <div
-                            class="absolute top-0 right-0 w-40 h-40 bg-amber-200 rounded-full blur-3xl -mr-10 -mt-10 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <!-- Ảnh trong khung khối thoi 45° -->
+                    <div class="plate max-w-[250px] sm:max-w-[340px] lg:max-w-[380px] mx-auto w-full">
+                        <div class="plate-ring"></div>
+                        <div class="plate-win">
+                            <picture>
+                                <source srcset="hungvuong1.webp" type="image/webp">
+                                <img src="hungvuong1.jpg" width="1280" height="720" fetchpriority="high"
+                                    decoding="async" alt="Bệnh viện Đa khoa Hùng Vương"
+                                    onerror="this.style.display='none'">
+                            </picture>
                         </div>
-                        <div
-                            class="w-16 h-16 bg-amber-500 text-white rounded-2xl flex items-center justify-center text-3xl mb-8 relative z-10 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fas fa-x-ray"></i>
-                        </div>
-                        <h3 class="text-2xl font-black text-amber-900 mb-6 uppercase tracking-tight relative z-10">Kỹ
-                            thuật Hình ảnh</h3>
-                        <ul class="space-y-4 text-slate-700 text-sm md:text-base font-medium relative z-10">
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-amber-500 mt-1 shrink-0"></i> <span>Cập nhật kiến
-                                    thức và công nghệ chuyên sâu: MRI, CT, X-Quang, X-Quang can thiệp.</span></li>
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-amber-500 mt-1 shrink-0"></i> <span>Thúc đẩy ứng
-                                    dụng chuyển đổi số và tối ưu hóa quản lý kỹ thuật hình ảnh.</span></li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 3: Xét nghiệm -->
-                    <div
-                        class="bg-emerald-50 rounded-[2rem] p-8 border border-emerald-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
-                        <div
-                            class="absolute top-0 right-0 w-40 h-40 bg-emerald-200 rounded-full blur-3xl -mr-10 -mt-10 opacity-60 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div
-                            class="w-16 h-16 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-3xl mb-8 relative z-10 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fas fa-vials"></i>
-                        </div>
-                        <h3 class="text-2xl font-black text-emerald-900 mb-6 uppercase tracking-tight relative z-10">Kỹ
-                            thuật Xét nghiệm</h3>
-                        <ul class="space-y-4 text-slate-700 text-sm md:text-base font-medium relative z-10">
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i> <span>Cập nhật các
-                                    phương pháp, kỹ thuật phân tích và xét nghiệm hiện đại.</span></li>
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i> <span>Nâng cao năng
-                                    lực quản lý chất lượng phòng xét nghiệm và an toàn sinh học.</span></li>
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i> <span>Ứng dụng công
-                                    nghệ số và tự động hóa trong chẩn đoán cận lâm sàng.</span></li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 4: Điều dưỡng trong nội soi tiêu hóa can thiệp -->
-                    <div
-                        class="bg-rose-50 rounded-[2rem] p-8 border border-rose-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
-                        <div
-                            class="absolute top-0 right-0 w-40 h-40 bg-rose-200 rounded-full blur-3xl -mr-10 -mt-10 opacity-60 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div
-                            class="w-16 h-16 bg-rose-500 text-white rounded-2xl flex items-center justify-center text-3xl mb-8 relative z-10 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fas fa-stethoscope"></i>
-                        </div>
-                        <h3 class="text-2xl font-black text-rose-900 mb-6 uppercase tracking-tight relative z-10">Điều
-                            dưỡng trong Nội soi Tiêu hóa can thiệp</h3>
-                        <ul class="space-y-4 text-slate-700 text-sm md:text-base font-medium relative z-10">
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-rose-500 mt-1 shrink-0"></i> <span>Chuẩn bị người
-                                    bệnh, dụng cụ và phụ giúp trong các thủ thuật nội soi can thiệp.</span></li>
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-rose-500 mt-1 shrink-0"></i> <span>Theo dõi, chăm sóc
-                                    và xử trí biến chứng trước - trong - sau nội soi.</span></li>
-                            <li class="flex items-start gap-3"><i
-                                    class="fas fa-check-circle text-rose-500 mt-1 shrink-0"></i> <span>Kiểm soát nhiễm
-                                    khuẩn, khử khuẩn dụng cụ và an toàn người bệnh trong đơn vị nội soi.</span></li>
-                        </ul>
+                        <i class="plate-cnr" style="top:2%;left:50%;margin-left:-5px"></i>
+                        <i class="plate-cnr" style="bottom:2%;left:50%;margin-left:-5px"></i>
+                        <i class="plate-cnr" style="left:2%;top:50%;margin-top:-5px"></i>
+                        <i class="plate-cnr" style="right:2%;top:50%;margin-top:-5px"></i>
                     </div>
                 </div>
+            </div>
 
-                <!-- Trục thời gian (Timeline) -->
-                <div class="mt-28 max-w-5xl mx-auto">
-                    <h3 class="text-2xl font-black text-slate-900 mb-16 uppercase tracking-tight text-center">Các Mốc
-                        Thời Gian Quan Trọng</h3>
+            <!-- Đếm ngược — dải ngang bám đáy hero, viên thoi làm dấu ngăn -->
+            <div id="countdown"
+                class="relative z-10 border-t border-white/[0.12] bg-gradient-to-b from-brand-navy-night/0 to-brand-navy-night/60 pb-16">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-3 py-4">
+                        <span class="text-[11.5px] font-extrabold uppercase tracking-[0.14em] text-gold-light mr-3">Khai
+                            mạc sau</span>
 
-                    <div class="relative px-4 md:px-0">
-                        <!-- Đường kẻ dọc -->
-                        <div
-                            class="absolute left-7 md:left-1/2 top-0 bottom-0 w-1 bg-slate-200 transform md:-translate-x-1/2 rounded-full">
+                        <div class="text-center min-w-[62px] md:min-w-[74px]">
+                            <span id="cd-days"
+                                class="block text-2xl md:text-3xl font-extrabold tracking-[-0.04em] leading-none tabular-nums">--</span>
+                            <span
+                                class="block text-[9.5px] font-bold uppercase tracking-[0.14em] text-white/55 mt-1.5">Ngày</span>
                         </div>
-
-                        <!-- Mốc 1 -->
-                        <div
-                            class="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12 group">
-                            <div
-                                class="w-full md:w-5/12 pl-16 md:pl-0 md:pr-12 md:text-right order-2 md:order-1 mt-2 md:mt-0">
-                                <h4 class="text-lg md:text-xl font-black text-slate-800">Hạn chót đăng ký báo cáo</h4>
-                                <p class="text-sm text-slate-500 mt-1 font-medium">Đăng ký tên bài & nộp tóm tắt
-                                    (Abstract)</p>
-                            </div>
-                            <div
-                                class="absolute left-7 md:left-1/2 w-6 h-6 bg-sky-500 border-4 border-white rounded-full transform -translate-x-1/2 group-hover:scale-150 group-hover:bg-sky-600 transition-all z-10 shadow-lg order-1 md:order-2 mt-2 md:mt-0">
-                            </div>
-                            <div class="w-full md:w-5/12 pl-16 md:pl-12 order-3 md:order-3">
-                                <div
-                                    class="inline-block bg-sky-100 text-sky-700 font-black px-5 py-2.5 rounded-xl text-sm md:text-base shadow-sm tracking-wider">
-                                    20 / 07 / 2026</div>
-                            </div>
+                        <i class="dia dia-light"></i>
+                        <div class="text-center min-w-[62px] md:min-w-[74px]">
+                            <span id="cd-hours"
+                                class="block text-2xl md:text-3xl font-extrabold tracking-[-0.04em] leading-none tabular-nums">--</span>
+                            <span
+                                class="block text-[9.5px] font-bold uppercase tracking-[0.14em] text-white/55 mt-1.5">Giờ</span>
                         </div>
-
-                        <!-- Mốc 2 -->
-                        <div
-                            class="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12 group">
-                            <div
-                                class="w-full md:w-5/12 pl-16 md:pl-0 md:pr-12 md:text-right order-2 md:order-1 mt-2 md:mt-0">
-                                <div
-                                    class="inline-block bg-amber-100 text-amber-700 font-black px-5 py-2.5 rounded-xl text-sm md:text-base shadow-sm tracking-wider md:float-right">
-                                    30 / 07 / 2026</div>
-                            </div>
-                            <div
-                                class="absolute left-7 md:left-1/2 w-6 h-6 bg-amber-500 border-4 border-white rounded-full transform -translate-x-1/2 group-hover:scale-150 group-hover:bg-amber-600 transition-all z-10 shadow-lg order-1 md:order-2 mt-2 md:mt-0">
-                            </div>
-                            <div class="w-full md:w-5/12 pl-16 md:pl-12 order-3 md:order-3 mt-2 md:mt-0 text-left">
-                                <h4 class="text-lg md:text-xl font-black text-slate-800">Thông báo kết quả duyệt bài
-                                </h4>
-                                <p class="text-sm text-slate-500 mt-1 font-medium">Danh sách các bài được chọn để trình
-                                    bày tại Hội nghị</p>
-                            </div>
+                        <i class="dia dia-light"></i>
+                        <div class="text-center min-w-[62px] md:min-w-[74px]">
+                            <span id="cd-mins"
+                                class="block text-2xl md:text-3xl font-extrabold tracking-[-0.04em] leading-none tabular-nums">--</span>
+                            <span
+                                class="block text-[9.5px] font-bold uppercase tracking-[0.14em] text-white/55 mt-1.5">Phút</span>
                         </div>
-
-                        <!-- Mốc 3 -->
-                        <div
-                            class="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12 group">
-                            <div
-                                class="w-full md:w-5/12 pl-16 md:pl-0 md:pr-12 md:text-right order-2 md:order-1 mt-2 md:mt-0">
-                                <h4 class="text-lg md:text-xl font-black text-slate-800">Hạn chót nộp File trình chiếu
-                                </h4>
-                                <p class="text-sm text-slate-500 mt-1 font-medium">Nộp slide PowerPoint báo cáo hoàn
-                                    chỉnh</p>
-                            </div>
-                            <div
-                                class="absolute left-7 md:left-1/2 w-6 h-6 bg-purple-500 border-4 border-white rounded-full transform -translate-x-1/2 group-hover:scale-150 group-hover:bg-purple-600 transition-all z-10 shadow-lg order-1 md:order-2 mt-2 md:mt-0">
-                            </div>
-                            <div class="w-full md:w-5/12 pl-16 md:pl-12 order-3 md:order-3">
-                                <div
-                                    class="inline-block bg-purple-100 text-purple-700 font-black px-5 py-2.5 rounded-xl text-sm md:text-base shadow-sm tracking-wider">
-                                    15 / 08 / 2026</div>
-                            </div>
+                        <i class="dia dia-light"></i>
+                        <div class="text-center min-w-[62px] md:min-w-[74px]">
+                            <span id="cd-secs"
+                                class="block text-2xl md:text-3xl font-extrabold tracking-[-0.04em] leading-none tabular-nums text-brand-sky-light">--</span>
+                            <span
+                                class="block text-[9.5px] font-bold uppercase tracking-[0.14em] text-white/55 mt-1.5">Giây</span>
                         </div>
-
-                        <!-- Mốc 4 -->
-                        <div
-                            class="relative flex flex-col md:flex-row items-start md:items-center justify-between group">
-                            <div
-                                class="w-full md:w-5/12 pl-16 md:pl-0 md:pr-12 md:text-right order-2 md:order-1 mt-2 md:mt-0">
-                                <div
-                                    class="inline-block bg-emerald-100 text-emerald-700 font-black px-5 py-2.5 rounded-xl text-sm md:text-base shadow-sm tracking-wider md:float-right">
-                                    30 / 08 / 2026</div>
-                            </div>
-                            <div
-                                class="absolute left-7 md:left-1/2 w-8 h-8 bg-emerald-500 border-4 border-white rounded-full transform -translate-x-1/2 group-hover:scale-125 group-hover:bg-emerald-600 transition-all z-10 shadow-lg order-1 md:order-2 mt-1 md:mt-0 flex items-center justify-center text-white">
-                                <i class="fas fa-flag-checkered text-[10px]"></i>
-                            </div>
-                            <div class="w-full md:w-5/12 pl-16 md:pl-12 order-3 md:order-3 mt-2 md:mt-0 text-left">
-                                <h4 class="text-lg md:text-xl font-black text-slate-800">Đóng cổng Đăng ký tham dự</h4>
-                                <p class="text-sm text-slate-500 mt-1 font-medium">Chốt danh sách đại biểu tham dự và
-                                    nhận CME</p>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. CHƯƠNG TRÌNH KHOA HỌC -->
-        <section id="program" class="py-20 bg-slate-50">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tight">Chương Trình Khoa Học</h2>
-                <p class="text-slate-600 font-bold text-sm md:text-base">Thứ 7, ngày 12 / 09 / 2026 &mdash; Bệnh viện đa
-                    khoa Hùng Vương</p>
-                <p class="text-slate-400 text-xs md:text-sm italic mt-1 mb-8">Chương trình có thể thay đổi, Ban tổ chức
-                    sẽ cập nhật khi có điều chỉnh.</p>
+        <!-- ==========================================
+             3. DẢI SỐ LIỆU — nổi đè lên chân hero để tạo chiều sâu
+        =========================================== -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+            <div class="surface shadow-pop -mt-14 grid grid-cols-1 sm:grid-cols-3 overflow-hidden">
+                <div class="p-6 sm:p-7 border-b sm:border-b-0 sm:border-r border-line-soft">
+                    <div class="text-[34px] font-extrabold tracking-[-0.045em] leading-none tabular-nums text-grad">04
+                        <span class="text-[17px] font-bold">phiên</span>
+                    </div>
+                    <p class="mt-2.5 text-[13px] leading-snug text-ink-3">chuyên đề chạy song song trong buổi chiều
+                        12/09</p>
+                </div>
+                <div class="p-6 sm:p-7 border-b sm:border-b-0 sm:border-r border-line-soft">
+                    <div class="text-[34px] font-extrabold tracking-[-0.045em] leading-none tabular-nums text-grad">05
+                        <span class="text-[17px] font-bold">chuyên ngành</span>
+                    </div>
+                    <p class="mt-2.5 text-[13px] leading-snug text-ink-3">điều dưỡng, hộ sinh, hình ảnh, xét nghiệm và
+                        nội soi</p>
+                </div>
+                <div class="p-6 sm:p-7">
+                    <div class="text-[34px] font-extrabold tracking-[-0.045em] leading-none tabular-nums text-grad">01
+                        <span class="text-[17px] font-bold">ngày</span>
+                    </div>
+                    <p class="mt-2.5 text-[13px] leading-snug text-ink-3">trọn vẹn từ 7h00 đến khi bế mạc và trao giải
+                    </p>
+                </div>
+            </div>
+        </div>
 
-                <!-- BỘ LỌC CHUYÊN ĐỀ (mỗi lần chỉ hiển thị 1 phiên) -->
-                <div class="flex flex-wrap justify-center items-center gap-4 mb-10">
+        <!-- ==========================================
+             4. THƯ NGỎ — chữ lớn bên trái, khối trích dẫn navy bên phải
+        =========================================== -->
+        <section id="about" class="py-20 md:py-24 relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+                    <div>
+                        <div class="sec-tag"><i class="dia"></i>Thư ngỏ &amp; Mục tiêu</div>
+                        <h2 class="sec-title text-3xl md:text-[42px] mt-3.5">Cập nhật chuyên môn
+                            <span class="text-grad">&amp; đổi mới sáng tạo</span>
+                        </h2>
+                        <div class="mt-6 space-y-5 text-[15.5px] md:text-base leading-relaxed text-ink-3">
+                            <p>Bệnh viện Đa khoa Hùng Vương trân trọng chào đón quý đồng nghiệp đến với <strong
+                                    class="text-ink-2 font-semibold">Hội nghị khoa học Điều dưỡng, Hộ sinh, Kỹ thuật y
+                                    lần thứ II</strong>. Hướng tới kỷ niệm 16 năm thành lập, sự kiện tự hào là điểm hẹn
+                                học thuật uy tín, nơi quy tụ các chuyên gia y tế hàng đầu trên toàn quốc.</p>
+                        </div>
+
+                        <div class="mt-7 flex flex-col sm:flex-row gap-3">
+                            <button onclick="showView('home','program')"
+                                class="btn-secondary px-6 py-3.5 text-[14.5px] flex items-center justify-center gap-2.5">
+                                <i class="far fa-calendar-check text-sm"></i> Xem chương trình
+                            </button>
+                            <button onclick="showView('report-form')"
+                                class="btn-secondary px-6 py-3.5 text-[14.5px] flex items-center justify-center gap-2.5">
+                                <i class="fas fa-file-upload text-sm"></i> Gửi bài báo cáo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Khối chủ đề — tấm navy cắt góc, tương phản với cột chữ bên trái -->
+                    <div class="surface-navy cut-corner rounded-shell shadow-pop relative overflow-hidden text-white p-8 md:p-10">
+                        <div class="diag-bands diag-bands-dark"></div>
+                        <div class="relative">
+                            <div class="sec-tag !text-brand-sky-light"><i class="dia dia-gold"></i>Chủ đề hội nghị</div>
+                            <p class="mt-4 text-[22px] md:text-[26px] font-extrabold tracking-[-0.03em] leading-snug">
+                                “Công nghệ dẫn bước<br>– Y đức dẫn đường”</p>
+                            <p class="mt-5 text-[14.5px] leading-relaxed text-white/75">Hội nghị năm nay tập trung vào
+                                những đột phá trong thực hành lâm sàng: từ ứng dụng chuyển đổi số và trí tuệ nhân tạo
+                                đến chuẩn hoá quy trình, tất cả hướng tới dịch vụ chăm sóc người bệnh an toàn, toàn diện
+                                và nhân văn.</p>
+
+                            <div class="mt-7 pt-6 border-t border-white/[0.16] grid grid-cols-2 gap-5">
+                                <div>
+                                    <p class="text-[10.5px] font-bold uppercase tracking-[0.14em] text-white/50">Thời
+                                        gian</p>
+                                    <p class="mt-1.5 text-[15px] font-extrabold tracking-[-0.02em]">Thứ 7, 12/09/2026
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="text-[10.5px] font-bold uppercase tracking-[0.14em] text-white/50">Địa
+                                        điểm</p>
+                                    <p class="mt-1.5 text-[15px] font-extrabold tracking-[-0.02em]">Hội trường tầng 3
+                                        nhà T</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             5. BỐN CHUYÊN NGÀNH — dải màu xanh đậm dần, thẻ lệch bậc thang.
+             Bậc màu lv1→lv4 kế thừa cách phân cấp của trang AI-edu nội bộ.
+        =========================================== -->
+        <section id="topics" class="py-20 md:py-24 relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="flex flex-wrap items-end justify-between gap-6">
+                    <div>
+                        <div class="sec-tag"><i class="dia"></i>Chiều 12/09 · bốn phòng cùng lúc</div>
+                        <h2 class="sec-title text-3xl md:text-[38px] mt-3.5">Chủ đề &amp; lĩnh vực chuyên môn</h2>
+                        <p class="mt-3.5 text-[15px] leading-relaxed text-ink-3 max-w-[56ch]">Đại biểu chọn một phiên
+                            để theo trọn buổi, hoặc di chuyển giữa các phòng. Hạn đăng ký tên bài và nộp tóm tắt là
+                            20/07/2026.</p>
+                    </div>
+                    <button onclick="showView('home','program')"
+                        class="btn-primary px-6 py-3.5 text-[14px] flex items-center gap-2.5">
+                        Xem chi tiết chương trình <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <div class="mt-9 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 items-start">
+
+                    <!-- Điều dưỡng & Hộ sinh -->
                     <div
-                        class="flex flex-wrap justify-center bg-white p-2 rounded-3xl shadow border border-slate-200 max-w-5xl mx-auto gap-1">
+                        class="surface-tile cut-corner relative overflow-hidden p-6 pl-7 xl:mt-0 hover:-translate-y-1 hover:shadow-card transition-all duration-200">
+                        <span
+                            class="absolute left-0 top-0 bottom-0 w-[5px] bg-gradient-to-b from-brand-sky-light to-brand-sky"></span>
+                        <div class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-ink-4">Phiên A · Hội
+                            trường tầng 3</div>
+                        <h3 class="mt-2.5 text-[18px] font-extrabold tracking-[-0.022em] leading-tight">Điều dưỡng &amp;
+                            Hộ sinh</h3>
+                        <ul class="mt-4 space-y-3 text-[13.5px] leading-relaxed text-ink-3">
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Cập nhật kết quả
+                                    nghiên cứu về chăm sóc và an toàn người bệnh.</span></li>
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Kinh nghiệm thực
+                                    tiễn: kiểm soát nhiễm khuẩn, dinh dưỡng lâm sàng.</span></li>
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Chuyển đổi số trong
+                                    quản lý và đào tạo điều dưỡng.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Kỹ thuật Hình ảnh -->
+                    <div
+                        class="surface-tile cut-corner relative overflow-hidden p-6 pl-7 xl:mt-6 hover:-translate-y-1 hover:shadow-card transition-all duration-200">
+                        <span
+                            class="absolute left-0 top-0 bottom-0 w-[5px] bg-gradient-to-b from-brand-sky to-brand-sky-deep"></span>
+                        <div class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-ink-4">Phiên B · Hình
+                            ảnh Y học</div>
+                        <h3 class="mt-2.5 text-[18px] font-extrabold tracking-[-0.022em] leading-tight">Kỹ thuật Hình
+                            ảnh</h3>
+                        <ul class="mt-4 space-y-3 text-[13.5px] leading-relaxed text-ink-3">
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Công nghệ chuyên sâu:
+                                    MRI, CT, X-Quang và X-Quang can thiệp.</span></li>
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Chuyển đổi số và tối
+                                    ưu hoá quản lý kỹ thuật hình ảnh.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Kỹ thuật Xét nghiệm -->
+                    <div
+                        class="surface-tile cut-corner relative overflow-hidden p-6 pl-7 xl:mt-12 hover:-translate-y-1 hover:shadow-card transition-all duration-200">
+                        <span
+                            class="absolute left-0 top-0 bottom-0 w-[5px] bg-gradient-to-b from-brand-steel to-brand-navy"></span>
+                        <div class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-ink-4">Phiên C · Xét
+                            nghiệm Y học</div>
+                        <h3 class="mt-2.5 text-[18px] font-extrabold tracking-[-0.022em] leading-tight">Kỹ thuật Xét
+                            nghiệm</h3>
+                        <ul class="mt-4 space-y-3 text-[13.5px] leading-relaxed text-ink-3">
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Phương pháp và kỹ
+                                    thuật phân tích, xét nghiệm hiện đại.</span></li>
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Quản lý chất lượng
+                                    phòng xét nghiệm và an toàn sinh học.</span></li>
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Tự động hoá trong
+                                    chẩn đoán cận lâm sàng.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Nội soi Tiêu hoá can thiệp -->
+                    <div
+                        class="surface-tile cut-corner relative overflow-hidden p-6 pl-7 xl:mt-[72px] hover:-translate-y-1 hover:shadow-card transition-all duration-200">
+                        <span
+                            class="absolute left-0 top-0 bottom-0 w-[5px] bg-gradient-to-b from-brand-navy to-brand-navy-deep"></span>
+                        <div class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-ink-4">Phiên D · Nội soi
+                            can thiệp</div>
+                        <h3 class="mt-2.5 text-[18px] font-extrabold tracking-[-0.022em] leading-tight">Điều dưỡng trong
+                            Nội soi Tiêu hoá</h3>
+                        <ul class="mt-4 space-y-3 text-[13.5px] leading-relaxed text-ink-3">
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Chuẩn bị người bệnh,
+                                    dụng cụ và phụ giúp thủ thuật can thiệp.</span></li>
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Theo dõi và xử trí
+                                    biến chứng trước – trong – sau nội soi.</span></li>
+                            <li class="flex items-start gap-2.5"><i class="dia mt-[5px]"></i><span>Khử khuẩn dụng cụ và
+                                    an toàn người bệnh trong đơn vị nội soi.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ── Các mốc thời gian: trục dọc, viên thoi làm mốc ── -->
+                <div class="mt-20 md:mt-24 max-w-4xl">
+                    <div class="sec-tag"><i class="dia"></i>Lịch trình chuẩn bị</div>
+                    <h2 class="sec-title text-2xl md:text-[32px] mt-3.5 mb-9">Các mốc thời gian quan trọng</h2>
+
+                    <div class="spine">
+                        <div class="pb-7 relative">
+                            <span class="spine-time">20/07</span><i class="spine-knot"></i>
+                            <h4 class="text-[16.5px] font-extrabold tracking-[-0.02em]">Hạn chót đăng ký báo cáo</h4>
+                            <p class="mt-1.5 text-[13.5px] leading-relaxed text-ink-3">Đăng ký tên bài và nộp tóm tắt
+                                (abstract) về Ban tổ chức.</p>
+                        </div>
+                        <div class="pb-7 relative">
+                            <span class="spine-time">30/07</span><i class="spine-knot"></i>
+                            <h4 class="text-[16.5px] font-extrabold tracking-[-0.02em]">Thông báo kết quả duyệt bài</h4>
+                            <p class="mt-1.5 text-[13.5px] leading-relaxed text-ink-3">Công bố danh sách các bài được
+                                chọn trình bày tại hội nghị.</p>
+                        </div>
+                        <div class="pb-7 relative">
+                            <span class="spine-time">15/08</span><i class="spine-knot"></i>
+                            <h4 class="text-[16.5px] font-extrabold tracking-[-0.02em]">Hạn chót nộp file trình chiếu
+                            </h4>
+                            <p class="mt-1.5 text-[13.5px] leading-relaxed text-ink-3">Nộp slide báo cáo hoàn chỉnh để
+                                Ban tổ chức kiểm tra kỹ thuật.</p>
+                        </div>
+                        <div class="pb-7 relative">
+                            <span class="spine-time">30/08</span><i class="spine-knot"></i>
+                            <h4 class="text-[16.5px] font-extrabold tracking-[-0.02em]">Đóng cổng đăng ký tham dự</h4>
+                            <p class="mt-1.5 text-[13.5px] leading-relaxed text-ink-3">Chốt danh sách đại biểu tham dự
+                                và nhận chứng nhận CME.</p>
+                        </div>
+                        <div class="relative">
+                            <span class="spine-time">12/09</span><i class="spine-knot spine-knot-gold"></i>
+                            <h4 class="text-[19px] font-extrabold tracking-[-0.025em]">Hội nghị diễn ra</h4>
+                            <p class="mt-1.5 text-[13.5px] leading-relaxed text-ink-3">Trọn ngày thứ Bảy tại Bệnh viện
+                                Đa khoa Hùng Vương.</p>
+                            <span
+                                class="inline-flex items-center gap-2 mt-2.5 px-3 py-1.5 rounded-[6px] text-[12.5px] font-bold text-gold-deep bg-gradient-to-b from-gold-light/30 to-gold/[0.14] border border-gold/35">
+                                <i class="dia dia-gold"></i>Bế mạc &amp; trao giải báo cáo xuất sắc
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             6. CHƯƠNG TRÌNH KHOA HỌC
+             Các khối phiên được sinh tự động từ PROGRAM_DATA ở cuối file.
+        =========================================== -->
+        <section id="program" class="py-20 md:py-24 relative border-y border-line-soft bg-gradient-to-b from-white/60 to-white/0">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto">
+                    <div class="sec-tag justify-center"><i class="dia"></i>Diễn tiến trong ngày</div>
+                    <h2 class="sec-title text-3xl md:text-[38px] mt-3.5">Chương trình khoa học</h2>
+                    <p class="mt-3.5 text-[15px] font-medium text-ink-3">Thứ 7, ngày 12 / 09 / 2026 — Bệnh viện Đa khoa
+                        Hùng Vương</p>
+                    <p class="mt-1.5 text-[13px] text-ink-4">Chương trình có thể thay đổi, Ban tổ chức sẽ cập nhật khi
+                        có điều chỉnh.</p>
+                </div>
+
+                <!-- Bộ lọc chuyên đề: mỗi lần chỉ hiển thị một phiên -->
+                <div class="flex justify-center mt-8 mb-9">
+                    <div class="surface inline-flex flex-wrap justify-center gap-1 p-1.5 max-w-4xl">
                         <button id="prog-tab-overview" onclick="switchProgTab('overview')"
-                            class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm bg-sky-600 text-white shadow-md transition-all">Tổng
+                            class="prog-tab-btn px-4 py-2.5 rounded-field font-bold text-[13px] transition-all">Tổng
                             quan</button>
                         <button id="prog-tab-nurse" onclick="switchProgTab('nurse')"
-                            class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Điều
+                            class="prog-tab-btn px-4 py-2.5 rounded-field font-bold text-[13px] transition-all">Điều
                             dưỡng</button>
                         <button id="prog-tab-imaging" onclick="switchProgTab('imaging')"
-                            class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Hình
-                            ảnh Y học</button>
+                            class="prog-tab-btn px-4 py-2.5 rounded-field font-bold text-[13px] transition-all">Hình ảnh
+                            Y học</button>
                         <button id="prog-tab-lab" onclick="switchProgTab('lab')"
-                            class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Xét
+                            class="prog-tab-btn px-4 py-2.5 rounded-field font-bold text-[13px] transition-all">Xét
                             nghiệm Y học</button>
                         <button id="prog-tab-endoscopy" onclick="switchProgTab('endoscopy')"
-                            class="prog-tab-btn px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm text-slate-500 hover:text-sky-600 transition-all">Nội
-                            soi Tiêu hóa can thiệp</button>
+                            class="prog-tab-btn px-4 py-2.5 rounded-field font-bold text-[13px] transition-all">Nội soi
+                            Tiêu hóa can thiệp</button>
                     </div>
                 </div>
 
-                <!-- CÁC KHỐI PHIÊN ĐƯỢC SINH TỰ ĐỘNG TỪ PROGRAM_DATA (xem cuối file) -->
                 <div id="prog-container" class="text-left"></div>
-
             </div>
         </section>
 
-        <!-- 6. ĐĂNG KÝ & GỬI BÀI -->
-        <section id="registration" class="py-24 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-left">
-                <div class="mb-16">
-                    <span class="text-sky-600 font-bold uppercase text-xs tracking-widest mb-2 block">Tham gia cùng
-                        chúng tôi</span>
-                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight uppercase">Thông tin Đăng
-                        ký</h2>
-                    <div class="w-20 h-2 bg-sky-600 rounded-full mt-4"></div>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-10">
-                    <!-- Card Đăng ký CME -->
-                    <div
-                        class="group bg-slate-50 p-10 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-xl flex flex-col hover:bg-sky-50 transition-all duration-300">
-                        <div
-                            class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-10 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fas fa-stamp"></i>
-                        </div>
-                        <h3 class="text-3xl font-black text-slate-900 mb-6 uppercase tracking-tight">Tham dự & Cấp CME
-                        </h3>
-                        <p class="text-slate-600 mb-10 text-lg leading-relaxed italic border-l-4 border-sky-300 pl-6">
-                            "Lệ phí CME: 200.000 VNĐ. Miễn phí tham dự đối với Chủ tọa đoàn và Báo cáo viên."</p>
-                        <button onclick="showView('cme-form')"
-                            class="mt-auto w-full bg-sky-900 text-white py-5 rounded-2xl font-black hover:bg-sky-800 transition shadow-xl uppercase tracking-widest text-sm">Đăng
-                            ký trực tiếp</button>
-                    </div>
-
-                    <!-- Card Gửi bài -->
-                    <div
-                        class="group bg-slate-900 p-10 md:p-12 rounded-[2.5rem] text-white shadow-2xl flex flex-col relative overflow-hidden transition-all duration-300 hover:scale-[1.02]">
-                        <div class="absolute -top-10 -right-10 w-48 h-48 bg-sky-500/20 rounded-full blur-3xl"></div>
-                        <div
-                            class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-10 shadow-lg group-hover:scale-110 transition-transform relative z-10">
-                            <i class="fas fa-paper-plane"></i>
-                        </div>
-                        <h3 class="text-3xl font-black mb-4 uppercase tracking-tight relative z-10">Gửi bài báo cáo</h3>
-                        <p class="text-sky-300 mb-10 italic text-lg relative z-10 font-medium">Hạn đăng ký tên bài:
-                            20/07/2026</p>
-                        <button onclick="showView('report-form')"
-                            class="mt-auto w-full bg-purple-600 text-white py-5 rounded-2xl font-black hover:bg-purple-500 transition shadow-xl uppercase tracking-widest text-sm relative z-10">Gửi
-                            bài ngay</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. ĐỊA ĐIỂM -->
-        <section id="location" class="py-24 bg-slate-50">
+        <!-- ==========================================
+             7. ĐĂNG KÝ & GỬI BÀI — hai tấm tương phản, chồng lệch
+        =========================================== -->
+        <section id="registration" class="py-20 md:py-24 relative">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div
-                    class="grid lg:grid-cols-5 gap-0 items-stretch bg-white rounded-[2rem] shadow-xl overflow-hidden border border-slate-100 max-w-6xl mx-auto">
-                    <!-- Trái: Khối thông tin -->
-                    <div
-                        class="lg:col-span-2 p-10 md:p-14 flex flex-col justify-center text-left bg-white z-10 relative">
-                        <span class="text-sky-600 font-bold uppercase text-xs tracking-widest mb-3 block">Địa điểm tổ
-                            chức</span>
-                        <h3
-                            class="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-8 leading-tight">
-                            Bệnh viện Đa khoa <br><span class="text-sky-600">Hùng Vương</span></h3>
+                <div class="sec-tag"><i class="dia"></i>Tham gia cùng chúng tôi</div>
+                <h2 class="sec-title text-3xl md:text-[38px] mt-3.5">Hai cách để có mặt</h2>
 
-                        <div class="space-y-6">
-                            <div class="flex items-start gap-4">
-                                <div class="bg-sky-50 text-sky-600 p-3.5 rounded-2xl shrink-0 border border-sky-100"><i
-                                        class="fas fa-map-marked-alt text-xl"></i></div>
-                                <div>
-                                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Địa chỉ
-                                    </p>
-                                    <p class="text-slate-800 font-bold text-base leading-snug">QL2, Xã Chí Đám, Tỉnh Phú
-                                        Thọ.</p>
-                                </div>
+                <div class="mt-9 grid lg:grid-cols-2 gap-6 items-start">
+
+                    <!-- Tấm sáng: đăng ký tham dự -->
+                    <div class="surface rounded-shell p-8 md:p-10">
+                        <h3 class="text-[22px] font-extrabold tracking-[-0.03em]">Đăng ký tham dự</h3>
+                        <div class="mt-4 text-[38px] font-extrabold tracking-[-0.045em] leading-none tabular-nums text-grad">
+                            200.000 <span class="text-[16px] font-bold text-ink-3">VNĐ · lệ phí CME</span>
+                        </div>
+                        <div class="mt-5 space-y-3">
+                            <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
+                                <i class="dia mt-[5px]"></i><span>Miễn phí tham dự với Chủ tọa đoàn và Báo cáo
+                                    viên.</span>
                             </div>
-                            <div class="flex items-start gap-4">
-                                <div class="bg-sky-50 text-sky-600 p-3.5 rounded-2xl shrink-0 border border-sky-100"><i
-                                        class="fas fa-clock text-xl"></i></div>
-                                <div>
-                                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Thời gian
-                                    </p>
-                                    <p class="text-slate-800 font-bold text-base leading-snug">Thứ 7, Ngày 12/09/2026
-                                    </p>
-                                </div>
+                            <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
+                                <i class="dia mt-[5px]"></i><span>Bao gồm tài liệu hội nghị và giấy chứng nhận
+                                    CME.</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
+                                <i class="dia mt-[5px]"></i><span>Đăng ký suất ăn trưa và tiệc tối ngay trong
+                                    phiếu.</span>
                             </div>
                         </div>
+                        <button onclick="showView('cme-form')"
+                            class="btn-primary mt-7 w-full py-4 text-[15px] flex items-center justify-center gap-2.5 group">
+                            Điền phiếu đăng ký
+                            <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
-                    <!-- Phải: Khối bản đồ -->
-                    <div class="lg:col-span-3 h-[350px] lg:h-auto min-h-[400px] lg:min-h-[450px] relative">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8719.890187063364!2d105.20596267766688!3d21.658953080152838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134a4cff21eed9f%3A0xf45dd96440b01432!2zQuG7h25oIHZp4buHbiDEkGEga2hvYSBIw7luZyBWxrDGoW5n!5e1!3m2!1svi!2s!4v1776224393720!5m2!1svi!2s"
-                            class="absolute inset-0 w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+
+                    <!-- Tấm navy: gửi bài báo cáo -->
+                    <div
+                        class="surface-navy rounded-shell shadow-pop relative overflow-hidden text-white p-8 md:p-10 lg:mt-7">
+                        <div class="diag-bands diag-bands-dark"></div>
+                        <div class="relative">
+                            <h3 class="text-[22px] font-extrabold tracking-[-0.03em]">Gửi bài báo cáo</h3>
+                            <div class="mt-4 text-[32px] font-extrabold tracking-[-0.04em] leading-none">Hạn 20/07/2026
+                            </div>
+                            <div class="mt-5 space-y-3">
+                                <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-white/80">
+                                    <i class="dia dia-gold mt-[5px]"></i><span>Đăng ký tên bài trước, nộp toàn văn sau
+                                        khi được duyệt.</span>
+                                </div>
+                                <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-white/80">
+                                    <i class="dia dia-gold mt-[5px]"></i><span>Báo cáo viên được miễn toàn bộ lệ
+                                        phí.</span>
+                                </div>
+                                <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-white/80">
+                                    <i class="dia dia-gold mt-[5px]"></i><span>Bài xuất sắc được trao giải tại phiên bế
+                                        mạc.</span>
+                                </div>
+                            </div>
+                            <button onclick="showView('report-form')"
+                                class="btn-light mt-7 w-full py-4 text-[15px] flex items-center justify-center gap-2.5 group">
+                                Gửi bài ngay
+                                <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 8. TÀI TRỢ -->
-        <section class="relative py-24 bg-gradient-to-b from-white via-amber-50 to-white overflow-hidden">
-            <!-- Nền trang trí -->
-            <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
-            <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[46rem] h-[46rem] bg-amber-200/30 rounded-full blur-3xl"></div>
+        <!-- ==========================================
+             8. ĐỊA ĐIỂM — ảnh tràn viền, thẻ navy cắt góc nổi đè lên
+        =========================================== -->
+        <!-- ==========================================
+             8. ĐỊA ĐIỂM — ảnh tràn viền, thẻ navy cắt góc nổi giữa ảnh
+        =========================================== -->
+        <section id="location" class="relative">
 
-            <div class="container mx-auto px-4 text-center relative">
-                <span class="text-amber-600 font-bold uppercase text-xs tracking-[0.25em] mb-3 block">Đồng hành cùng hội
-                    nghị</span>
-                <h2 class="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tight">Đối Tác &amp; Nhà
-                    Tài Trợ</h2>
-                <div class="w-24 h-2 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mt-5 mx-auto"></div>
-                <p class="balance-text text-slate-600 text-sm md:text-base max-w-2xl mx-auto mt-6 mb-16 leading-relaxed">
-                    Hội nghị trân trọng cảm ơn sự đồng hành của các đơn vị đã góp phần vào thành công của
-                    chương&nbsp;trình.</p>
+            <div class="relative">
+                <div class="relative h-[300px] md:h-[460px] overflow-hidden">
+                    <picture>
+                        <source srcset="hungvuong1.webp" type="image/webp">
+                        <img src="hungvuong1.jpg" width="1280" height="720" loading="lazy" decoding="async"
+                            alt="Bệnh viện Đa khoa Hùng Vương"
+                            class="w-full h-full object-cover object-[center_46%]"
+                            onerror="this.style.display='none'">
+                    </picture>
+                    <div class="venue-overlay"></div>
+                </div>
 
-                <!-- Nhà tài trợ Vàng -->
-                <div class="mb-16">
-                    <div class="flex items-center justify-center gap-4 mb-8">
-                        <span class="h-px w-10 md:w-16 bg-gradient-to-r from-transparent to-amber-400"></span>
-                        <span
-                            class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white font-black uppercase text-[11px] md:text-xs tracking-[0.2em] shadow-lg shadow-amber-500/30 whitespace-nowrap">
-                            <i class="fas fa-crown text-[10px]"></i> Nhà tài trợ Vàng
-                        </span>
-                        <span class="h-px w-10 md:w-16 bg-gradient-to-l from-transparent to-amber-400"></span>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
-                        <div
-                            class="h-44 md:h-52 px-8 bg-white border-2 border-amber-300 rounded-[2rem] shadow-xl shadow-amber-500/10 hover:shadow-2xl hover:shadow-amber-500/25 hover:-translate-y-1.5 transition-all duration-300 flex items-center justify-center">
-                            <img src="sponsors/philips.png" alt="Philips" loading="lazy"
-                                class="max-h-20 md:max-h-24 max-w-full object-contain">
-                        </div>
-                        <div
-                            class="h-44 md:h-52 px-8 bg-white border-2 border-amber-300 rounded-[2rem] shadow-xl shadow-amber-500/10 hover:shadow-2xl hover:shadow-amber-500/25 hover:-translate-y-1.5 transition-all duration-300 flex items-center justify-center">
-                            <img src="sponsors/neusoft.png" alt="Neusoft Medical Systems" loading="lazy"
-                                class="max-h-16 md:max-h-20 max-w-full object-contain">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div
+                        class="venue-card z-10 surface-navy cut-corner rounded-shell shadow-pop border border-white/[0.18] text-white p-7 md:p-8">
+                        <div class="sec-tag !text-brand-sky-light"><i class="dia dia-light"></i>Địa điểm tổ chức</div>
+                        <h3 class="mt-3 text-[24px] font-extrabold tracking-[-0.03em] leading-tight">Bệnh viện Đa khoa
+                            Hùng Vương</h3>
+                        <p class="mt-3.5 text-[13.5px] leading-relaxed text-white/80">QL2, xã Chí Đám, tỉnh Phú Thọ.
+                            Hội trường tầng 3 nhà T, có bãi đỗ xe trong khuôn viên bệnh viện.</p>
+
+                        <div class="mt-5 pt-5 border-t border-white/[0.16] grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-[10.5px] font-bold uppercase tracking-[0.14em] text-white/50">Thời gian
+                                </p>
+                                <p class="mt-1.5 text-[14.5px] font-extrabold tracking-[-0.02em]">Thứ 7, 12/09/2026</p>
+                            </div>
+                            <div>
+                                <p class="text-[10.5px] font-bold uppercase tracking-[0.14em] text-white/50">Bắt đầu</p>
+                                <p class="mt-1.5 text-[14.5px] font-extrabold tracking-[-0.02em]">7h00 đón tiếp</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Nhà tài trợ Đồng -->
-                <div class="mb-16">
-                    <div class="flex items-center justify-center gap-4 mb-8">
-                        <span class="h-px w-10 md:w-16 bg-gradient-to-r from-transparent to-orange-300"></span>
-                        <span
-                            class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-orange-50 border border-orange-200 text-orange-600 font-black uppercase text-[11px] md:text-xs tracking-[0.2em] whitespace-nowrap">
-                            <i class="fas fa-award text-[10px]"></i> Nhà tài trợ Đồng
-                        </span>
-                        <span class="h-px w-10 md:w-16 bg-gradient-to-l from-transparent to-orange-300"></span>
+            <!-- Bản đồ nhúng -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-20 md:pb-24">
+                <div class="surface overflow-hidden rounded-shell h-[340px] md:h-[420px]">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8719.890187063364!2d105.20596267766688!3d21.658953080152838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134a4cff21eed9f%3A0xf45dd96440b01432!2zQuG7h25oIHZp4buHbiDEkGEga2hvYSBIw7luZyBWxrDGoW5n!5e1!3m2!1svi!2s!4v1776224393720!5m2!1svi!2s"
+                        class="w-full h-full border-0" title="Bản đồ Bệnh viện Đa khoa Hùng Vương" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             9. TÀI TRỢ — chia hạng, nhịp lễ nghi, sắc vàng dành riêng
+        =========================================== -->
+        <section class="pb-20 md:pb-24 relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="sec-tag justify-center"><i class="dia dia-gold"></i>Đồng hành cùng hội nghị</div>
+                <h2 class="sec-title text-3xl md:text-[38px] mt-3.5">Đối tác &amp; Nhà tài trợ</h2>
+                <p class="balance-text mt-4 text-[14.5px] leading-relaxed text-ink-3 max-w-2xl mx-auto">Hội nghị trân
+                    trọng cảm ơn sự đồng hành của các đơn vị đã góp phần vào thành công của chương&nbsp;trình.</p>
+
+                <!-- Hạng Vàng -->
+                <div class="flex items-center justify-center gap-4 mt-12 mb-7">
+                    <span class="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-gold"></span>
+                    <span
+                        class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11.5px] font-extrabold uppercase tracking-[0.18em] text-gold-deep bg-gradient-to-b from-gold-light/35 to-gold/15 border border-gold/45 whitespace-nowrap">
+                        <i class="dia dia-gold"></i>Nhà tài trợ Vàng
+                    </span>
+                    <span class="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-gold"></span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
+                    <div
+                        class="surface h-40 md:h-48 px-8 flex items-center justify-center border border-gold/40 shadow-[0_1px_2px_rgb(12_26_43/0.05),0_20px_40px_-18px_rgb(201_162_39/0.55)] hover:-translate-y-1 transition-transform duration-200">
+                        <img src="sponsors/philips.png" alt="Philips" loading="lazy"
+                            class="max-h-20 md:max-h-24 max-w-full object-contain">
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-6 max-w-4xl mx-auto">
-                        <div
-                            class="h-32 md:h-36 px-4 md:px-6 bg-white border border-slate-200 rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
-                            <img src="sponsors/boston-pharma.png" alt="Boston Pharma" loading="lazy"
-                                class="max-h-20 md:max-h-24 max-w-full object-contain">
-                        </div>
-                        <div
-                            class="h-32 md:h-36 px-4 md:px-6 bg-white border border-slate-200 rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
-                            <img src="sponsors/minh-quyet.png" alt="Minh Quyết Medical" loading="lazy"
-                                class="max-h-[4.5rem] md:max-h-24 max-w-full object-contain">
-                        </div>
-                        <div
-                            class="h-32 md:h-36 px-4 md:px-6 bg-white border border-slate-200 rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center col-span-2 md:col-span-1">
-                            <img src="sponsors/abbott.png" alt="Abbott" loading="lazy"
-                                class="max-h-[4.5rem] md:max-h-24 max-w-full object-contain">
-                        </div>
+                    <div
+                        class="surface h-40 md:h-48 px-8 flex items-center justify-center border border-gold/40 shadow-[0_1px_2px_rgb(12_26_43/0.05),0_20px_40px_-18px_rgb(201_162_39/0.55)] hover:-translate-y-1 transition-transform duration-200">
+                        <img src="sponsors/neusoft.png" alt="Neusoft Medical Systems" loading="lazy"
+                            class="max-h-16 md:max-h-20 max-w-full object-contain">
+                    </div>
+                </div>
+
+                <!-- Hạng Đồng -->
+                <div class="flex items-center justify-center gap-4 mt-14 mb-7">
+                    <span class="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-brand-sky-deep"></span>
+                    <span
+                        class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11.5px] font-extrabold uppercase tracking-[0.18em] text-brand-navy bg-gradient-to-b from-white to-canvas-deep border border-line whitespace-nowrap">
+                        <i class="dia"></i>Nhà tài trợ Đồng
+                    </span>
+                    <span class="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-brand-sky-deep"></span>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-w-4xl mx-auto">
+                    <div
+                        class="surface-tile h-32 md:h-36 px-5 flex items-center justify-center hover:-translate-y-1 transition-transform duration-200">
+                        <img src="sponsors/boston-pharma.png" alt="Boston Pharma" loading="lazy"
+                            class="max-h-20 md:max-h-24 max-w-full object-contain">
+                    </div>
+                    <div
+                        class="surface-tile h-32 md:h-36 px-5 flex items-center justify-center hover:-translate-y-1 transition-transform duration-200">
+                        <img src="sponsors/minh-quyet.png" alt="Minh Quyết Medical" loading="lazy"
+                            class="max-h-[4.5rem] md:max-h-24 max-w-full object-contain">
+                    </div>
+                    <div
+                        class="surface-tile h-32 md:h-36 px-5 flex items-center justify-center col-span-2 md:col-span-1 hover:-translate-y-1 transition-transform duration-200">
+                        <img src="sponsors/abbott.png" alt="Abbott" loading="lazy"
+                            class="max-h-[4.5rem] md:max-h-24 max-w-full object-contain">
                     </div>
                 </div>
 
                 <!-- Đơn vị đồng tài trợ -->
-                <div>
-                    <div class="flex items-center justify-center gap-4 mb-8">
-                        <span class="h-px w-10 md:w-16 bg-gradient-to-r from-transparent to-slate-300"></span>
-                        <span
-                            class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-500 font-black uppercase text-[11px] md:text-xs tracking-[0.2em] whitespace-nowrap">
-                            <i class="fas fa-handshake text-[10px]"></i> Đơn vị đồng tài trợ
-                        </span>
-                        <span class="h-px w-10 md:w-16 bg-gradient-to-l from-transparent to-slate-300"></span>
+                <div class="flex items-center justify-center gap-4 mt-14 mb-7">
+                    <span class="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-line"></span>
+                    <span
+                        class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11.5px] font-extrabold uppercase tracking-[0.18em] text-ink-3 bg-white border border-line whitespace-nowrap">
+                        <i class="fas fa-handshake text-[10px]"></i>Đơn vị đồng tài trợ
+                    </span>
+                    <span class="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-line"></span>
+                </div>
+                <div class="grid grid-cols-2 gap-4 md:gap-5 max-w-xl mx-auto">
+                    <div
+                        class="surface-tile h-28 md:h-32 px-5 flex items-center justify-center hover:-translate-y-1 transition-transform duration-200">
+                        <img src="sponsors/song-hong.png" alt="Sông Hồng Technical &amp; Service" loading="lazy"
+                            class="max-h-16 md:max-h-[4.5rem] max-w-full object-contain">
                     </div>
-                    <div class="grid grid-cols-2 gap-5 md:gap-6 max-w-xl mx-auto">
-                        <div
-                            class="h-28 md:h-32 px-4 md:px-5 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
-                            <img src="sponsors/song-hong.png" alt="Sông Hồng Technical &amp; Service" loading="lazy"
-                                class="max-h-16 md:max-h-[4.5rem] max-w-full object-contain">
-                        </div>
-                        <div
-                            class="h-28 md:h-32 px-4 md:px-5 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
-                            <img src="sponsors/pharmedic.png" alt="Pharmedic" loading="lazy"
-                                class="max-h-16 md:max-h-[4.5rem] max-w-full object-contain">
-                        </div>
+                    <div
+                        class="surface-tile h-28 md:h-32 px-5 flex items-center justify-center hover:-translate-y-1 transition-transform duration-200">
+                        <img src="sponsors/pharmedic.png" alt="Pharmedic" loading="lazy"
+                            class="max-h-16 md:max-h-[4.5rem] max-w-full object-contain">
                     </div>
                 </div>
             </div>
@@ -737,20 +748,21 @@
     <!-- ==========================================
          VIEW 2: FORM ĐĂNG KÝ CME (THAM DỰ)
     =========================================== -->
-    <main id="cme-form-view" class="hidden-view pt-24 md:pt-32 pb-20 animate-fade-in bg-slate-50 min-h-screen">
+    <main id="cme-form-view" class="hidden-view pt-24 md:pt-32 pb-20 animate-fade-in min-h-screen relative z-10">
         <div class="max-w-3xl mx-auto px-4">
-            <div class="bg-white shadow-2xl rounded-[2.5rem] overflow-hidden border border-gray-100 text-left">
+            <div class="surface shadow-pop rounded-shell overflow-hidden text-left">
                 <!-- Header Form -->
-                <div class="bg-sky-600 px-8 py-10 md:px-12 text-white relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-10 opacity-10 rotate-12"><i
+                <div class="surface-navy px-8 py-10 md:px-12 text-white relative overflow-hidden">
+                    <div class="diag-bands diag-bands-dark"></div>
+                    <div class="absolute top-0 right-0 p-10 opacity-10 rotate-12 pointer-events-none"><i
                             class="fas fa-file-medical text-8xl"></i></div>
                     <button onclick="showView('home')"
                         class="text-white/80 mb-6 hover:text-white font-bold flex items-center gap-2 transition group uppercase text-xs tracking-widest">
                         <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Quay lại
                     </button>
-                    <h1 class="text-2xl md:text-4xl font-black uppercase tracking-tight">Trực tiếp - CME bản cứng</h1>
+                    <h1 class="relative text-2xl md:text-[34px] font-extrabold tracking-[-0.035em]">Đăng ký tham dự &amp; cấp CME</h1>
                     <p
-                        class="mt-4 text-sky-100 text-xs md:text-sm font-medium opacity-90 leading-relaxed italic border-l-2 border-sky-300 pl-3">
+                        class="relative mt-4 text-white/75 text-[13px] md:text-sm font-medium leading-relaxed border-l-2 border-brand-sky pl-3.5">
                         * Nội dung này dùng để cấp CME sau khi kết thúc Hội nghị. Học viên tự chịu trách nhiệm về sự
                         chính xác của thông tin cung cấp.
                     </p>
@@ -765,10 +777,10 @@
                                 *</label>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <label id="cme-opt-co"
-                                    class="flex items-start gap-3 p-4 rounded-2xl border-2 border-purple-600 bg-purple-50 cursor-pointer transition">
+                                    class="choice choice-on flex items-start gap-3 p-4">
                                     <input type="radio" name="cme_hinhThuc" value="co_cme" checked
                                         onchange="toggleCMEType('co_cme')"
-                                        class="mt-1 w-5 h-5 text-purple-600 focus:ring-purple-500 shrink-0">
+                                        class="mt-1 w-5 h-5 accent-brand-navy shrink-0">
                                     <span>
                                         <span class="block font-bold text-slate-800 text-sm">Tham dự — Có cấp CME</span>
                                         <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Lệ phí
@@ -776,10 +788,10 @@
                                     </span>
                                 </label>
                                 <label id="cme-opt-khong"
-                                    class="flex items-start gap-3 p-4 rounded-2xl border-2 border-gray-200 bg-slate-50 cursor-pointer transition">
+                                    class="choice flex items-start gap-3 p-4">
                                     <input type="radio" name="cme_hinhThuc" value="khong_cme"
                                         onchange="toggleCMEType('khong_cme')"
-                                        class="mt-1 w-5 h-5 text-purple-600 focus:ring-purple-500 shrink-0">
+                                        class="mt-1 w-5 h-5 accent-brand-navy shrink-0">
                                     <span>
                                         <span class="block font-bold text-slate-800 text-sm">Tham dự — Không cấp
                                             CME</span>
@@ -791,13 +803,13 @@
                         </div>
 
                         <div id="cme-fee-note"
-                            class="bg-purple-50 border border-purple-100 p-5 rounded-2xl flex items-start gap-4">
-                            <div class="bg-purple-200 text-purple-700 p-2 rounded-full shrink-0"><i
+                            class="bg-gradient-to-b from-white to-canvas-deep border border-line p-5 rounded-2xl flex items-start gap-4">
+                            <div class="bg-brand-sky-light text-brand-navy-deep p-2 rounded-full shrink-0"><i
                                     class="fas fa-info-circle"></i></div>
                             <div>
-                                <h3 class="font-bold text-purple-900 text-sm md:text-base">Lệ phí CME: 200.000 VNĐ /
+                                <h3 class="font-bold text-brand-navy-deep text-sm md:text-base">Lệ phí CME: 200.000 VNĐ /
                                     Người</h3>
-                                <p class="text-purple-700 text-xs md:text-sm mt-1 font-medium">Miễn phí hoàn toàn đối
+                                <p class="text-brand-navy-deep text-xs md:text-sm mt-1 font-medium">Miễn phí hoàn toàn đối
                                     với Báo cáo viên và Chủ tọa Hội nghị.</p>
                             </div>
                         </div>
@@ -813,7 +825,7 @@
                                     <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Học vị /
                                         Chức danh *</label>
                                     <select id="cme_hocVi"
-                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 bg-slate-50 font-medium">
+                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep bg-slate-50 font-medium">
                                         <option>-- Chọn --</option>
                                         <option>GS.TS</option>
                                         <option>TS</option>
@@ -828,7 +840,7 @@
                                     <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Họ và tên
                                         (Có dấu) *</label>
                                     <input type="text" id="cme_hoTen" placeholder="Nguyễn Văn A"
-                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 font-medium bg-slate-50"
+                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep font-medium bg-slate-50"
                                         required>
                                 </div>
                             </div>
@@ -838,7 +850,7 @@
                                     <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Giới tính
                                         *</label>
                                     <select id="cme_gioiTinh"
-                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 bg-slate-50 font-medium">
+                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep bg-slate-50 font-medium">
                                         <option>Nam</option>
                                         <option>Nữ</option>
                                     </select>
@@ -848,17 +860,17 @@
                                         *</label>
                                     <div class="grid grid-cols-3 gap-3">
                                         <select id="cme_ngay"
-                                            class="border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 bg-slate-50 font-medium">
+                                            class="border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep bg-slate-50 font-medium">
                                             <option>Ngày</option>
                                             <script>for (let i = 1; i <= 31; i++) document.write(`<option>${i}</option>`);</script>
                                         </select>
                                         <select id="cme_thang"
-                                            class="border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 bg-slate-50 font-medium">
+                                            class="border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep bg-slate-50 font-medium">
                                             <option>Tháng</option>
                                             <script>for (let i = 1; i <= 12; i++) document.write(`<option>${i}</option>`);</script>
                                         </select>
                                         <select id="cme_nam"
-                                            class="border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 bg-slate-50 font-medium">
+                                            class="border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep bg-slate-50 font-medium">
                                             <option>Năm</option>
                                             <script>for (let i = 2010; i >= 1950; i--) document.write(`<option>${i}</option>`);</script>
                                         </select>
@@ -870,9 +882,9 @@
                                 <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Bằng tốt nghiệp
                                     chuyên môn cao nhất hoặc Chứng chỉ hành nghề *</label>
                                 <label
-                                    class="w-full h-32 bg-slate-50 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-purple-400 hover:bg-purple-50 transition group">
+                                    class="w-full h-32 bg-slate-50 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-brand-sky hover:bg-canvas transition group">
                                     <i
-                                        class="fas fa-cloud-upload-alt text-2xl mb-2 group-hover:scale-110 transition-transform text-purple-400"></i>
+                                        class="fas fa-cloud-upload-alt text-2xl mb-2 group-hover:scale-110 transition-transform text-brand-sky-deep"></i>
                                     <span id="labelCmeBangCap"
                                         class="text-[10px] font-bold uppercase opacity-80 text-center px-4">Nhấn để tải
                                         ảnh / PDF lên</span>
@@ -892,7 +904,7 @@
                                     chi tiết (Số nhà, đường, phường/xã, tỉnh/thành) *</label>
                                 <textarea id="cme_diaChi" rows="3"
                                     placeholder="Ví dụ: Số 1, Đường ABC, Xã X, Phường A, Quận B, TP C..."
-                                    class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 font-medium bg-slate-50"
+                                    class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep font-medium bg-slate-50"
                                     required></textarea>
                             </div>
                         </div>
@@ -907,7 +919,7 @@
                                     <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Số điện
                                         thoại di động / Zalo *</label>
                                     <input type="tel" id="cme_soDienThoai"
-                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 font-bold text-purple-700 bg-slate-50"
+                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep font-bold text-brand-navy-deep bg-slate-50"
                                         required>
                                     <p class="text-[10px] text-slate-400 mt-2 font-medium italic">* Để BTC liên hệ gửi
                                         mã bưu phẩm và thông tin Hội nghị</p>
@@ -916,7 +928,7 @@
                                     <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Địa chỉ
                                         Email *</label>
                                     <input type="email" id="cme_email" placeholder="example@gmail.com"
-                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-purple-500 font-medium bg-slate-50"
+                                        class="w-full border border-gray-200 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep font-medium bg-slate-50"
                                         required>
                                     <p class="text-[10px] text-slate-400 mt-2 font-medium italic">* Kiểm tra kỹ email để
                                         nhận thư mời chính thức</p>
@@ -933,24 +945,24 @@
                                 Ban Tổ chức chuẩn bị đủ số lượng suất.</p>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <label id="suatan-opt-com"
-                                    class="flex items-start gap-3 p-4 rounded-2xl border-2 border-gray-200 bg-slate-50 cursor-pointer transition">
+                                    class="choice flex items-start gap-3 p-4">
                                     <input type="checkbox" id="cme_comTrua" onchange="toggleSuatAn('com')"
-                                        class="mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500 shrink-0">
+                                        class="mt-1 w-5 h-5 rounded accent-brand-navy shrink-0">
                                     <span>
                                         <span class="block font-bold text-slate-800 text-sm"><i
-                                                class="fas fa-utensils text-purple-500 mr-1.5"></i>Cơm trưa (Lunch
+                                                class="fas fa-utensils text-brand-sky-deep mr-1.5"></i>Cơm trưa (Lunch
                                             party)</span>
                                         <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Thứ Bảy,
                                             12/09/2026 · từ 12h00</span>
                                     </span>
                                 </label>
                                 <label id="suatan-opt-tiec"
-                                    class="flex items-start gap-3 p-4 rounded-2xl border-2 border-gray-200 bg-slate-50 cursor-pointer transition">
+                                    class="choice flex items-start gap-3 p-4">
                                     <input type="checkbox" id="cme_tiecToi" onchange="toggleSuatAn('tiec')"
-                                        class="mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500 shrink-0">
+                                        class="mt-1 w-5 h-5 rounded accent-brand-navy shrink-0">
                                     <span>
                                         <span class="block font-bold text-slate-800 text-sm"><i
-                                                class="fas fa-champagne-glasses text-purple-500 mr-1.5"></i>Tiệc tối
+                                                class="fas fa-champagne-glasses text-brand-sky-deep mr-1.5"></i>Tiệc tối
                                             (Gala dinner)</span>
                                         <span class="block text-[11px] text-slate-500 font-medium mt-0.5">Thứ Bảy,
                                             12/09/2026 · từ 17h00</span>
@@ -958,9 +970,9 @@
                                 </label>
                             </div>
                             <label id="suatan-opt-khong"
-                                class="flex items-start gap-3 p-4 rounded-2xl border-2 border-gray-200 bg-slate-50 cursor-pointer transition">
+                                class="choice flex items-start gap-3 p-4">
                                 <input type="checkbox" id="cme_khongSuatAn" onchange="toggleSuatAn('khong')"
-                                    class="mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500 shrink-0">
+                                    class="mt-1 w-5 h-5 rounded accent-brand-navy shrink-0">
                                 <span>
                                     <span class="block font-bold text-slate-800 text-sm"><i
                                             class="fas fa-ban text-slate-400 mr-1.5"></i>Không đăng ký suất ăn nào</span>
@@ -999,14 +1011,14 @@
                                         <div>
                                             <p class="text-[11px] text-slate-500 font-bold uppercase mb-1">Số tài khoản
                                             </p>
-                                            <p class="text-purple-600 font-black text-2xl tracking-tight break-all">
+                                            <p class="text-brand-navy font-black text-2xl tracking-tight break-all">
                                                 118000048167</p>
                                         </div>
                                         <div>
                                             <p class="text-[11px] text-slate-500 font-bold uppercase mb-2">Cú pháp
                                                 chuyển khoản</p>
                                             <div
-                                                class="bg-white p-3 rounded-xl border border-purple-200 text-sm text-purple-800 font-black tracking-wide inline-block shadow-sm">
+                                                class="bg-white p-3 rounded-xl border border-line text-sm text-brand-navy-deep font-black tracking-wide inline-block shadow-sm">
                                                 BVHV - [Họ tên] - [SĐT]
                                             </div>
                                         </div>
@@ -1021,8 +1033,8 @@
                                     <label class="block text-[11px] font-bold text-slate-500 mb-2 uppercase">Ảnh chụp
                                         thông tin giao dịch thành công *</label>
                                     <label
-                                        class="w-full h-24 bg-white border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-purple-400 hover:bg-purple-50 transition">
-                                        <i class="fas fa-image text-xl mb-1 text-purple-400"></i>
+                                        class="w-full h-24 bg-white border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-brand-sky hover:bg-canvas transition">
+                                        <i class="fas fa-image text-xl mb-1 text-brand-sky-deep"></i>
                                         <span id="labelCmeBienLai"
                                             class="text-[10px] font-bold uppercase opacity-80 text-center px-4">Tải ảnh
                                             biên lai</span>
@@ -1035,7 +1047,7 @@
 
                         <!-- Submit Button -->
                         <button type="submit" id="btnSubmitCME"
-                            class="w-full bg-purple-600 text-white font-black py-5 rounded-2xl shadow-lg hover:bg-purple-700 hover:shadow-xl transition-all duration-300 text-lg uppercase tracking-widest active:scale-[0.98]">
+                            class="btn-primary w-full py-[18px] text-[16px] tracking-[-0.01em] active:scale-[0.99]">
                             Đăng Ký & Xác Nhận
                         </button>
                     </form>
@@ -1048,26 +1060,26 @@
          VIEW 3: FORM ĐĂNG KÝ BÁO CÁO 
     =========================================== -->
     <main id="report-form-view"
-        class="hidden-view pt-24 md:pt-32 pb-20 animate-fade-in bg-white min-h-screen text-left">
+        class="hidden-view pt-24 md:pt-32 pb-20 animate-fade-in min-h-screen text-left relative z-10">
         <div class="max-w-2xl mx-auto px-4">
             <!-- Header Controls -->
             <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
                 <button onclick="showView('home')"
-                    class="text-sky-600 font-black flex items-center gap-2 hover:text-sky-800 transition text-xs uppercase tracking-widest">
+                    class="btn-secondary px-5 py-2.5 flex items-center gap-2.5 text-[13px]">
                     <i class="fas fa-arrow-left"></i> Quay lại
                 </button>
                 <div class="flex items-center gap-6">
                     <a href="#"
-                        class="flex items-center text-blue-600 font-bold text-xs hover:underline decoration-2 underline-offset-4">
+                        class="flex items-center text-brand-navy font-bold text-[13px] hover:underline decoration-2 underline-offset-4">
                         <i class="fas fa-plus-circle mr-2"></i> Quy định thể thức
                     </a>
                 </div>
             </div>
 
             <div class="text-center mb-16">
-                <h1 class="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter">Đăng Ký Tham gia
-                    Báo Cáo</h1>
-                <div class="w-16 h-1.5 bg-purple-600 mx-auto mt-4 rounded-full"></div>
+                <div class="sec-tag justify-center"><i class="dia"></i>Gửi bài báo cáo</div>
+                <h1 class="sec-title text-3xl md:text-[38px] mt-3.5">Đăng ký tham gia <span class="text-grad">báo cáo</span></h1>
+                <p class="mt-3.5 text-[14.5px] text-ink-3">Hạn đăng ký tên bài và nộp tóm tắt: 20/07/2026.</p>
             </div>
 
             <form id="formDangKyBaoCao" class="space-y-12">
@@ -1083,7 +1095,7 @@
                             <label class="block text-[10px] font-black text-slate-500 mb-2 uppercase">Học vị / Chức danh
                                 *</label>
                             <select id="bc_hocVi"
-                                class="w-full border border-gray-300 p-3.5 rounded-xl text-sm outline-none focus:border-purple-600 transition bg-slate-50 font-bold">
+                                class="w-full border border-gray-300 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep transition bg-slate-50 font-bold">
                                 <option>-- Chọn học vị --</option>
                                 <option>GS.TS</option>
                                 <option>TS</option>
@@ -1097,7 +1109,7 @@
                             <label class="block text-[10px] font-black text-slate-500 mb-2 uppercase">Họ và tên (Có dấu)
                                 *</label>
                             <input type="text" id="bc_hoTen" placeholder="Nguyễn Văn A"
-                                class="w-full border border-gray-300 p-3.5 rounded-xl text-sm outline-none focus:border-purple-600 transition font-bold"
+                                class="w-full border border-gray-300 p-3.5 rounded-xl text-sm outline-none focus:border-brand-sky-deep transition font-bold"
                                 required>
                         </div>
                     </div>
@@ -1141,7 +1153,7 @@
                         <label
                             class="w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:bg-slate-100 transition group">
                             <i
-                                class="fas fa-id-card text-2xl mb-2 group-hover:scale-110 transition-transform text-purple-500"></i>
+                                class="fas fa-id-card text-2xl mb-2 group-hover:scale-110 transition-transform text-brand-sky-deep"></i>
                             <span id="labelBcBangCap"
                                 class="text-[9px] font-black uppercase opacity-60 text-center px-4">Tải lên ảnh / PDF
                                 bằng</span>
@@ -1169,7 +1181,7 @@
                             <label class="block text-[10px] font-black text-slate-500 mb-2 uppercase">Số điện thoại
                                 *</label>
                             <input type="tel" id="bc_soDienThoai"
-                                class="w-full border border-gray-300 p-3.5 rounded-xl text-sm outline-none font-bold text-purple-600"
+                                class="w-full border border-gray-300 p-3.5 rounded-xl text-sm outline-none font-bold text-brand-navy"
                                 required>
                             <p class="text-[9px] text-slate-400 mt-2 font-bold italic uppercase tracking-tighter">*
                                 Không thay đổi sau khi đăng ký thành công</p>
@@ -1194,7 +1206,7 @@
                         <label class="block text-[10px] font-black text-slate-500 mb-2 uppercase">Tiêu đề Abstract / Bài
                             báo cáo *</label>
                         <textarea id="bc_tieuDe" rows="3"
-                            class="w-full border border-gray-300 p-4 rounded-xl text-sm outline-none focus:border-purple-600 transition font-medium"
+                            class="w-full border border-gray-300 p-4 rounded-xl text-sm outline-none focus:border-brand-sky-deep transition font-medium"
                             placeholder="Nhập tên chính thức của đề tài nghiên cứu..." required></textarea>
                     </div>
 
@@ -1202,9 +1214,9 @@
                         <label class="block text-[10px] font-black text-slate-500 mb-2 uppercase">Tóm tắt (Abstract) /
                             Toàn văn *</label>
                         <label
-                            class="w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-purple-300 hover:bg-purple-50 transition group">
+                            class="w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-brand-sky hover:bg-canvas transition group">
                             <i
-                                class="fas fa-file-pdf text-2xl mb-2 group-hover:-translate-y-1 transition-transform text-purple-500"></i>
+                                class="fas fa-file-pdf text-2xl mb-2 group-hover:-translate-y-1 transition-transform text-brand-sky-deep"></i>
                             <span id="labelBcFile"
                                 class="text-[9px] font-black uppercase opacity-60 text-center px-4">Nhấp để chọn tệp tin
                                 (PDF/WORD/PPT)</span>
@@ -1214,17 +1226,17 @@
                         </label>
                     </div>
 
-                    <div class="flex items-start gap-4 py-6 px-6 bg-purple-50 rounded-2xl">
+                    <div class="flex items-start gap-4 py-6 px-6 bg-gradient-to-b from-white to-canvas-deep border border-line rounded-2xl">
                         <input type="checkbox" id="bc_dongY"
-                            class="w-6 h-6 mt-0.5 border-gray-300 text-purple-600 focus:ring-purple-500 cursor-pointer rounded-lg shrink-0">
+                            class="w-6 h-6 mt-0.5 border-gray-300 accent-brand-navy cursor-pointer rounded-lg shrink-0">
                         <label for="bc_dongY"
-                            class="text-xs md:text-sm font-bold text-purple-800 cursor-pointer leading-tight">Tôi đồng ý
+                            class="text-xs md:text-sm font-bold text-brand-navy-deep cursor-pointer leading-tight">Tôi đồng ý
                             chia sẻ bài báo cáo định dạng PDF sau khi kết thúc Hội nghị (không bắt buộc)</label>
                     </div>
                 </div>
 
                 <button type="submit" id="btnSubmitBaoCao"
-                    class="w-full bg-purple-600 text-white font-black py-6 rounded-[1.5rem] shadow-2xl hover:bg-purple-700 transition uppercase tracking-[0.3em] text-lg active:scale-[0.98] transform">
+                    class="btn-primary w-full py-5 text-[16px] tracking-[-0.01em] active:scale-[0.99]">
                     Đăng Ký
                 </button>
             </form>
@@ -1236,7 +1248,8 @@
     <!-- ==========================================
          9. FOOTER CHUNG (CẬP NHẬT LIÊN HỆ TỪ THÔNG BÁO SỐ 1)
     =========================================== -->
-    <footer id="contact" class="bg-slate-900 text-slate-300 py-20 border-t-4 border-sky-600 mt-20">
+    <footer id="contact" class="surface-navy relative z-10 text-white/75 py-20 mt-20 overflow-hidden">
+        <div class="diag-bands diag-bands-dark"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-12 lg:gap-20 text-left">
             <!-- Cột 1: Logo & Slogan -->
             <div class="space-y-6">
@@ -1245,72 +1258,72 @@
                         <img src="logo_bvhv.jpg" alt="Logo BVĐK Hùng Vương" width="177" height="192" loading="lazy"
                             decoding="async" class="w-12 h-12 object-contain rounded-xl">
                     </div>
-                    <span class="font-black text-xl lg:text-2xl uppercase tracking-tighter leading-tight">Bệnh viện Đa
-                        khoa <br><span class="text-sky-400">Hùng Vương</span></span>
+                    <span class="font-extrabold text-xl lg:text-2xl tracking-[-0.03em] leading-tight">Bệnh viện Đa
+                        khoa <br><span class="text-brand-sky-light">Hùng Vương</span></span>
                 </div>
-                <p class="text-sm leading-relaxed italic text-slate-400 font-medium border-l-2 border-slate-700 pl-4">
+                <p class="text-sm leading-relaxed italic text-white/60 font-medium border-l-2 border-white/20 pl-4">
                     "Tận tâm - Liêm chính - Nhân văn"
                 </p>
             </div>
 
             <!-- Cột 2: Liên hệ -->
             <div class="space-y-6">
-                <h4 class="text-white font-black uppercase tracking-widest text-xs relative inline-block">
+                <h4 class="text-white font-extrabold uppercase tracking-widest text-xs relative inline-block">
                     Liên hệ Ban tổ chức
-                    <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-sky-500 rounded-full"></span>
+                    <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-brand-sky rounded-full"></span>
                 </h4>
 
                 <div class="space-y-6 pt-2">
                     <!-- Liên hệ 1 -->
                     <div class="flex items-start gap-4">
                         <div
-                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-sky-400 shrink-0 shadow-inner mt-1">
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner mt-1">
                             <i class="fas fa-headset"></i>
                         </div>
                         <div>
                             <p class="font-bold text-white text-sm">Điều dưỡng</p>
-                            <p class="text-xs text-slate-400 mb-1">ĐD.CKI. Trần Thị Minh Phương - 0982 899 296</p>
-                            <p class="text-xs text-slate-400">CNĐD. Lê Thị Thu - 0941 525 115</p>
+                            <p class="text-xs text-white/60 mb-1">ĐD.CKI. Trần Thị Minh Phương - 0982 899 296</p>
+                            <p class="text-xs text-white/60">CNĐD. Lê Thị Thu - 0941 525 115</p>
                         </div>
                     </div>
 
                     <!-- Liên hệ 2 -->
                     <div class="flex items-start gap-4">
                         <div
-                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-sky-400 shrink-0 shadow-inner mt-1">
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner mt-1">
                             <i class="fas fa-headset"></i>
                         </div>
                         <div>
                             <p class="font-bold text-white text-sm">Kỹ thuật y</p>
-                            <p class="text-xs text-slate-400">CN. Nguyễn Thành Lâm - 0941 695 115</p>
+                            <p class="text-xs text-white/60">CN. Nguyễn Thành Lâm - 0941 695 115</p>
                         </div>
                     </div>
 
                     <!-- Liên hệ 3 (Email Chung) -->
                     <div class="flex items-center gap-4">
                         <div
-                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-sky-400 shrink-0 shadow-inner">
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <a href="mailto:phongdieuduongbvhv@gmail.com"
-                            class="text-sm font-medium hover:text-sky-400 transition-colors break-all">phongdieuduongbvhv@gmail.com</a>
+                            class="text-sm font-medium hover:text-brand-sky-light transition-colors break-all">phongdieuduongbvhv@gmail.com</a>
                     </div>
                 </div>
             </div>
 
             <!-- Cột 3: Mạng xã hội & Copyright -->
             <div class="flex flex-col md:items-end space-y-6">
-                <h4 class="text-white font-black uppercase tracking-widest text-xs relative inline-block md:text-right">
+                <h4 class="text-white font-extrabold uppercase tracking-widest text-xs relative inline-block md:text-right">
                     Kết nối với chúng tôi
-                    <span class="absolute -bottom-2 right-0 w-1/2 h-0.5 bg-sky-500 rounded-full hidden md:block"></span>
-                    <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-sky-500 rounded-full md:hidden"></span>
+                    <span class="absolute -bottom-2 right-0 w-1/2 h-0.5 bg-brand-sky rounded-full hidden md:block"></span>
+                    <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-brand-sky rounded-full md:hidden"></span>
                 </h4>
                 <div class="flex gap-4">
                     <a href="https://www.facebook.com/BenhvienHungVuongPhuTho" target="_blank" rel="noopener noreferrer"
-                        class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-sky-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-1"><i
+                        class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:bg-brand-sky-deep hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-1"><i
                             class="fab fa-facebook-f text-lg"></i></a>
                     <a href="https://www.facebook.com/BenhvienHungVuongPhuTho" target="_blank" rel="noopener noreferrer"
-                        class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-1"><i
+                        class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-1"><i
                             class="fab fa-youtube text-lg"></i></a>
                 </div>
             </div>
@@ -1318,17 +1331,33 @@
 
         <!-- Dòng bản quyền dưới cùng -->
         <div
-            class="container mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-xs uppercase font-bold text-slate-500 tracking-wider text-center md:text-left">
+            class="container mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-white/15 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-xs uppercase font-bold text-white/55 tracking-wider text-center md:text-left">
                 &copy; 2026 Bệnh viện đa khoa Hùng Vương.
             </p>
-            <p class="text-[10px] text-slate-600 font-bold uppercase tracking-widest">Phát triển bởi Nguyễn Thành Lâm
+            <p class="text-[10px] text-white/45 font-bold uppercase tracking-widest">Phát triển bởi Nguyễn Thành Lâm
             </p>
         </div>
     </footer>
 
     <!-- SCRIPT ĐIỀU HƯỚNG SPA & LỌC -->
     <script>
+        // ----------------------------------------
+        // THANH ĐIỀU HƯỚNG
+        // Trong suốt khi đang nằm trên hero navy, chuyển sang tấm trắng
+        // khi đã cuộn xuống hoặc khi đang ở màn hình biểu mẫu.
+        // ----------------------------------------
+        function syncNavbar() {
+            const nav = document.getElementById('navbar');
+            if (!nav) return;
+            const home = document.getElementById('home-view');
+            const onHero = home && !home.classList.contains('hidden-view') && window.scrollY < 40;
+            nav.classList.toggle('nav-solid', !onHero);
+        }
+
+        window.addEventListener('scroll', syncNavbar, { passive: true });
+        syncNavbar();
+
         // Menu Mobile
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
@@ -1370,15 +1399,15 @@
 
             // Reset tab styles
             tabs.forEach(t => {
-                t.classList.remove('bg-sky-600', 'text-white', 'shadow-md');
-                t.classList.add('text-slate-500');
+                t.classList.remove('btn-primary', 'text-white');
+                t.classList.add('text-ink-3');
             });
 
             // Active selected tab
             const activeTab = document.getElementById('prog-tab-' + type);
             if (activeTab) {
-                activeTab.classList.add('bg-sky-600', 'text-white', 'shadow-md');
-                activeTab.classList.remove('text-slate-500');
+                activeTab.classList.add('btn-primary', 'text-white');
+                activeTab.classList.remove('text-ink-3');
             }
 
             // Show/hide content: chỉ hiển thị đúng phiên được chọn
@@ -1579,12 +1608,14 @@
         ];
 
         // Bảng màu theo từng chuyên đề (viết đủ tên class để Tailwind nhận diện)
+        // Bậc màu của năm phiên — một dải xanh đậm dần, không phải năm
+        // màu rời rạc. Cùng cách phân cấp với trang AI-edu nội bộ.
         const PROG_THEME = {
-            sky: { head: 'bg-sky-50', headBorder: 'border-sky-100', iconBox: 'bg-sky-100 text-sky-600', theme: 'text-sky-700', chip: 'bg-sky-100 text-sky-800', time: 'text-sky-600', band: 'bg-sky-50', bandText: 'text-sky-700' },
-            emerald: { head: 'bg-emerald-50', headBorder: 'border-emerald-100', iconBox: 'bg-emerald-100 text-emerald-600', theme: 'text-emerald-700', chip: 'bg-emerald-100 text-emerald-800', time: 'text-emerald-600', band: 'bg-emerald-50', bandText: 'text-emerald-700' },
-            purple: { head: 'bg-purple-50', headBorder: 'border-purple-100', iconBox: 'bg-purple-100 text-purple-600', theme: 'text-purple-700', chip: 'bg-purple-100 text-purple-800', time: 'text-purple-600', band: 'bg-purple-50', bandText: 'text-purple-700' },
-            amber: { head: 'bg-amber-50', headBorder: 'border-amber-100', iconBox: 'bg-amber-100 text-amber-600', theme: 'text-amber-700', chip: 'bg-amber-100 text-amber-800', time: 'text-amber-600', band: 'bg-amber-50', bandText: 'text-amber-700' },
-            rose: { head: 'bg-rose-50', headBorder: 'border-rose-100', iconBox: 'bg-rose-100 text-rose-600', theme: 'text-rose-700', chip: 'bg-rose-100 text-rose-800', time: 'text-rose-600', band: 'bg-rose-50', bandText: 'text-rose-700' }
+            sky: { rail: 'from-brand-sky-light to-brand-sky', chip: 'text-brand-navy', time: 'text-brand-sky-deep', band: 'from-brand-sky-light/25 to-brand-sky/10', bandText: 'text-brand-navy' },
+            purple: { rail: 'from-brand-sky to-brand-sky-deep', chip: 'text-brand-navy', time: 'text-brand-sky-deep', band: 'from-brand-sky/20 to-brand-sky-deep/10', bandText: 'text-brand-navy' },
+            amber: { rail: 'from-brand-sky-deep to-brand-steel', chip: 'text-brand-navy', time: 'text-brand-steel', band: 'from-brand-steel/20 to-brand-navy/10', bandText: 'text-brand-navy' },
+            emerald: { rail: 'from-brand-steel to-brand-navy', chip: 'text-brand-navy', time: 'text-brand-navy', band: 'from-brand-navy/16 to-brand-navy-deep/8', bandText: 'text-brand-navy-deep' },
+            rose: { rail: 'from-brand-navy to-brand-navy-deep', chip: 'text-brand-navy-deep', time: 'text-brand-navy-deep', band: 'from-brand-navy-deep/16 to-brand-navy-night/8', bandText: 'text-brand-navy-deep' }
         };
 
         function progEsc(str) {
@@ -1593,57 +1624,62 @@
         }
 
         function progChip(text, icon, cls) {
-            return `<span class="inline-flex items-center gap-1.5 ${cls} px-3.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold">
-                        ${icon ? `<i class="${icon}"></i>` : ''}${progEsc(text)}</span>`;
+            return `<span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-field text-[12px] font-semibold ${cls}
+                        bg-gradient-to-b from-white to-canvas-deep border border-line">
+                        ${icon ? `<i class="${icon} text-[10px] opacity-70"></i>` : ''}${progEsc(text)}</span>`;
         }
 
-        function progPersonList(people, c) {
+        function progPersonList(people) {
             return people.map(p => `<li>
-                        <span class="block font-bold text-slate-800 text-sm">${progEsc(p.name)}</span>
-                        ${p.role ? `<span class="block text-xs text-slate-500 leading-snug">${progEsc(p.role)}</span>` : ''}
+                        <span class="block font-bold text-ink text-[13.5px] leading-snug">${progEsc(p.name)}</span>
+                        ${p.role ? `<span class="block text-[12px] text-ink-3 leading-snug mt-0.5">${progEsc(p.role)}</span>` : ''}
                     </li>`).join('');
         }
 
         function progItemRow(item, c) {
+            // Dải ngang: teabreak, thảo luận, tài trợ, tiệc
             if (item.type === 'break') {
-                return `<div class="flex flex-col md:flex-row md:items-center gap-0.5 md:gap-6 px-6 md:px-10 py-3 ${c.band}">
-                            <div class="md:w-32 shrink-0 font-black text-xs ${c.time} tracking-tight">${progEsc(item.time)}</div>
-                            <div class="font-black uppercase text-xs md:text-sm tracking-widest ${c.bandText}">
+                return `<div class="flex flex-col md:flex-row md:items-center gap-1 md:gap-6 px-6 md:px-9 py-3.5
+                            bg-gradient-to-r ${c.band}">
+                            <div class="md:w-32 shrink-0 font-extrabold text-[12.5px] ${c.time} tracking-[-0.01em] tabular-nums">${progEsc(item.time)}</div>
+                            <div class="font-extrabold uppercase text-[12px] tracking-[0.12em] ${c.bandText}">
                                 ${item.icon ? `<i class="${item.icon} mr-2"></i>` : ''}${progEsc(item.title)}</div>
                         </div>`;
             }
-            return `<div class="flex flex-col md:flex-row gap-1 md:gap-6 px-6 md:px-10 py-4 hover:bg-slate-50 transition-colors">
-                        <div class="md:w-32 shrink-0 font-black text-sm ${c.time} tracking-tight">${progEsc(item.time)}</div>
+            return `<div class="flex flex-col md:flex-row gap-1.5 md:gap-6 px-6 md:px-9 py-4 hover:bg-canvas transition-colors">
+                        <div class="md:w-32 shrink-0 font-extrabold text-[13.5px] ${c.time} tracking-[-0.01em] tabular-nums">${progEsc(item.time)}</div>
                         <div class="min-w-0">
-                            <p class="font-bold text-slate-800 leading-snug">${progEsc(item.title)}</p>
-                            ${item.speaker ? `<p class="text-sm text-slate-500 mt-1.5 leading-snug">
-                                <i class="fas fa-user-doctor text-slate-300 mr-1.5"></i><span class="font-semibold text-slate-600">${progEsc(item.speaker)}</span>${item.org ? ` <span class="text-slate-400">&mdash; ${progEsc(item.org)}</span>` : ''}</p>` : ''}
+                            <p class="font-semibold text-ink text-[14.5px] leading-snug">${progEsc(item.title)}</p>
+                            ${item.speaker ? `<p class="text-[13px] text-ink-3 mt-1.5 leading-snug flex items-start gap-2">
+                                <i class="dia mt-[5px]"></i><span><span class="font-semibold text-ink-2">${progEsc(item.speaker)}</span>${item.org ? ` <span class="text-ink-4">&mdash; ${progEsc(item.org)}</span>` : ''}</span></p>` : ''}
                         </div>
                     </div>`;
         }
 
         function progPartBlock(part, c, icon, isFirst) {
             const chairs = part.chairs && part.chairs.length
-                ? `<div><p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Chủ tọa</p>
-                       <ul class="list-none grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">${progPersonList(part.chairs, c)}</ul></div>` : '';
+                ? `<div><p class="text-[10.5px] font-extrabold uppercase tracking-[0.14em] text-ink-4 mb-3">Chủ tọa</p>
+                       <ul class="list-none grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">${progPersonList(part.chairs)}</ul></div>` : '';
             const secretary = part.secretary && part.secretary.length
-                ? `<div class="${part.chairs && part.chairs.length ? 'border-t border-slate-200 pt-6' : ''}">
-                       <p class="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-3">Thư ký</p>
-                       <ul class="list-none grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">${progPersonList(part.secretary, c)}</ul></div>` : '';
+                ? `<div class="${part.chairs && part.chairs.length ? 'border-t border-line-soft pt-5' : ''}">
+                       <p class="text-[10.5px] font-extrabold uppercase tracking-[0.14em] text-ink-4 mb-3">Thư ký</p>
+                       <ul class="list-none grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">${progPersonList(part.secretary)}</ul></div>` : '';
 
-            return `<div class="${isFirst ? '' : 'border-t border-slate-200'}">
-                        <div class="${c.head} border-b ${c.headBorder} px-6 md:px-10 py-8">
-                            <div class="inline-flex ${c.iconBox} p-3.5 rounded-2xl mb-3"><i class="${icon} text-2xl"></i></div>
-                            <h3 class="text-lg md:text-2xl font-black text-slate-900 uppercase tracking-tight">${progEsc(part.title)}</h3>
-                            ${part.theme ? `<p class="${c.theme} font-semibold italic mt-1.5 text-sm md:text-base leading-snug">&ldquo;${progEsc(part.theme)}&rdquo;</p>` : ''}
-                            <div class="flex flex-wrap gap-2 mt-5">
+            return `<div class="${isFirst ? '' : 'border-t border-line'}">
+                        <div class="relative px-6 md:px-9 py-7 bg-gradient-to-b from-white to-canvas border-b border-line">
+                            <span class="absolute left-0 top-0 bottom-0 w-[5px] bg-gradient-to-b ${c.rail}"></span>
+                            <div class="inline-flex items-center justify-center w-11 h-11 rounded-field mb-3.5
+                                bg-gradient-to-br ${c.rail} text-white shadow-tile"><i class="${icon} text-lg"></i></div>
+                            <h3 class="text-[19px] md:text-[23px] font-extrabold tracking-[-0.03em] text-ink leading-tight">${progEsc(part.title)}</h3>
+                            ${part.theme ? `<p class="${c.time} font-semibold mt-2 text-[14px] md:text-[15px] leading-snug">&ldquo;${progEsc(part.theme)}&rdquo;</p>` : ''}
+                            <div class="flex flex-wrap gap-2 mt-4">
                                 ${progChip(part.session, 'far fa-sun', c.chip)}
                                 ${progChip(part.room, 'fas fa-location-dot', c.chip)}
                                 ${progChip(part.time, 'far fa-clock', c.chip)}
                             </div>
                         </div>
-                        ${(chairs || secretary) ? `<div class="bg-slate-50 border-b border-slate-200 px-6 md:px-10 py-6 flex flex-col gap-6">${chairs}${secretary}</div>` : ''}
-                        <div class="divide-y divide-slate-100">${part.items.map(i => progItemRow(i, c)).join('')}</div>
+                        ${(chairs || secretary) ? `<div class="bg-canvas border-b border-line px-6 md:px-9 py-5 flex flex-col gap-5">${chairs}${secretary}</div>` : ''}
+                        <div class="divide-y divide-line-soft">${part.items.map(i => progItemRow(i, c)).join('')}</div>
                     </div>`;
         }
 
@@ -1655,7 +1691,7 @@
                 const c = PROG_THEME[sess.color];
                 const parts = sess.parts.map((p, idx) => progPartBlock(p, c, sess.icon, idx === 0)).join('');
                 return `<div id="prog-${sess.id}"
-                             class="prog-content block border border-slate-200 rounded-[2.5rem] bg-white shadow-lg overflow-hidden max-w-5xl mx-auto mb-6">
+                             class="prog-content block surface rounded-shell overflow-hidden max-w-5xl mx-auto mb-6">
                             ${parts}
                         </div>`;
             }).join('');
@@ -1674,6 +1710,8 @@
             const mobileMenu = document.getElementById('mobile-menu');
 
             if (mobileMenu) mobileMenu.classList.add('hidden');
+            // Nền trắng phải bật ngay khi rời trang chủ, không đợi cuộn
+            setTimeout(syncNavbar, 0);
 
             home.classList.add('hidden-view');
             cme.classList.add('hidden-view');
@@ -1733,8 +1771,8 @@
             // Cập nhật style 2 thẻ lựa chọn
             const optCo = document.getElementById('cme-opt-co');
             const optKhong = document.getElementById('cme-opt-khong');
-            const active = ['border-purple-600', 'bg-purple-50'];
-            const inactive = ['border-gray-200', 'bg-slate-50'];
+            const active = ['choice-on'];
+            const inactive = [];
             if (optCo && optKhong) {
                 optCo.classList.remove(...active, ...inactive);
                 optKhong.classList.remove(...active, ...inactive);
@@ -1761,8 +1799,8 @@
             }
 
             // Cập nhật style 3 thẻ lựa chọn
-            const active = ['border-purple-600', 'bg-purple-50'];
-            const inactive = ['border-gray-200', 'bg-slate-50'];
+            const active = ['choice-on'];
+            const inactive = [];
             [['suatan-opt-com', com], ['suatan-opt-tiec', tiec], ['suatan-opt-khong', khong]]
                 .forEach(([id, inp]) => {
                     const the = document.getElementById(id);
@@ -1787,21 +1825,22 @@
             const toastContainer = document.getElementById('toast-container');
             const toast = document.createElement('div');
 
-            let bgColor = 'bg-blue-600';
+            // Nền gradient cùng hệ với nút, bóng đổ ám navy
+            let bgColor = 'from-brand-sky-deep to-brand-navy';
             let icon = 'fa-info-circle';
 
             if (type === 'success') {
-                bgColor = 'bg-green-600';
+                bgColor = 'from-emerald-500 to-emerald-700';
                 icon = 'fa-check-circle';
             } else if (type === 'error') {
-                bgColor = 'bg-red-600';
+                bgColor = 'from-red-500 to-red-700';
                 icon = 'fa-exclamation-circle';
             } else if (type === 'info') {
-                bgColor = 'bg-sky-600';
+                bgColor = 'from-brand-sky to-brand-sky-deep';
                 icon = 'fa-spinner fa-spin';
             }
 
-            toast.className = `${bgColor} text-white px-6 py-4 rounded-xl shadow-2xl transform transition-all duration-300 translate-y-10 opacity-0 flex items-center gap-3 font-medium text-sm`;
+            toast.className = `bg-gradient-to-br ${bgColor} text-white px-5 py-4 rounded-card shadow-pop transform transition-all duration-300 translate-y-10 opacity-0 flex items-center gap-3 font-medium text-sm max-w-sm`;
             toast.innerHTML = `<i class="fas ${icon} text-lg"></i> <span>${message}</span>`;
 
             toastContainer.appendChild(toast);

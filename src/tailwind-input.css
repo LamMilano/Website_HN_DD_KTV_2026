@@ -1,3 +1,543 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ══════════════════════════════════════════════════════════════
+   HỆ TOKEN — "Khối thoi"
+   Kế thừa hệ Clinical Light của trang AI-edu nội bộ: cùng bảng màu
+   trích từ logo BVĐK Hùng Vương, cùng Be Vietnam Pro, cùng bóng đổ
+   ám navy, bề mặt gradient và góc vát 45°.
+   Phần thêm riêng cho hội nghị là sắc vàng lễ nghi (--gold), chỉ
+   dùng cho dấu "lần thứ II", mốc trao giải và hạng tài trợ Vàng.
+   ══════════════════════════════════════════════════════════════ */
+:root {
+  --sky-light: #a8e1f9;
+  --sky: #4fc3f0;
+  --sky-deep: #2e86c8;
+  --steel: #4a7eb5;
+  --navy: #1f4e9c;
+  --navy-deep: #14336e;
+  --navy-night: #0b2350;
+  --canvas: #f4f9fe;
+  --canvas-deep: #e6eff9;
+  --line: #d8e4f2;
+  --line-soft: #e6edf6;
+  --ink: #0c1a2b;
+  --ink-2: #243a52;
+  --ink-3: #4a5c72;
+  --ink-4: #6b7e95;
+  --gold-light: #ebd07a;
+  --gold: #c9a227;
+  --gold-deep: #8c6d12;
+}
+
+@layer base {
+  body {
+    font-family: 'Be Vietnam Pro', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ổ khoá tiêu điểm bàn phím — nhìn thấy được ở mọi nền */
+  :focus-visible {
+    outline: 2px solid var(--sky-deep);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* ── Nền trang: gradient dọc + hai quầng sáng lệch tâm ────── */
+  .app-canvas {
+    background:
+      radial-gradient(900px 420px at 8% 2%, rgb(79 195 240 / 0.3), transparent 62%),
+      radial-gradient(760px 400px at 100% 22%, rgb(31 78 156 / 0.16), transparent 60%),
+      linear-gradient(180deg, var(--canvas) 0%, var(--canvas-deep) 100%);
+  }
+
+  /* Dải chéo 45° — lấy từ ba vệt chéo trong logo. Rộng 90px, cách
+     240px nên chỉ có 4–5 dải toàn màn, không gây rung mắt. */
+  .diag-bands {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      135deg,
+      rgb(79 195 240 / 0.09) 0 90px,
+      transparent 90px 240px
+    );
+    -webkit-mask-image: linear-gradient(150deg, #000 0%, transparent 62%);
+    mask-image: linear-gradient(150deg, #000 0%, transparent 62%);
+  }
+
+  .diag-bands-dark {
+    background: repeating-linear-gradient(
+      135deg,
+      rgb(168 225 249 / 0.1) 0 90px,
+      transparent 90px 240px
+    );
+    -webkit-mask-image: linear-gradient(115deg, #000 0%, transparent 72%);
+    mask-image: linear-gradient(115deg, #000 0%, transparent 72%);
+  }
+
+  /* ── Bề mặt: không bao giờ phẳng ──────────────────────────── */
+  .surface {
+    background: linear-gradient(158deg, #ffffff 0%, #fbfdfe 48%, #f1f6fc 100%);
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgb(12 26 43 / 0.05), 0 22px 44px -20px rgb(20 51 110 / 0.42);
+  }
+
+  .surface-tile {
+    background: linear-gradient(158deg, #ffffff 0%, #f2f7fc 100%);
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgb(12 26 43 / 0.05), 0 16px 32px -18px rgb(20 51 110 / 0.4);
+  }
+
+  /* Tấm nền navy sâu — hero, thẻ gửi bài, thẻ địa điểm */
+  .surface-navy {
+    background:
+      radial-gradient(600px 300px at 90% -10%, rgb(79 195 240 / 0.34), transparent 60%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 70%, var(--navy-night) 100%);
+  }
+
+  /* ── Motif khối thoi 45° từ logo ──────────────────────────── */
+  .cut-corner {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+  }
+
+  .dia {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    flex: none;
+    transform: rotate(45deg);
+    border-radius: 2px;
+    background: linear-gradient(135deg, var(--sky), var(--navy));
+  }
+
+  .dia-gold {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  }
+
+  .dia-light {
+    background: linear-gradient(135deg, #ffffff, var(--sky-light));
+  }
+
+  /* ── Chữ đổ gradient ──────────────────────────────────────── */
+  .text-grad {
+    background-image: linear-gradient(
+      135deg,
+      var(--sky) 0%,
+      var(--sky-deep) 42%,
+      var(--navy-deep) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-grad-light {
+    background-image: linear-gradient(135deg, #ffffff 0%, var(--sky-light) 55%, var(--sky) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ── Nút ──────────────────────────────────────────────────── */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--sky-deep) 55%, var(--navy) 100%);
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.4) inset, 0 16px 34px -14px rgb(31 78 156 / 0.85);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.5) inset, 0 22px 42px -14px rgb(31 78 156 / 0.95);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  .btn-primary:disabled {
+    background: linear-gradient(135deg, #9fb3c8, #7b8aa0);
+    box-shadow: none;
+    transform: none;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    background: linear-gradient(180deg, #ffffff, #eff5fb);
+    border: 1px solid var(--line);
+    color: var(--navy);
+    border-radius: 10px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px -6px rgb(20 51 110 / 0.3);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .btn-secondary:hover {
+    border-color: var(--sky-deep);
+    box-shadow: 0 8px 18px -8px rgb(20 51 110 / 0.45);
+  }
+
+  /* Nút trên nền tối */
+  .btn-on-dark {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0.06));
+    border: 1px solid rgb(255 255 255 / 0.28);
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: border-color 0.18s ease, background 0.18s ease;
+  }
+  .btn-on-dark:hover {
+    border-color: rgb(255 255 255 / 0.55);
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0.1));
+  }
+
+  .btn-light {
+    background: linear-gradient(180deg, #ffffff, #eaf3fb);
+    color: var(--navy-deep);
+    border-radius: 10px;
+    font-weight: 800;
+    box-shadow: 0 14px 30px -12px rgb(0 0 0 / 0.7);
+    transition: transform 0.18s ease;
+  }
+  .btn-light:hover {
+    transform: translateY(-1px);
+  }
+
+  /* ── Thanh điều hướng: hai trạng thái ─────────────────────── */
+  /* Mặc định — trong suốt, nằm đè lên hero navy */
+  #navbar {
+    background: rgb(255 255 255 / 0.07);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgb(255 255 255 / 0.14);
+  }
+  #navbar .nav-ink {
+    color: #ffffff;
+  }
+  #navbar .nav-ink-2 {
+    color: rgb(255 255 255 / 0.66);
+  }
+  #navbar .nav-link {
+    color: rgb(255 255 255 / 0.82);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.16s ease, border-color 0.16s ease;
+  }
+  #navbar .nav-link:hover {
+    color: #ffffff;
+    border-bottom-color: var(--sky);
+  }
+
+  /* Đã cuộn, hoặc đang ở màn hình biểu mẫu — tấm trắng */
+  #navbar.nav-solid {
+    background: linear-gradient(180deg, #ffffff, #f4f9fe);
+    backdrop-filter: none;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgb(12 26 43 / 0.05), 0 16px 32px -24px rgb(20 51 110 / 0.5);
+  }
+  #navbar.nav-solid .nav-ink {
+    color: var(--ink);
+  }
+  #navbar.nav-solid .nav-ink-2 {
+    color: var(--ink-3);
+  }
+  #navbar.nav-solid .nav-link {
+    color: var(--ink-2);
+  }
+  #navbar.nav-solid .nav-link:hover {
+    color: var(--navy);
+    border-bottom-color: var(--sky-deep);
+  }
+
+  /* ── Nhãn mục & tiêu đề mục ───────────────────────────────── */
+  .sec-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sky-deep);
+  }
+
+  .sec-title {
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  /* ── Khung ảnh khối thoi — dùng ở hero ────────────────────── */
+  .plate {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+  }
+  .plate .plate-ring {
+    position: absolute;
+    inset: 6%;
+    transform: rotate(45deg);
+    border-radius: 18px;
+    border: 1px solid rgb(168 225 249 / 0.35);
+    box-shadow: 0 0 0 14px rgb(255 255 255 / 0.04);
+  }
+  .plate .plate-win {
+    position: absolute;
+    inset: 14%;
+    transform: rotate(45deg);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -34px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(255 255 255 / 0.18);
+  }
+  /* Ảnh xoay ngược lại 45° và phóng 1.46 lần để lấp kín ô vuông đã xoay */
+  .plate .plate-win img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(-45deg) scale(1.46);
+  }
+  .plate .plate-cnr {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-radius: 2px;
+    background: linear-gradient(135deg, var(--sky-light), var(--sky));
+  }
+
+  /* ── Mục địa điểm ─────────────────────────────────────────── */
+  /* Lớp phủ navy trên ảnh: dọc trên điện thoại, ngang trên máy tính.
+     Viết thẳng ở đây thay vì ghép biến thể md: của Tailwind cho gọn. */
+  .venue-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgb(11 35 80 / 0.35) 0%,
+      rgb(11 35 80 / 0.88) 100%
+    );
+  }
+  @media (min-width: 768px) {
+    .venue-overlay {
+      background: linear-gradient(
+        to right,
+        rgb(11 35 80 / 0.92) 0%,
+        rgb(20 51 110 / 0.62) 45%,
+        rgb(20 51 110 / 0.08) 78%
+      );
+    }
+  }
+
+  /* Thẻ thông tin: nằm trong dòng chảy trên điện thoại, nổi giữa
+     ảnh trên máy tính. Canh theo khung ảnh, không theo cả mục. */
+  .venue-card {
+    position: relative;
+    margin-top: -3.5rem;
+  }
+  @media (min-width: 768px) {
+    .venue-card {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-top: 0;
+      max-width: 430px;
+    }
+  }
+
+  /* ── Trục thời gian dọc, viên thoi làm mốc ────────────────── */
+  .spine {
+    position: relative;
+    padding-left: 132px;
+  }
+  .spine::before {
+    content: '';
+    position: absolute;
+    left: 96px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--sky) 0%, var(--navy) 60%, transparent 100%);
+  }
+  .spine-time {
+    position: absolute;
+    left: -132px;
+    top: -2px;
+    width: 80px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .spine-knot {
+    position: absolute;
+    left: -42px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    transform: rotate(45deg);
+    border-radius: 3px;
+    background: linear-gradient(135deg, var(--sky), var(--navy));
+    box-shadow: 0 0 0 4px var(--canvas), 0 0 0 5px var(--line);
+  }
+  .spine-knot-gold {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  }
+
+  @media (max-width: 900px) {
+    .spine {
+      padding-left: 74px;
+    }
+    .spine::before {
+      left: 44px;
+    }
+    .spine-time {
+      position: static;
+      width: auto;
+      text-align: left;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .spine-knot {
+      left: -38px;
+    }
+  }
+
+  /* ── Ô nhập liệu ──────────────────────────────────────────── */
+  .field {
+    background: linear-gradient(180deg, #ffffff, #f7fafd);
+    border: 1px solid #d3e0ee;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgb(12 26 43 / 0.04) inset;
+    color: var(--ink);
+    transition: border-color 0.16s ease, box-shadow 0.16s ease;
+  }
+  .field::placeholder {
+    color: var(--ink-4);
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--sky-deep);
+    box-shadow: 0 0 0 3px rgb(46 134 200 / 0.16);
+  }
+
+  /* Lựa chọn dạng thẻ (radio / checkbox) */
+  .choice {
+    background: linear-gradient(180deg, #ffffff, #f8fbfd);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+  }
+  .choice:hover {
+    border-color: #b9cce0;
+  }
+  .choice-on {
+    border-color: var(--sky-deep);
+    background: linear-gradient(180deg, #f0f8fe, #e2f0fb);
+    color: var(--navy-deep);
+    font-weight: 600;
+    box-shadow: 0 0 0 3px rgb(46 134 200 / 0.14);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HAI MÀN HÌNH BIỂU MẪU
+   Các ô nhập trong form được viết rải rác bằng nhiều tổ hợp class
+   khác nhau. Thay vì sửa từng dòng, thống nhất diện mạo tại đây —
+   quy tắc này đứng ngoài @layer nên luôn thắng utility của Tailwind.
+   ══════════════════════════════════════════════════════════════ */
+#cme-form-view input[type='text'],
+#cme-form-view input[type='tel'],
+#cme-form-view input[type='email'],
+#cme-form-view select,
+#cme-form-view textarea,
+#report-form-view input[type='text'],
+#report-form-view input[type='tel'],
+#report-form-view input[type='email'],
+#report-form-view select,
+#report-form-view textarea {
+  background: linear-gradient(180deg, #ffffff, #f7fafd);
+  border: 1px solid #d3e0ee;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgb(12 26 43 / 0.04) inset;
+  color: var(--ink);
+  font-weight: 500;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+#cme-form-view input[type='text']:focus,
+#cme-form-view input[type='tel']:focus,
+#cme-form-view input[type='email']:focus,
+#cme-form-view select:focus,
+#cme-form-view textarea:focus,
+#report-form-view input[type='text']:focus,
+#report-form-view input[type='tel']:focus,
+#report-form-view input[type='email']:focus,
+#report-form-view select:focus,
+#report-form-view textarea:focus {
+  outline: none;
+  border-color: var(--sky-deep);
+  box-shadow: 0 0 0 3px rgb(46 134 200 / 0.16);
+}
+
+#cme-form-view input[type='checkbox'],
+#cme-form-view input[type='radio'],
+#report-form-view input[type='checkbox'],
+#report-form-view input[type='radio'] {
+  accent-color: var(--navy);
+}
+
+/* Vùng thả tệp */
+#cme-form-view label[for^='cme_anh'],
+#cme-form-view label[for^='cme_file'],
+#report-form-view label[for^='bc_anh'],
+#report-form-view label[for^='bc_file'] {
+  border-color: var(--line);
+  background: linear-gradient(158deg, #ffffff, #f2f7fc);
+}
+#cme-form-view label[for^='cme_anh']:hover,
+#cme-form-view label[for^='cme_file']:hover,
+#report-form-view label[for^='bc_anh']:hover,
+#report-form-view label[for^='bc_file']:hover {
+  border-color: var(--sky-deep);
+  background: linear-gradient(158deg, #f4fbff, #e6f2fb);
+}
+
+/* ── Thanh cuộn ───────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b9cce0 transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #b9cce0;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #94aec9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

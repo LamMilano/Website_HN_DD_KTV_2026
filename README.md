@@ -2,6 +2,30 @@
 
 Trang tĩnh, deploy bằng GitHub Pages tại `hn2026.benhvienhungvuong.vn`.
 
+## Hệ thiết kế "Khối thoi"
+
+Trang dùng chung hệ token với trang đào tạo AI nội bộ của bệnh viện, để hai sản
+phẩm nhìn ra một nhà. Toàn bộ token nằm trong [`src/tailwind-input.css`](src/tailwind-input.css)
+và [`tailwind.config.js`](tailwind.config.js).
+
+| Thành phần | Quy tắc |
+|---|---|
+| Chữ | Be Vietnam Pro (vẽ riêng cho tiếng Việt). Tiêu đề `font-extrabold` + `tracking-[-0.035em]` |
+| Màu | Trích từ logo: navy `#1F4E9C`, thép `#4A7EB5`, sky `#4FC3F0`. Đặt trong namespace `brand-*` |
+| Vàng lễ nghi | `gold-*` — **chỉ** dùng cho dấu "lần thứ II", mốc trao giải, hạng tài trợ Vàng. Không trang trí chỗ khác |
+| Bề mặt | Không bao giờ phẳng: `.surface`, `.surface-tile`, `.surface-navy` đều là gradient |
+| Bóng đổ | Ám navy (`shadow-card/tile/pop`), không dùng bóng đen xám |
+| Motif | Khối thoi 45° từ logo: `.dia` (dấu đầu dòng), `.cut-corner` (góc vát), `.plate` (khung ảnh hero) |
+| Nền trang | `.app-canvas` + `.diag-bands` — dải chéo 45° lấy từ ba vệt chéo trong logo |
+| Nút | `.btn-primary` / `.btn-secondary` / `.btn-on-dark` / `.btn-light` |
+
+Thanh điều hướng có hai trạng thái: trong suốt khi nằm trên hero navy, thêm class
+`.nav-solid` (do hàm `syncNavbar()` gắn) khi đã cuộn hoặc khi đang ở màn hình biểu mẫu.
+
+Ô nhập trong hai biểu mẫu được thống nhất diện mạo bằng CSS chọn theo
+`#cme-form-view input`, `#report-form-view select`… ở cuối file input CSS, nên
+**không cần** sửa class trên từng ô khi muốn đổi kiểu.
+
 ## ⚠️ Quan trọng: CSS Tailwind nay là file build sẵn
 
 Trước đây trang dùng `cdn.tailwindcss.com` — script này tự sinh CSS ngay trong trình duyệt
