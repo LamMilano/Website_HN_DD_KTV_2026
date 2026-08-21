@@ -32,6 +32,16 @@
             text-wrap: balance;
         }
 
+        /* Chống rơi lẻ một từ xuống dòng cuối trên toàn trang */
+        p,
+        li,
+        h1,
+        h2,
+        h3,
+        h4 {
+            text-wrap: pretty;
+        }
+
         .animate-fade-in {
             animation: fadeIn 0.4s ease-out forwards;
         }
@@ -360,8 +370,7 @@
 
                 <div class="flex flex-wrap items-end justify-between gap-6">
                     <div>
-                        <div class="sec-tag"><i class="dia"></i>Chiều 12/09 · bốn phòng cùng lúc</div>
-                        <h2 class="sec-title text-3xl md:text-[38px] mt-3.5">Chủ đề &amp; lĩnh vực chuyên môn</h2>
+                        <h2 class="sec-title text-3xl md:text-[38px]">Chủ đề &amp; lĩnh vực chuyên môn</h2>
                         <p class="mt-3.5 text-[15px] leading-relaxed text-ink-3 max-w-[56ch]">Đại biểu chọn một phiên
                             để theo trọn buổi, hoặc di chuyển giữa các phòng. Hạn đăng ký tên bài và nộp tóm tắt là
                             20/07/2026.</p>
@@ -450,9 +459,9 @@
                 </div>
 
                 <!-- ── Các mốc thời gian: trục dọc, viên thoi làm mốc ── -->
-                <div class="mt-20 md:mt-24 max-w-4xl">
-                    <div class="sec-tag"><i class="dia"></i>Lịch trình chuẩn bị</div>
-                    <h2 class="sec-title text-2xl md:text-[32px] mt-3.5 mb-9">Các mốc thời gian quan trọng</h2>
+                <div class="mt-20 md:mt-24 max-w-3xl mx-auto">
+                    <div class="sec-tag justify-center w-full"><i class="dia"></i>Lịch trình chuẩn bị</div>
+                    <h2 class="sec-title text-2xl md:text-[32px] mt-3.5 mb-9 text-center">Các mốc thời gian quan trọng</h2>
 
                     <div class="spine">
                         <div class="pb-7 relative">
@@ -503,8 +512,7 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div class="text-center max-w-3xl mx-auto">
-                    <div class="sec-tag justify-center"><i class="dia"></i>Diễn tiến trong ngày</div>
-                    <h2 class="sec-title text-3xl md:text-[38px] mt-3.5">Chương trình khoa học</h2>
+                    <h2 class="sec-title text-3xl md:text-[38px]">Chương trình khoa học</h2>
                     <p class="mt-3.5 text-[15px] font-medium text-ink-3">Thứ 7, ngày 12 / 09 / 2026 — Bệnh viện Đa khoa
                         Hùng Vương</p>
                     <p class="mt-1.5 text-[13px] text-ink-4">Chương trình có thể thay đổi, Ban tổ chức sẽ cập nhật khi
@@ -549,7 +557,7 @@
                     <div class="surface rounded-shell p-8 md:p-10 flex flex-col">
                         <h3 class="text-[22px] font-extrabold tracking-[-0.03em]">Đăng ký tham dự</h3>
                         <div class="mt-4 text-[38px] font-extrabold tracking-[-0.045em] leading-none tabular-nums text-grad">
-                            200.000 <span class="text-[16px] font-bold text-ink-3">VNĐ · lệ phí CME</span>
+                            200.000 <span class="ml-1 inline-block text-[16px] font-bold text-ink-3 tracking-[0.01em] leading-snug">VNĐ&nbsp;·&nbsp;lệ phí CME</span>
                         </div>
                         <div class="mt-5 space-y-3">
                             <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
@@ -616,64 +624,9 @@
         </section>
 
         <!-- ==========================================
-             8. ĐỊA ĐIỂM — ảnh tràn viền, thẻ navy cắt góc nổi đè lên
+             8. TÀI TRỢ — chia hạng, nhịp lễ nghi, sắc vàng dành riêng
         =========================================== -->
-        <!-- ==========================================
-             8. ĐỊA ĐIỂM — ảnh tràn viền, thẻ navy cắt góc nổi giữa ảnh
-        =========================================== -->
-        <section id="location" class="relative">
-
-            <div class="relative">
-                <div class="relative h-[300px] md:h-[460px] overflow-hidden">
-                    <picture>
-                        <source srcset="hungvuong1.webp" type="image/webp">
-                        <img src="hungvuong1.jpg" width="1280" height="720" loading="lazy" decoding="async"
-                            alt="Bệnh viện Đa khoa Hùng Vương"
-                            class="w-full h-full object-cover object-[center_46%]"
-                            onerror="this.style.display='none'">
-                    </picture>
-                    <div class="venue-overlay"></div>
-                </div>
-
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div
-                        class="venue-card z-10 surface-navy cut-corner rounded-shell shadow-pop border border-white/[0.18] text-white p-7 md:p-8">
-                        <div class="sec-tag !text-brand-sky-light"><i class="dia dia-light"></i>Địa điểm tổ chức</div>
-                        <h3 class="mt-3 text-[24px] font-extrabold tracking-[-0.03em] leading-tight">Bệnh viện Đa khoa
-                            Hùng Vương</h3>
-                        <p class="mt-3.5 text-[13.5px] leading-relaxed text-white/80">QL2, xã Chí Đám, tỉnh Phú Thọ.
-                            Hội trường tầng 3 nhà T, có bãi đỗ xe trong khuôn viên bệnh viện.</p>
-
-                        <div class="mt-5 pt-5 border-t border-white/[0.16] grid grid-cols-2 gap-4">
-                            <div>
-                                <p class="text-[10.5px] font-bold uppercase tracking-[0.14em] text-white/50">Thời gian
-                                </p>
-                                <p class="mt-1.5 text-[14.5px] font-extrabold tracking-[-0.02em]">Thứ 7, 12/09/2026</p>
-                            </div>
-                            <div>
-                                <p class="text-[10.5px] font-bold uppercase tracking-[0.14em] text-white/50">Bắt đầu</p>
-                                <p class="mt-1.5 text-[14.5px] font-extrabold tracking-[-0.02em]">7h00 đón tiếp</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bản đồ nhúng -->
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-20 md:pb-24">
-                <div class="surface overflow-hidden rounded-shell h-[340px] md:h-[420px]">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8719.890187063364!2d105.20596267766688!3d21.658953080152838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134a4cff21eed9f%3A0xf45dd96440b01432!2zQuG7h25oIHZp4buHbiDEkGEga2hvYSBIw7luZyBWxrDGoW5n!5e1!3m2!1svi!2s!4v1776224393720!5m2!1svi!2s"
-                        class="w-full h-full border-0" title="Bản đồ Bệnh viện Đa khoa Hùng Vương" allowfullscreen=""
-                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
-             9. TÀI TRỢ — chia hạng, nhịp lễ nghi, sắc vàng dành riêng
-        =========================================== -->
-        <section class="pb-20 md:pb-24 relative">
+        <section class="pt-4 pb-20 md:pb-24 relative">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div class="sec-tag justify-center"><i class="dia dia-gold"></i>Đồng hành cùng hội nghị</div>
                 <h2 class="sec-title text-3xl md:text-[38px] mt-3.5">Đối tác &amp; Nhà tài trợ</h2>
@@ -752,6 +705,58 @@
                 </div>
             </div>
         </section>
+        <!-- ==========================================
+             9. ĐỊA ĐIỂM — ảnh tràn viền, thẻ navy cắt góc nổi giữa ảnh
+        =========================================== -->
+        <section id="location" class="relative">
+
+            <div class="relative">
+                <div class="relative h-[300px] md:h-[460px] overflow-hidden">
+                    <picture>
+                        <source srcset="hungvuong1.webp" type="image/webp">
+                        <img src="hungvuong1.jpg" width="1280" height="720" loading="lazy" decoding="async"
+                            alt="Bệnh viện Đa khoa Hùng Vương"
+                            class="w-full h-full object-cover object-[center_46%]"
+                            onerror="this.style.display='none'">
+                    </picture>
+                    <div class="venue-overlay"></div>
+                </div>
+
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div
+                        class="venue-card z-10 surface-navy cut-corner rounded-shell shadow-pop border border-white/[0.18] text-white p-7 md:p-8">
+                        <div class="sec-tag !text-brand-sky-light"><i class="dia dia-light"></i>Địa điểm tổ chức</div>
+                        <h3 class="mt-3 text-[24px] font-extrabold tracking-[-0.03em] leading-tight">Bệnh viện Đa khoa
+                            Hùng Vương</h3>
+                        <p class="mt-3.5 text-[13.5px] leading-relaxed text-white/80">QL2, xã Chí Đám, tỉnh Phú Thọ.
+                            Hội trường tầng 3 nhà T, có bãi đỗ xe trong khuôn viên bệnh viện.</p>
+
+                        <div class="mt-5 pt-5 border-t border-white/[0.16] grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-[10.5px] font-bold uppercase tracking-[0.14em] text-white/50">Thời gian
+                                </p>
+                                <p class="mt-1.5 text-[14.5px] font-extrabold tracking-[-0.02em]">Thứ 7, 12/09/2026</p>
+                            </div>
+                            <div>
+                                <p class="text-[10.5px] font-bold uppercase tracking-[0.14em] text-white/50">Bắt đầu</p>
+                                <p class="mt-1.5 text-[14.5px] font-extrabold tracking-[-0.02em]">7h00 đón tiếp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bản đồ nhúng -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-20 md:pb-24">
+                <div class="surface overflow-hidden rounded-shell h-[340px] md:h-[420px]">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8719.890187063364!2d105.20596267766688!3d21.658953080152838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134a4cff21eed9f%3A0xf45dd96440b01432!2zQuG7h25oIHZp4buHbiDEkGEga2hvYSBIw7luZyBWxrDGoW5n!5e1!3m2!1svi!2s!4v1776224393720!5m2!1svi!2s"
+                        class="w-full h-full border-0" title="Bản đồ Bệnh viện Đa khoa Hùng Vương" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- ==========================================
@@ -1257,11 +1262,11 @@
     <!-- ==========================================
          9. FOOTER CHUNG (CẬP NHẬT LIÊN HỆ TỪ THÔNG BÁO SỐ 1)
     =========================================== -->
-    <footer id="contact" class="surface-navy relative z-10 text-white/75 py-20 mt-20 overflow-hidden">
+    <footer id="contact" class="surface-navy relative z-10 text-white/75 pt-14 pb-8 mt-16 overflow-hidden">
         <div class="diag-bands diag-bands-dark"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-12 lg:gap-20 text-left">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-12 gap-x-10 gap-y-10 lg:gap-x-14 text-left">
             <!-- Cột 1: Logo & Slogan -->
-            <div class="space-y-6">
+            <div class="md:col-span-4 space-y-5">
                 <div class="flex items-center gap-4 text-white">
                     <div class="bg-white p-1.5 rounded-2xl shadow-sm shrink-0">
                         <img src="logo_bvhv.jpg" alt="Logo BVĐK Hùng Vương" width="177" height="192" loading="lazy"
@@ -1273,21 +1278,25 @@
                 <p class="text-sm leading-relaxed italic text-white/60 font-medium border-l-2 border-white/20 pl-4">
                     "Tận tâm - Liêm chính - Nhân văn"
                 </p>
+                <div class="flex items-start gap-3 text-xs leading-relaxed text-white/55">
+                    <i class="fas fa-location-dot text-brand-sky-light mt-0.5"></i>
+                    <span>QL2, xã Chí Đám, tỉnh Phú Thọ<br>Hội trường tầng 3 nhà T</span>
+                </div>
             </div>
 
             <!-- Cột 2: Liên hệ -->
-            <div class="space-y-6">
+            <div class="md:col-span-5 space-y-5">
                 <h4 class="text-white font-extrabold uppercase tracking-widest text-xs relative inline-block">
                     Liên hệ Ban tổ chức
                     <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-brand-sky rounded-full"></span>
                 </h4>
 
-                <div class="space-y-6 pt-2">
+                <div class="space-y-4 pt-1.5">
                     <!-- Liên hệ 1 -->
                     <div class="flex items-start gap-4">
                         <div
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner mt-1">
-                            <i class="fas fa-headset"></i>
+                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner mt-0.5">
+                            <i class="fas fa-headset text-sm"></i>
                         </div>
                         <div>
                             <p class="font-bold text-white text-sm">Điều dưỡng</p>
@@ -1299,8 +1308,8 @@
                     <!-- Liên hệ 2 -->
                     <div class="flex items-start gap-4">
                         <div
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner mt-1">
-                            <i class="fas fa-headset"></i>
+                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner mt-0.5">
+                            <i class="fas fa-headset text-sm"></i>
                         </div>
                         <div>
                             <p class="font-bold text-white text-sm">Kỹ thuật y</p>
@@ -1311,8 +1320,8 @@
                     <!-- Liên hệ 3 (Email Chung) -->
                     <div class="flex items-center gap-4">
                         <div
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner">
-                            <i class="fas fa-envelope"></i>
+                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-brand-sky-light shrink-0 shadow-inner">
+                            <i class="fas fa-envelope text-sm"></i>
                         </div>
                         <a href="mailto:phongdieuduongbvhv@gmail.com"
                             class="text-sm font-medium hover:text-brand-sky-light transition-colors break-all">phongdieuduongbvhv@gmail.com</a>
@@ -1320,27 +1329,35 @@
                 </div>
             </div>
 
-            <!-- Cột 3: Mạng xã hội & Copyright -->
-            <div class="flex flex-col md:items-end space-y-6">
+            <!-- Cột 3: Liên kết nhanh & mạng xã hội -->
+            <div class="md:col-span-3 flex flex-col md:items-end space-y-5">
                 <h4 class="text-white font-extrabold uppercase tracking-widest text-xs relative inline-block md:text-right">
-                    Kết nối với chúng tôi
+                    Liên kết nhanh
                     <span class="absolute -bottom-2 right-0 w-1/2 h-0.5 bg-brand-sky rounded-full hidden md:block"></span>
                     <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-brand-sky rounded-full md:hidden"></span>
                 </h4>
-                <div class="flex gap-4">
+                <ul class="space-y-2 text-sm md:text-right pt-1">
+                    <li><a href="javascript:void(0)" onclick="showView('home', 'program')"
+                            class="hover:text-brand-sky-light transition-colors">Chương trình khoa học</a></li>
+                    <li><a href="javascript:void(0)" onclick="showView('home', 'registration')"
+                            class="hover:text-brand-sky-light transition-colors">Đăng ký tham dự</a></li>
+                    <li><a href="javascript:void(0)" onclick="showView('home', 'location')"
+                            class="hover:text-brand-sky-light transition-colors">Địa điểm tổ chức</a></li>
+                </ul>
+                <div class="flex gap-3 pt-1">
                     <a href="https://www.facebook.com/BenhvienHungVuongPhuTho" target="_blank" rel="noopener noreferrer"
-                        class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:bg-brand-sky-deep hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-1"><i
-                            class="fab fa-facebook-f text-lg"></i></a>
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:bg-brand-sky-deep hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-1"><i
+                            class="fab fa-facebook-f"></i></a>
                     <a href="https://www.facebook.com/BenhvienHungVuongPhuTho" target="_blank" rel="noopener noreferrer"
-                        class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-1"><i
-                            class="fab fa-youtube text-lg"></i></a>
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-1"><i
+                            class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
 
         <!-- Dòng bản quyền dưới cùng -->
         <div
-            class="container mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-white/15 flex flex-col md:flex-row items-center justify-between gap-4">
+            class="container mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-5 border-t border-white/15 flex flex-col md:flex-row items-center justify-between gap-3">
             <p class="text-xs uppercase font-bold text-white/55 tracking-wider text-center md:text-left">
                 &copy; 2026 Bệnh viện đa khoa Hùng Vương.
             </p>
@@ -1491,7 +1508,7 @@
                             { name: 'Ths. Ninh Văn Quyết', role: 'Bộ môn Bệnh học - Trường Đại học Y dược, Đại học Quốc gia Hà Nội; Giảng viên thỉnh giảng bộ môn Giải phẫu bệnh lâm sàng - Trường Đại học Y Hà Nội' },
                             { name: 'Ths. Nguyễn Thị Thu Liên', role: 'Trưởng phòng điều dưỡng - QLCL Bệnh viện Sản Nhi Phú Thọ' }
                         ],
-                        secretary: [{ name: 'CN. Nguyễn Mỹ Linh', role: 'KTV khoa Xét nghiệm BVĐK Hùng Vương' }],
+                        secretary: [{ name: 'CN. Nguyễn Mỹ Linh', role: 'Bệnh viện đa khoa Hùng Vương' }],
                         items: [
                             { time: '9h10-9h25', title: 'Đánh giá độ chụm, độ đúng của xét nghiệm HbA1C được định lượng trên thiết bị ADAMS HA-8380V tại Phòng khám đa khoa Lê Hoàn', speaker: 'Ths. Nguyễn Trọng Đại', org: 'Phòng khám đa khoa Lê Hoàn' },
                             { time: '9h25-9h40', title: 'Áp dụng thang Six Sigma trong đánh giá chất lượng xét nghiệm hóa sinh tại Bệnh viện đa khoa Hùng Vương', speaker: 'CN. Nguyễn Quang Trường', org: 'Bệnh viện đa khoa Hùng Vương' },
@@ -1640,8 +1657,8 @@
 
         function progPersonList(people) {
             return people.map(p => `<li>
-                        <span class="block font-bold text-ink text-[13.5px] leading-snug">${progEsc(p.name)}</span>
-                        ${p.role ? `<span class="block text-[12px] text-ink-3 leading-snug mt-0.5">${progEsc(p.role)}</span>` : ''}
+                        <span class="block font-bold text-ink text-[13.5px] leading-snug balance-text">${progEsc(p.name)}</span>
+                        ${p.role ? `<span class="block text-[12px] text-ink-3 leading-snug mt-0.5 balance-text">${progEsc(p.role)}</span>` : ''}
                     </li>`).join('');
         }
 
