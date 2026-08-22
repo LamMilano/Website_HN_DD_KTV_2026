@@ -12,7 +12,8 @@ và [`tailwind.config.js`](tailwind.config.js).
 |---|---|
 | Chữ | Be Vietnam Pro (vẽ riêng cho tiếng Việt). Tiêu đề `font-extrabold` + `tracking-[-0.035em]` |
 | Màu | Trích từ logo: navy `#1F4E9C`, thép `#4A7EB5`, sky `#4FC3F0`. Đặt trong namespace `brand-*` |
-| Vàng lễ nghi | `gold-*` — **chỉ** dùng cho dấu "lần thứ II", mốc trao giải, hạng tài trợ Vàng. Không trang trí chỗ khác |
+| Vàng lễ nghi | `gold-*` — **chỉ** dùng cho dấu "lần thứ II" và mốc trao giải. Không trang trí chỗ khác |
+| Sắc băng kim cương | `diamond-*` + `.dia-diamond` — **chỉ** dùng cho hạng tài trợ Kim cương |
 | Bề mặt | Không bao giờ phẳng: `.surface`, `.surface-tile`, `.surface-navy` đều là gradient |
 | Bóng đổ | Ám navy (`shadow-card/tile/pop`), không dùng bóng đen xám |
 | Motif | Khối thoi 45° từ logo: `.dia` (dấu đầu dòng), `.cut-corner` (góc vát), `.plate` (khung ảnh hero) |

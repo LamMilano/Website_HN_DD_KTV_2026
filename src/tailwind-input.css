@@ -8,7 +8,8 @@
    trích từ logo BVĐK Hùng Vương, cùng Be Vietnam Pro, cùng bóng đổ
    ám navy, bề mặt gradient và góc vát 45°.
    Phần thêm riêng cho hội nghị là sắc vàng lễ nghi (--gold), chỉ
-   dùng cho dấu "lần thứ II", mốc trao giải và hạng tài trợ Vàng.
+   dùng cho dấu "lần thứ II" và mốc trao giải; cùng sắc băng
+   (--diamond) dành riêng cho hạng tài trợ Kim cương.
    ══════════════════════════════════════════════════════════════ */
 :root {
   --sky-light: #a8e1f9;
@@ -29,6 +30,10 @@
   --gold-light: #ebd07a;
   --gold: #c9a227;
   --gold-deep: #8c6d12;
+  /* Sắc băng kim cương — chỉ dùng cho hạng tài trợ Kim cương */
+  --diamond-light: #e3f4fd;
+  --diamond: #7fb2ce;
+  --diamond-deep: #24556f;
 }
 
 @layer base {
@@ -119,6 +124,15 @@
 
   .dia-gold {
     background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  }
+
+  .dia-diamond {
+    background: linear-gradient(
+      135deg,
+      var(--diamond-light) 0%,
+      var(--diamond) 55%,
+      var(--diamond-deep) 100%
+    );
   }
 
   .dia-light {

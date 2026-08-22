@@ -24,9 +24,11 @@ module.exports = {
                     'navy-deep': '#14336E',
                     'navy-night': '#0B2350',
                 },
-                // Vàng lễ nghi — chỉ dùng cho dấu "lần thứ II", mốc trao giải
-                // và hạng nhà tài trợ Vàng. Không dùng để trang trí chỗ khác.
+                // Vàng lễ nghi — chỉ dùng cho dấu "lần thứ II" và mốc trao
+                // giải. Không dùng để trang trí chỗ khác.
                 gold: { light: '#EBD07A', DEFAULT: '#C9A227', deep: '#8C6D12' },
+                // Sắc băng kim cương — dành riêng cho hạng tài trợ Kim cương.
+                diamond: { light: '#E3F4FD', DEFAULT: '#7FB2CE', deep: '#24556F' },
                 cross: '#E32219',
             },
             borderRadius: {
