@@ -1605,7 +1605,7 @@
                             { time: '14h15-14h35', title: 'Thảo luận', type: 'break', icon: 'fas fa-comments' },
                             { time: '14h35-14h50', title: 'Báo cáo nhà tài trợ', type: 'break', icon: 'fas fa-handshake-angle' },
                             { time: '14h50-15h05', title: 'Tea break', type: 'break', icon: 'fas fa-mug-hot' },
-                            { time: '15h05-15h20', title: 'Tối ưu hóa các thông số thu nhận và tái tạo ảnh trên CT Photon-counting trong phân tích đánh giá mảng xơ vữa động mạch vành', speaker: 'CN. Đặng Hoàng Tuyến', org: 'Bệnh viện Đa khoa Quốc tế SIS Cần Thơ' },
+                            { time: '15h05-15h20', title: '', speaker: '', org: '' },
                             { time: '15h20-15h35', title: 'Đo thể tích gan tiền phẫu thuật cắt gan lớn trên workstation', speaker: 'CN. Lê Thanh Huyện', org: 'Bệnh viện Đa khoa Hà Đông' },
                             { time: '15h35-15h50', title: 'Nghiên cứu xác định góc chụp X-quang inlet và outlet tối ưu dựa trên hình ảnh cắt lớp vi tính vùng chậu tại Bệnh viện đa khoa Hùng Vương năm 2025', speaker: 'CN. Kiều Tiến Thủy', org: 'Bệnh viện đa khoa Hùng Vương' },
                             { time: '15h50-16h05', title: 'Ứng dụng kỹ thuật lấy huyết khối động mạch não bằng dụng cụ cơ học có sự trợ giúp của phần mềm RAPID AI trong điều trị đột quỵ nhồi máu não tại Bệnh viện đa khoa tỉnh Quảng Ninh', speaker: 'CN. Phan Văn Thường', org: 'Bệnh viện đa khoa tỉnh Quảng Ninh' },
@@ -1695,7 +1695,7 @@
             return `<div class="flex flex-col md:flex-row gap-1.5 md:gap-6 px-6 md:px-9 py-4 hover:bg-canvas transition-colors">
                         <div class="md:w-32 shrink-0 font-extrabold text-[13.5px] ${c.time} tracking-[-0.01em] tabular-nums">${progEsc(item.time)}</div>
                         <div class="min-w-0">
-                            <p class="font-semibold text-ink text-[14.5px] leading-snug">${progEsc(item.title)}</p>
+                            <p class="font-semibold text-ink text-[14.5px] leading-snug">${progEsc(item.title) || "&nbsp;"}</p>
                             ${item.speaker ? `<p class="text-[13px] text-ink-3 mt-1.5 leading-snug flex items-start gap-2">
                                 <i class="dia mt-[5px]"></i><span><span class="font-semibold text-ink-2">${progEsc(item.speaker)}</span>${item.org ? ` <span class="text-ink-4">&mdash; ${progEsc(item.org)}</span>` : ''}</span></p>` : ''}
                         </div>
