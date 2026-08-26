@@ -525,6 +525,18 @@
                         Hùng Vương</p>
                     <p class="mt-1.5 text-[13px] text-ink-4">Chương trình có thể thay đổi, Ban tổ chức sẽ cập nhật khi
                         có điều chỉnh.</p>
+
+                    <!-- Ghi chú Test đầu ra — nhắc lại điều kiện cấp CME -->
+                    <div
+                        class="mt-5 inline-flex items-start gap-2.5 text-left px-4 py-2.5 rounded-field text-[13px] leading-relaxed text-ink-2 bg-gradient-to-b from-gold-light/25 to-gold/[0.10] border border-gold/35">
+                        <i class="dia dia-gold mt-[5px]"></i>
+                        <span>Sau mỗi phiên có <strong class="font-bold text-ink-1">bài Test đầu ra</strong> — bắt buộc
+                            để được cấp chứng nhận CME.
+                            <a href="javascript:void(0)" onclick="showView('home', 'cme-conditions')"
+                                class="font-bold text-gold-deep underline underline-offset-4 hover:text-ink-1">Xem điều
+                                kiện</a>
+                        </span>
+                    </div>
                 </div>
 
                 <!-- Bộ lọc chuyên đề: mỗi lần chỉ hiển thị một phiên -->
@@ -630,6 +642,78 @@
             </div>
         </section>
 
+
+        <!-- ==========================================
+             7B. THÔNG BÁO — ĐIỀU KIỆN CẤP CME
+             Tấm văn bản trang trọng: băng vàng đầu trang, con dấu khối thoi.
+        =========================================== -->
+        <section id="cme-conditions" class="pb-20 md:pb-24 relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div
+                    class="surface rounded-shell overflow-hidden border border-gold/35 shadow-[0_1px_2px_rgb(12_26_43/0.05),0_26px_54px_-22px_rgb(140_109_18/0.45)]">
+
+                    <!-- Băng vàng đầu văn bản -->
+                    <div class="h-1.5 w-full bg-gradient-to-r from-gold-deep via-gold to-gold-light"></div>
+
+                    <div class="grid md:grid-cols-[auto_1fr] gap-7 md:gap-10 p-7 sm:p-9 md:p-11">
+
+                        <!-- Con dấu khối thoi -->
+                        <div class="hidden md:grid place-items-center w-[108px] h-[108px] relative shrink-0 self-start mt-1">
+                            <span
+                                class="absolute inset-0 rotate-45 rounded-[14px] bg-gradient-to-br from-gold-light/45 via-gold/[0.18] to-gold/[0.10] border border-gold/45 shadow-[inset_0_1px_0_rgb(255_255_255/0.9)]"></span>
+                            <span class="absolute inset-[15px] rotate-45 rounded-[9px] border border-gold/40"></span>
+                            <span
+                                class="relative text-[15px] font-extrabold tracking-[0.08em] text-gold-deep">CME</span>
+                        </div>
+
+                        <div class="min-w-0">
+                            <div class="sec-tag !text-gold-deep"><i class="dia dia-gold"></i>Thông báo của Ban Tổ chức
+                            </div>
+                            <h2 class="sec-title text-2xl md:text-[32px] mt-3">Điều kiện cấp chứng nhận CME</h2>
+                            <p class="balance-text mt-3.5 text-[14.5px] leading-relaxed text-ink-3 max-w-2xl">Đại biểu
+                                được cấp chứng nhận đào tạo liên tục (CME) của Hội nghị khi đáp ứng
+                                <strong class="font-bold text-ink-1">đầy đủ</strong> các điều kiện sau:
+                            </p>
+
+                            <!-- Thân văn bản -->
+                            <div
+                                class="mt-6 rounded-card border border-line bg-gradient-to-b from-white to-canvas/80 divide-y divide-line-soft overflow-hidden">
+                                <div class="flex items-start gap-3.5 px-5 sm:px-6 py-4">
+                                    <i class="dia dia-gold mt-[6px]"></i>
+                                    <p class="text-[14.5px] leading-relaxed text-ink-2">Là <strong
+                                            class="font-bold text-ink-1">người hành nghề khám bệnh, chữa bệnh</strong>
+                                        có chứng chỉ hành nghề.</p>
+                                </div>
+                                <div class="flex items-start gap-3.5 px-5 sm:px-6 py-4">
+                                    <i class="dia dia-gold mt-[6px]"></i>
+                                    <p class="text-[14.5px] leading-relaxed text-ink-2"><strong
+                                            class="font-bold text-ink-1">Đăng ký tham dự Hội nghị</strong> theo hình
+                                        thức do Ban Tổ chức quy định.</p>
+                                </div>
+                                <div class="flex items-start gap-3.5 px-5 sm:px-6 py-4">
+                                    <i class="dia dia-gold mt-[6px]"></i>
+                                    <p class="text-[14.5px] leading-relaxed text-ink-2">Tham dự từ <strong
+                                            class="font-bold text-ink-1">80% tổng thời lượng chương trình</strong> trở
+                                        lên.</p>
+                                </div>
+                                <div class="flex items-start gap-3.5 px-5 sm:px-6 py-4">
+                                    <i class="dia dia-gold mt-[6px]"></i>
+                                    <p class="text-[14.5px] leading-relaxed text-ink-2">Có làm <strong
+                                            class="font-bold text-ink-1">bài Test đầu ra</strong> sau mỗi phiên Hội
+                                        nghị.</p>
+                                </div>
+                            </div>
+
+                            <p class="mt-5 flex items-start gap-2.5 text-[13.5px] leading-relaxed text-ink-3">
+                                <i class="fas fa-circle-info text-gold-deep text-[13px] mt-[3px]"></i>
+                                <span>Trường hợp không đáp ứng đủ bốn điều kiện trên, Ban tổ chức không có căn cứ cấp
+                                    chứng nhận CME.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- ==========================================
              8. TÀI TRỢ — chia hạng, nhịp lễ nghi, sắc băng dành riêng
         =========================================== -->
