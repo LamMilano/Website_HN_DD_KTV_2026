@@ -493,7 +493,14 @@
                         </div>
                         <div class="pb-7 relative">
                             <span class="spine-time">30/08</span><i class="spine-knot"></i>
-                            <h4 class="text-[16.5px] font-extrabold tracking-[-0.02em]">Đóng cổng đăng ký tham dự</h4>
+                            <div class="flex items-center gap-2.5 flex-wrap">
+                                <h4 class="text-[16.5px] font-extrabold tracking-[-0.02em]">Đóng cổng đăng ký tham dự
+                                </h4>
+                                <span
+                                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-extrabold uppercase tracking-[0.12em] text-gold-deep bg-gradient-to-b from-gold-light/30 to-gold/[0.14] border border-gold/45">
+                                    Đã đóng
+                                </span>
+                            </div>
                             <p class="mt-1.5 text-[13.5px] leading-relaxed text-ink-3">Chốt danh sách đại biểu tham dự
                                 và nhận chứng nhận CME.</p>
                         </div>
@@ -575,11 +582,22 @@
 
                     <!-- Tấm sáng: đăng ký tham dự -->
                     <div class="surface rounded-shell p-8 md:p-10 flex flex-col">
-                        <h3 class="text-[22px] font-extrabold tracking-[-0.03em]">Đăng ký tham dự</h3>
+                        <div class="flex items-center justify-between gap-4 flex-wrap">
+                            <h3 class="text-[22px] font-extrabold tracking-[-0.03em]">Đăng ký tham dự</h3>
+                            <span
+                                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11.5px] font-extrabold uppercase tracking-[0.12em] text-gold-deep bg-gradient-to-b from-gold-light/30 to-gold/[0.14] border border-gold/45">
+                                <i class="dia dia-gold"></i> Đã đóng
+                            </span>
+                        </div>
                         <div class="mt-4 text-[38px] font-extrabold tracking-[-0.045em] leading-none tabular-nums text-grad">
                             200.000 <span class="ml-1 inline-block text-[16px] font-bold text-ink-3 tracking-[0.01em] leading-snug">VNĐ&nbsp;·&nbsp;lệ phí CME</span>
                         </div>
                         <div class="mt-5 space-y-3">
+                            <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
+                                <i class="dia dia-gold mt-[5px]"></i><span><strong class="font-bold text-ink-1">Cổng đăng
+                                        ký đã đóng ngày 30/08/2026.</strong> Đăng ký muộn cần Ban tổ chức chấp
+                                    thuận.</span>
+                            </div>
                             <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
                                 <i class="dia mt-[5px]"></i><span>Miễn phí tham dự với Chủ tọa đoàn và Báo cáo
                                     viên.</span>
@@ -597,8 +615,8 @@
                             </div>
                         </div>
                         <button onclick="showView('cme-form')"
-                            class="btn-primary mt-auto pt-4 w-full py-4 text-[15px] flex items-center justify-center gap-2.5 group">
-                            Điền phiếu đăng ký
+                            class="btn-secondary mt-auto pt-4 w-full py-4 text-[15px] flex items-center justify-center gap-2.5 group">
+                            Vẫn điền phiếu đăng ký muộn
                             <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
@@ -899,6 +917,17 @@
                 </div>
 
                 <div class="p-8 md:p-12">
+
+                    <!-- Nhắc quá hạn: cổng đăng ký đã đóng 30/08/2026, phiếu chỉ dành cho đăng ký muộn -->
+                    <div
+                        class="mb-9 flex items-start gap-3.5 px-5 py-4 rounded-field text-[13.5px] leading-relaxed text-ink-2 bg-gradient-to-b from-gold-light/28 to-gold/[0.12] border border-gold/40">
+                        <i class="dia dia-gold mt-[6px]"></i>
+                        <span><strong class="font-bold text-ink-1">Cổng đăng ký tham dự đã đóng từ ngày
+                                30/08/2026.</strong> Phiếu này chỉ dành cho trường hợp đăng ký muộn được Ban tổ chức chấp
+                            thuận. Ban tổ chức không đảm bảo suất ăn, tài liệu hội nghị và việc cấp chứng nhận CME kịp
+                            thời cho các đăng ký sau hạn.</span>
+                    </div>
+
                     <form id="formDangKyCME" class="space-y-10">
 
                         <!-- Chọn hình thức tham dự -->
