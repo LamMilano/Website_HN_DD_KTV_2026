@@ -126,8 +126,10 @@
                         class="nav-link">Đăng ký</a>
                     <a href="javascript:void(0)" onclick="showView('home', 'contact')"
                         class="nav-link">Liên hệ</a>
-                    <button onclick="showView('cme-form')"
-                        class="btn-secondary px-5 py-2.5 text-[13.5px]">Đăng ký muộn</button>
+                    <span
+                        class="nav-ink inline-flex items-center gap-2 px-4 py-2.5 rounded-field text-[12.5px] font-bold border border-current/25 opacity-80">
+                        <i class="fas fa-lock text-[10px]"></i> Đã đóng đăng ký
+                    </span>
                 </nav>
 
                 <!-- Nút menu điện thoại -->
@@ -152,12 +154,10 @@
                     class="block py-3.5 text-[15px] font-bold text-ink-2 border-b border-line-soft">Đăng ký</a>
                 <a href="javascript:void(0)" onclick="showView('home', 'contact')"
                     class="block py-3.5 text-[15px] font-bold text-ink-2">Liên hệ</a>
-                <button onclick="showView('cme-form')" class="btn-secondary w-full py-3.5 mt-4 text-[15px]">Đăng ký
-                    muộn</button>
-                <p class="mb-4 mt-2.5 flex items-start gap-2 text-[12.5px] leading-relaxed text-ink-3">
-                    <i class="dia dia-gold mt-[4px]"></i>
-                    <span>Cổng đăng ký đã đóng ngày 30/08/2026.</span>
-                </p>
+                <div
+                    class="w-full my-4 py-3.5 rounded-card flex items-center justify-center gap-2.5 text-[14px] font-bold text-ink-3 border border-line bg-canvas-deep">
+                    <i class="fas fa-lock text-xs"></i> Đã đóng cổng đăng ký · 30/08/2026
+                </div>
             </div>
         </div>
     </header>
@@ -212,14 +212,14 @@
                         </div>
 
                         <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                            <button onclick="showView('cme-form')"
+                            <button onclick="showView('home','program')"
                                 class="btn-on-dark px-7 py-4 text-[15px] flex items-center justify-center gap-2.5 group">
-                                Đăng ký muộn
+                                Xem chương trình
                                 <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                             </button>
                             <span
                                 class="inline-flex items-center justify-center gap-2.5 px-6 py-4 text-[14px] font-semibold rounded-card text-white/65 border border-white/[0.18] bg-white/[0.06]">
-                                <i class="fas fa-lock text-xs"></i> Đã hết hạn nhận bài báo cáo
+                                <i class="fas fa-lock text-xs"></i> Đã đóng cổng đăng ký
                             </span>
                         </div>
 
@@ -227,8 +227,8 @@
                         <p class="mt-4 flex items-start gap-2.5 text-[13.5px] leading-relaxed text-white/70">
                             <i class="dia dia-gold mt-[5px]"></i>
                             <span>Cổng đăng ký tham dự đã đóng ngày <strong
-                                    class="font-bold text-white/90">30/08/2026</strong>. Chỉ nhận đăng ký muộn được Ban
-                                tổ chức chấp thuận.</span>
+                                    class="font-bold text-white/90">30/08/2026</strong>, cổng nhận bài báo cáo đã đóng
+                                ngày <strong class="font-bold text-white/90">20/07/2026</strong>.</span>
                         </p>
                     </div>
 
@@ -342,10 +342,10 @@
                                 class="btn-secondary px-6 py-3.5 text-[14.5px] flex items-center justify-center gap-2.5">
                                 <i class="far fa-calendar-check text-sm"></i> Xem chương trình
                             </button>
-                            <button onclick="showView('cme-form')"
-                                class="btn-secondary px-6 py-3.5 text-[14.5px] flex items-center justify-center gap-2.5">
-                                <i class="fas fa-user-plus text-sm"></i> Đăng ký muộn
-                            </button>
+                            <span
+                                class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-[14.5px] font-bold rounded-card text-ink-3 border border-line bg-canvas-deep">
+                                <i class="fas fa-lock text-sm"></i> Đã đóng cổng đăng ký
+                            </span>
                         </div>
                     </div>
 
@@ -597,40 +597,34 @@
                         <div class="flex items-center justify-between gap-4 flex-wrap">
                             <h3 class="text-[22px] font-extrabold tracking-[-0.03em]">Đăng ký tham dự</h3>
                             <span
-                                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11.5px] font-extrabold uppercase tracking-[0.12em] text-gold-deep bg-gradient-to-b from-gold-light/30 to-gold/[0.14] border border-gold/45">
-                                <i class="dia dia-gold"></i> Đã đóng
+                                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11.5px] font-extrabold uppercase tracking-[0.12em] text-ink-3 border border-line bg-canvas-deep">
+                                <i class="fas fa-lock text-[10px]"></i> Đã đóng
                             </span>
                         </div>
-                        <div class="mt-4 text-[38px] font-extrabold tracking-[-0.045em] leading-none tabular-nums text-grad">
-                            200.000 <span class="ml-1 inline-block text-[16px] font-bold text-ink-3 tracking-[0.01em] leading-snug">VNĐ&nbsp;·&nbsp;lệ phí CME</span>
-                        </div>
+                        <div class="mt-4 text-[28px] font-extrabold tracking-[-0.04em] leading-tight text-ink-3">
+                            Hết hạn đăng ký</div>
                         <div class="mt-5 space-y-3">
                             <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
-                                <i class="dia dia-gold mt-[5px]"></i><span><strong class="font-bold text-ink-1">Cổng đăng
-                                        ký đã đóng ngày 30/08/2026.</strong> Đăng ký muộn cần Ban tổ chức chấp
-                                    thuận.</span>
+                                <i class="dia dia-gold mt-[5px]"></i><span>Cổng đăng ký đã đóng ngày 30/08/2026. Ban tổ
+                                    chức đã chốt danh sách đại biểu tham dự.</span>
                             </div>
                             <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
-                                <i class="dia mt-[5px]"></i><span>Miễn phí tham dự với Chủ tọa đoàn và Báo cáo
-                                    viên.</span>
-                            </div>
-                            <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
-                                <i class="dia mt-[5px]"></i><span>Bao gồm tài liệu hội nghị và giấy chứng nhận
-                                    CME.</span>
-                            </div>
-                            <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
-                                <i class="dia mt-[5px]"></i><span>Đăng ký suất ăn trưa và tiệc tối ngay trong
-                                    phiếu.</span>
+                                <i class="dia dia-gold mt-[5px]"></i><span>Đại biểu đã đăng ký giữ nguyên quyền lợi: tài
+                                    liệu hội nghị, suất ăn đã chọn và giấy chứng nhận CME.</span>
                             </div>
                             <div class="flex items-start gap-2.5 text-[14px] leading-relaxed text-ink-2">
                                 <i class="dia mt-[5px]"></i><span>Hội nghị tổ chức <strong class="font-bold text-ink-1">trực tiếp</strong> tại hội trường, không có hình thức tham dự trực&nbsp;tuyến.</span>
                             </div>
                         </div>
-                        <button onclick="showView('cme-form')"
-                            class="btn-secondary mt-auto pt-4 w-full py-4 text-[15px] flex items-center justify-center gap-2.5 group">
-                            Vẫn điền phiếu đăng ký muộn
-                            <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
-                        </button>
+                        <div
+                            class="mt-auto pt-7 w-full py-4 text-[14.5px] font-semibold rounded-card flex items-center justify-center gap-2.5 text-ink-3 border border-line bg-canvas-deep">
+                            <i class="fas fa-lock text-xs"></i> Không còn nhận đăng ký
+                        </div>
+                        <p class="mt-4 text-[13px] leading-relaxed text-ink-3">Cần trao đổi thêm về đăng ký đã gửi, xin
+                            liên hệ Ban tổ chức qua
+                            <a href="mailto:phongdieuduongbvhv@gmail.com"
+                                class="font-semibold text-brand-sky-deep hover:underline underline-offset-4">phongdieuduongbvhv@gmail.com</a>.
+                        </p>
                     </div>
 
                     <!-- Tấm navy: gửi bài báo cáo -->
@@ -929,17 +923,6 @@
                 </div>
 
                 <div class="p-8 md:p-12">
-
-                    <!-- Nhắc quá hạn: cổng đăng ký đã đóng 30/08/2026, phiếu chỉ dành cho đăng ký muộn -->
-                    <div
-                        class="mb-9 flex items-start gap-3.5 px-5 py-4 rounded-field text-[13.5px] leading-relaxed text-ink-2 bg-gradient-to-b from-gold-light/28 to-gold/[0.12] border border-gold/40">
-                        <i class="dia dia-gold mt-[6px]"></i>
-                        <span><strong class="font-bold text-ink-1">Cổng đăng ký tham dự đã đóng từ ngày
-                                30/08/2026.</strong> Phiếu này chỉ dành cho trường hợp đăng ký muộn được Ban tổ chức chấp
-                            thuận. Ban tổ chức không đảm bảo suất ăn, tài liệu hội nghị và việc cấp chứng nhận CME kịp
-                            thời cho các đăng ký sau hạn.</span>
-                    </div>
-
                     <form id="formDangKyCME" class="space-y-10">
 
                         <!-- Chọn hình thức tham dự -->
@@ -1891,10 +1874,17 @@
         // Cổng nhận bài báo cáo đóng sau hạn 20/07/2026. Đặt lại thành true
         // nếu Ban tổ chức mở nhận bài trở lại.
         const NHAN_BAI_BAO_CAO = false;
+        // Cổng đăng ký tham dự đóng sau hạn 30/08/2026. Đặt lại thành true
+        // nếu Ban tổ chức mở nhận đăng ký trở lại.
+        const NHAN_DANG_KY_THAM_DU = false;
 
         function showView(viewId, sectionId = null) {
             if (viewId === 'report-form' && !NHAN_BAI_BAO_CAO) {
                 showToast('Đã hết hạn nhận bài báo cáo từ ngày 20/07/2026.', 'error');
+                return;
+            }
+            if (viewId === 'cme-form' && !NHAN_DANG_KY_THAM_DU) {
+                showToast('Cổng đăng ký tham dự đã đóng từ ngày 30/08/2026.', 'error');
                 return;
             }
 
